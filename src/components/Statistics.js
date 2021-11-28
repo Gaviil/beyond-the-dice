@@ -42,7 +42,7 @@ const Statistics = (props) => {
           {i18next.t('stats.unluckiestPlayer')} :
         </span>
         <span>
-          {playerMostUnlucky(rollList, company) ? `${playerMostUnlucky(rollList, company).character} (${playerMostUnlucky(rollList, company).numberOfCriticalFail})` : ''}
+          {playerMostUnlucky(rollList, company) ? playerMostUnlucky(rollList, company).character : ''}
         </span>
       </div>
       <div>
