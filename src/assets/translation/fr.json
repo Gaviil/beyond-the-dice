@@ -147,9 +147,8 @@
     "TotalRoll": "Nombre de lancé dans la campagne",
     "criticFail": "Nombre d'échecs critiques",
     "criticSuccess": "Nombre de réussites critiques",
-    "unluckiestPlayer": "Joueur le plus malchanceux",
-    "luckiestPlayer": "Joueur le plus chanceux",
-    "average": "Valeur moyenne des lancés du personnage",
-    "mostRollPlayer": "Joueur avec le plus grand nombre de lancés"
+    "luckiestPlayer": "Classement des personnages par chance aux dés",
+    "average": "Valeur moyenne des lancés",
+    "mostRollPlayer": "Personnage avec le plus grand nombre de lancés"
   }
 }

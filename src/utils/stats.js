@@ -29,15 +29,9 @@ export const getAverage = (rolls, company) => {
   return arrayOfRollByCharacter.filter(rollbyCharacter => rollbyCharacter.average !== 0);
 }
 
-export const unluckiest = (rolls, company) => {
-  const averageRoll = getAverage(rolls, company);
-  return averageRoll.sort(compare)[0];
-}
-
 export const luckiestPlayer = (rolls, company) => {
   const averageRoll = getAverage(rolls, company);
-  return averageRoll.sort(compare)[averageRoll.length-1];
-
+  return averageRoll.sort(compare);
 }
 
 export const mostThrows = (rolls, company) => {
@@ -48,10 +42,10 @@ const reducer = (previousValue, currentValue) => previousValue + currentValue;
 
 const compare = ( a, b ) => {
   if ( a.average < b.average ){
-    return 1;
+    return -1;
   }
   if ( a.average > b.average ){
-    return -1;
+    return 1;
   }
   return 0;
 }
