@@ -1,6 +1,5 @@
 
 export const getNumberOfDiceRoll = (rolls) => {
-  console.log(rolls.filter(roll => roll.diceType !== 'Magic'));
   return rolls.filter(roll => roll.diceType !== 'Magic').length;
 }
 
@@ -23,24 +22,28 @@ export const getAverage = (rolls, company) => {
       average: 0,
     });
     if(rolls.filter(roll => roll.diceType === 100 && roll.characterId === company[i].uid).length) {
-      arrayOfRollByCharacter[i].average = (arrayOfRollByCharacter[i].rolls.map(roll => arrayOfRollByCharacter[i].average + parseInt(roll.value, 10)).reduce(reducer) / arrayOfRollByCharacter[i].rolls.length).toFixed(4)
+      arrayOfRollByCharacter[i].average = (arrayOfRollByCharacter[i].rolls.map(roll => arrayOfRollByCharacter[i].average + parseInt(roll.value, 10)).reduce(reducer) / arrayOfRollByCharacter[i].rolls.length).toFixed(2)
     }
     
   }
   return arrayOfRollByCharacter.filter(rollbyCharacter => rollbyCharacter.average !== 0);
 }
 
-export const playerMostLucky = (rolls, company) => {
-  const averageRoll = getAverage(rolls, company);
-  return averageRoll.sort(compare)[averageRoll.length-1];
-}
-
-export const playerMostUnlucky = (rolls, company) => {
+export const unluckiest = (rolls, company) => {
   const averageRoll = getAverage(rolls, company);
   return averageRoll.sort(compare)[0];
+}
+
+export const luckiestPlayer = (rolls, company) => {
+  const averageRoll = getAverage(rolls, company);
+  return averageRoll.sort(compare)[averageRoll.length-1];
 
 }
 
+export const mostThrows = (rolls, company) => {
+  const rollsByUser = getAverage(rolls, company);
+  return rollsByUser.sort(compareLength)[0];
+}
 const reducer = (previousValue, currentValue) => previousValue + currentValue;
 
 const compare = ( a, b ) => {
@@ -48,6 +51,16 @@ const compare = ( a, b ) => {
     return 1;
   }
   if ( a.average > b.average ){
+    return -1;
+  }
+  return 0;
+}
+
+const compareLength = ( a, b ) => {
+  if ( a.rolls.length < b.rolls.length ){
+    return 1;
+  }
+  if ( a.rolls.length > b.rolls.length ){
     return -1;
   }
   return 0;

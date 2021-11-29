@@ -379,6 +379,15 @@ input[type='number'].updateHp {
   justify-content: space-between;
 }
 
+.tooltip.tooltipStats {
+  border-bottom: none;
+}
+
+.tooltip.tooltipStats .tooltiptext {
+  left: none;
+  bottom: -20px;
+}
+
 @media (min-width: 800px) {
   .inventory {
     display: block;

@@ -148,6 +148,8 @@
     "criticFail": "Nombre d'échecs critiques",
     "criticSuccess": "Nombre de réussites critiques",
     "unluckiestPlayer": "Joueur le plus malchanceux",
-    "luckiestPlayer": "Joueur le plus chanceux"
+    "luckiestPlayer": "Joueur le plus chanceux",
+    "average": "Valeur moyenne des lancés du personnage",
+    "mostRollPlayer": "Joueur avec le plus grand nombre de lancés"
   }
 }
