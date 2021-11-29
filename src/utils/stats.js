@@ -1,4 +1,9 @@
 
+export const getNumberOfDiceRoll = (rolls) => {
+  console.log(rolls.filter(roll => roll.diceType !== 'Magic'));
+  return rolls.filter(roll => roll.diceType !== 'Magic').length;
+}
+
 export const getNumberOfCriticalFail = (rolls) => {
   const ArrayFilter = rolls.filter(roll => roll.diceType === 100 && roll.value >= 90);
   return ArrayFilter.length;
@@ -9,33 +14,31 @@ export const getNumberOfCriticalSuccess = (rolls) => {
 }
 
 export const getAverage = (rolls, company) => {
-  const arrayOfRollBuyCharacter = [];
+  const arrayOfRollByCharacter = [];
   for (let i = 0; i < company.length; i += 1) {
-    arrayOfRollBuyCharacter.push({
+    arrayOfRollByCharacter.push({
       character: company[i].name,
       uidCharacter: company[i].uid,
       rolls: rolls.filter(roll => roll.diceType === 100 && roll.characterId === company[i].uid),
       average: 0,
     });
-    arrayOfRollBuyCharacter[i].average = (arrayOfRollBuyCharacter[i].rolls.map(roll => arrayOfRollBuyCharacter[i].average + parseInt(roll.value, 10)).reduce(reducer) / arrayOfRollBuyCharacter[i].rolls.length).toFixed(4)
+    if(rolls.filter(roll => roll.diceType === 100 && roll.characterId === company[i].uid).length) {
+      arrayOfRollByCharacter[i].average = (arrayOfRollByCharacter[i].rolls.map(roll => arrayOfRollByCharacter[i].average + parseInt(roll.value, 10)).reduce(reducer) / arrayOfRollByCharacter[i].rolls.length).toFixed(4)
+    }
+    
   }
-  // arrayOfFailForCharacter.sort(compare);
-  // if(arrayOfFailForCharacter.length > 0) {
-  //   return {
-  //     character: arrayOfFailForCharacter[0].character,
-  //     numberOfCriticalFail: arrayOfFailForCharacter[0].fails,
-  //   }
-  // }
+  return arrayOfRollByCharacter.filter(rollbyCharacter => rollbyCharacter.average !== 0);
 }
 
 export const playerMostLucky = (rolls, company) => {
   const averageRoll = getAverage(rolls, company);
-  return averageRoll.sort(compare);
+  return averageRoll.sort(compare)[averageRoll.length-1];
 }
 
 export const playerMostUnlucky = (rolls, company) => {
   const averageRoll = getAverage(rolls, company);
-  return 
+  return averageRoll.sort(compare)[0];
+
 }
 
 const reducer = (previousValue, currentValue) => previousValue + currentValue;

@@ -1,6 +1,7 @@
 import i18next from 'i18next';
 import React from 'react';
 import {
+    getNumberOfDiceRoll,
     getNumberOfCriticalFail,
     getNumberOfCriticalSuccess,
     playerMostUnlucky,
@@ -18,7 +19,7 @@ const Statistics = (props) => {
           {i18next.t('stats.TotalRoll')} :
         </span>
         <span>
-          {rollList.length}
+          {getNumberOfDiceRoll(rollList)}
         </span>
       </div>
       <div>
@@ -50,7 +51,7 @@ const Statistics = (props) => {
           {i18next.t('stats.luckiestPlayer')} :
         </span>
         <span>
-          {playerMostLucky(rollList, company) ? `${playerMostLucky(rollList, company).character} (${playerMostLucky(rollList, company).numberOfCriticalSuccess})` : ''}
+          {playerMostLucky(rollList, company) ? playerMostLucky(rollList, company).character : ''}
         </span>
       </div>
     </div>
