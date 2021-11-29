@@ -384,7 +384,7 @@ input[type='number'].updateHp {
 }
 
 .tooltip.tooltipStats .tooltiptext {
-  left: none;
+  left: auto;
   bottom: -20px;
 }
 
