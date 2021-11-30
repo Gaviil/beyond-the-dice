@@ -11,7 +11,7 @@ import {
 const Statistics = (props) => {
   const {rollList, company} = props;
   const luckiest = luckiestPlayer(rollList, company);
-  const characterWithTheMostThrows = mostThrows(rollList, company);
+  const countThrowsCharacter = mostThrows(rollList, company);
   return (
     <div className='statsCampaign'>
       <h2>{i18next.t('stats.title')}</h2>
@@ -39,13 +39,25 @@ const Statistics = (props) => {
           {getNumberOfCriticalSuccess(rollList)}
         </span>
       </div>
-      <div className='line'>
+      {/* <div className='line'>
         <span>
           {i18next.t('stats.mostRollPlayer')} :
         </span>
         <span>
           {characterWithTheMostThrows ? `${characterWithTheMostThrows.character} (${characterWithTheMostThrows.rolls.length})` : ''}
         </span>
+      </div> */}
+      <div className='line'>
+        <span>
+          {i18next.t('stats.mostRollPlayer')} :
+        </span>
+        <div className='multiLineStat'>
+          <ul>
+            {countThrowsCharacter.map(luck => (
+              <li>{`${luck.character} (${luck.rolls.length})`}</li>
+            ))}
+          </ul>
+        </div>
       </div>
       <div className='line tooltip tooltipStats'>
         <span className="tooltiptext">{i18next.t('stats.average')}</span>

@@ -149,6 +149,6 @@
     "criticSuccess": "Nombre de réussites critiques",
     "luckiestPlayer": "Classement des personnages par chance aux dés",
     "average": "Valeur moyenne des lancés",
-    "mostRollPlayer": "Personnage avec le plus grand nombre de lancés"
+    "mostRollPlayer": "Classement des personnages par nombre de lancés"
   }
 }

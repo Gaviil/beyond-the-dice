@@ -36,7 +36,7 @@ export const luckiestPlayer = (rolls, company) => {
 
 export const mostThrows = (rolls, company) => {
   const rollsByUser = getAverage(rolls, company);
-  return rollsByUser.sort(compareLength)[0];
+  return rollsByUser.sort(compareLength);
 }
 const reducer = (previousValue, currentValue) => previousValue + currentValue;
 
