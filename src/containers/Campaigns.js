@@ -106,7 +106,6 @@ const Campaigns = (props) => {
             listCampaigns.push(doc.data())
           }
         });
-      console.log('campaign')
       setCampaigns(listCampaigns);
       // setValueOnLocalStorage('campaignsList',listCampaigns);
       // setValueOnLocalStorage('userUid',user.uid);
