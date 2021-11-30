@@ -58,6 +58,11 @@
     "value": "https://firebasestorage.googleapis.com/v0/b/beyondthedice-cfc1b.appspot.com/o/frame%2Fring2.png?alt=media&token=d47a890b-e0ad-4430-95b6-418850ee59e5",
     "condition": null,
     "name": "silverRing"
+  },
+  {
+    "value": "https://firebasestorage.googleapis.com/v0/b/beyondthedice-cfc1b.appspot.com/o/frame%2Fola.gif?alt=media&token=3c61ab17-4c7b-4860-9ea4-4bf47b80ee88",
+    "condition": null,
+    "name": "olaMonBrave"
   }
 ]
 
