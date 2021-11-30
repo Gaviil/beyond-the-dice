@@ -47,7 +47,7 @@ const Statistics = (props) => {
           {characterWithTheMostThrows ? `${characterWithTheMostThrows.character} (${characterWithTheMostThrows.rolls.length})` : ''}
         </span>
       </div> */}
-      <div className='line'>
+      <div className='line multiLine'>
         <span>
           {i18next.t('stats.mostRollPlayer')} :
         </span>
@@ -59,7 +59,7 @@ const Statistics = (props) => {
           </ul>
         </div>
       </div>
-      <div className='line tooltip tooltipStats'>
+      <div className='line multiLine tooltip tooltipStats'>
         <span className="tooltiptext">{i18next.t('stats.average')}</span>
         <span>
           {i18next.t('stats.luckiestPlayer')} :

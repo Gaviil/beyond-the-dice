@@ -398,6 +398,16 @@ input[type='number'].updateHp {
   top: 0px;
   right: -270px;
 }
+.line.multiLine {
+  display: flex;
+  flex-direction: column;
+}
+.line span:first-child {
+  text-align: justify;
+}
+.line span:last-child, .line ul li{
+  color: #6c757d;
+}
 
 @media (min-width: 800px) {
   .inventory {
@@ -473,5 +483,9 @@ input[type='number'].updateHp {
       "nameCharacteristics skillsDetail"
       "containerInv containerInv"
       "containerCompany containerCompany";
+  }
+  .line.multiLine {
+    display: flex;
+    flex-direction: row;
   }
 }
