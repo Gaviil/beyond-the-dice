@@ -198,6 +198,7 @@ const Characters = (props) => {
   }
 
 if(user && campaign) {
+  console.log(campaign);
     return (
     <div className='containerCharacters'>
       <CharacterContext.Provider value={contextValue}>
