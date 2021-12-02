@@ -1,56 +1,38 @@
 import React from 'react';
 import i18next from 'i18next';
-
+import CheckboxSwitch from './CheckboxSwitch'
 const CampaignSettings = (props) => {
   const {campaign} = props;
   return (
     <div className='settingsCampaign'>
       <h3>{i18next.t('settings campaign')}</h3>
-      <div className="switch">
-        <label>
-          <input
-            type="checkbox"
-            checked={campaign.hideValueCharacterStatsOnChat}
-            onChange={(e) => {
-              const newData = {...campaign}
-              newData.hideValueCharacterStatsOnChat = e.target.checked;
-              props.update(newData);
-            }}
-          />
-          <span className="lever"></span>
-          {i18next.t('campaignSettings.hide character stat value on chat')}
-        </label>
-      </div>
-      <div className="switch">
-        <label>
-          <input
-            type="checkbox"
-            checked={campaign.renameCharacter}
-            onChange={(e) => {
-              const newData = {...campaign}
-              newData.renameCharacter = e.target.checked;
-              props.update(newData);
-            }}
-          />
-          <span className="lever"></span>
-          {i18next.t('campaignSettings.rename character')}
-        </label>
-      </div>
-      <div className="switch">
-        <label>
-          <input
-            type="checkbox"
-            checked={campaign.clickStat}
-            onChange={(e) => {
-              const newData = {...campaign}
-              newData.clickStat = e.target.checked;
-              props.update(newData);
-            }}
-          />
-          <span className="lever"></span>
-          {i18next.t('campaignSettings.click to roll')}
-        </label>
-      </div>
+      <CheckboxSwitch
+        isChecked={campaign.hideValueCharacterStatsOnChat}
+        label={i18next.t('campaignSettings.hide character stat value on chat')}
+        update={(value) => {
+          const newData = {...campaign}
+          newData.hideValueCharacterStatsOnChat = value;
+          props.update(newData);
+        }}
+      />
+      <CheckboxSwitch
+        isChecked={campaign.renameCharacter}
+        label={i18next.t('campaignSettings.rename character')}
+        update={(value) => {
+          const newData = {...campaign}
+          newData.renameCharacter = value;
+          props.update(newData);
+        }}
+      />
+      <CheckboxSwitch
+        isChecked={campaign.clickStat}
+        label={i18next.t('campaignSettings.click to roll')}
+        update={(value) => {
+          const newData = {...campaign}
+          newData.clickStat = value;
+          props.update(newData);
+        }}
+      />
       <button
         className='danger'
         onClick={(e) => {
