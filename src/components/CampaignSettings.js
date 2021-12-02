@@ -10,8 +10,7 @@ const CampaignSettings = (props) => {
         <label>
           <input
             type="checkbox"
-            value={campaign.hideValueCharacterStatsOnChat}
-            defaultChecked={campaign.hideValueCharacterStatsOnChat}
+            checked={campaign.hideValueCharacterStatsOnChat}
             onChange={(e) => {
               const newData = {...campaign}
               newData.hideValueCharacterStatsOnChat = e.target.checked;
@@ -26,8 +25,7 @@ const CampaignSettings = (props) => {
         <label>
           <input
             type="checkbox"
-            value={campaign.renameCharacter}
-            defaultChecked={campaign.renameCharacter}
+            checked={campaign.renameCharacter}
             onChange={(e) => {
               const newData = {...campaign}
               newData.renameCharacter = e.target.checked;
@@ -42,8 +40,7 @@ const CampaignSettings = (props) => {
         <label>
           <input
             type="checkbox"
-            value={campaign.clickStat}
-            defaultChecked={campaign.clickStat}
+            checked={campaign.clickStat}
             onChange={(e) => {
               const newData = {...campaign}
               newData.clickStat = e.target.checked;

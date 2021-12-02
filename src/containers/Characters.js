@@ -198,7 +198,7 @@ const Characters = (props) => {
   }
 
 if(user && campaign) {
-    return (
+  return (
     <div className='containerCharacters'>
       <CharacterContext.Provider value={contextValue}>
         <Switch>
