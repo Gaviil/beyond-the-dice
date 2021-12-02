@@ -6,8 +6,6 @@ import "firebase/firestore";
 import "firebase/database";
 import 'firebase/analytics';
 import {
-  Switch,
-  Route,
   useRouteMatch,
 } from "react-router-dom";
 import {init} from '../utils/initFirebase'
@@ -17,7 +15,6 @@ import UserContext from '../context/UserContext';
 import CampaignContext from '../context/CampaignContext';
 import '../styles/character.css';
 import '../styles/modal.css';
-import DiceChat from './DiceChat';
 import {getRoll} from '../utils/dice';
 import {
   BrowserView,
@@ -35,7 +32,6 @@ init();
 const db = firebase.firestore();
 
 const Dm = (props) => {
-  let match = useRouteMatch();
   const {user} = useContext(UserContext);
   const {campaign} = useContext(CampaignContext);
   const [rollList, setRollList] = useState([]);
