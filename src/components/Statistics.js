@@ -1,64 +1,54 @@
 import i18next from 'i18next';
 import React from 'react';
 import {
+    getStats,
     getNumberOfDiceRoll,
-    getNumberOfCriticalFail,
     getNumberOfCriticalSuccess,
-    luckiestPlayer,
-    mostThrows,
+    getNumberOfCriticalFail,
+    getMostUsedSkills
   } from '../utils/stats';
+import "../styles/statistics.css";
+import { MyPie, MyBar, Block, MyRadar } from './Charts';
 
 const Statistics = (props) => {
   const {rollList, company} = props;
-  const luckiest = luckiestPlayer(rollList, company);
-  const characterWithTheMostThrows = mostThrows(rollList, company);
+  const stats = getStats(rollList, company);
+  const mostRollSkill = getMostUsedSkills(rollList);
   return (
     <div className='statsCampaign'>
-      <h2>{i18next.t('stats.title')}</h2>
-      <div className='line'>
-        <span>
-          {i18next.t('stats.TotalRoll')} :
-        </span>
-        <span>
-          {getNumberOfDiceRoll(rollList)}
-        </span>
+      <div className='chartLong multiBlock'>
+        <Block label={i18next.t('stats.TotalRoll')} value={getNumberOfDiceRoll(rollList)}/>
+        <Block label={i18next.t('stats.criticSuccess')} value={getNumberOfCriticalSuccess(rollList)} background="#007991"/>
+        <Block label={i18next.t('stats.criticFail')} value={getNumberOfCriticalFail(rollList)} background="#D52941"/>
       </div>
-      <div className='line'>
-        <span>
-          {i18next.t('stats.criticFail')} :
-        </span>
-        <span>
-          {getNumberOfCriticalFail(rollList)}
-        </span>
+      <div className='chart'>
+        <h3>Moyenne de résultat (d100)</h3>
+        <MyPie 
+          labels={stats.characters}
+          values={stats.averageRoll}
+        />
       </div>
-      <div className='line'>
-        <span>
-          {i18next.t('stats.criticSuccess')} :
-        </span>
-        <span>
-          {getNumberOfCriticalSuccess(rollList)}
-        </span>
+      <div className='chart'>
+        <h3>Nombre de dé lancés</h3>
+        <MyPie 
+          labels={stats.characters}
+          values={stats.numberOfRoll}
+        />
       </div>
-      <div className='line'>
-        <span>
-          {i18next.t('stats.mostRollPlayer')} :
-        </span>
-        <span>
-          {characterWithTheMostThrows ? `${characterWithTheMostThrows.character} (${characterWithTheMostThrows.rolls.length})` : ''}
-        </span>
+      <div className='chartLong'>
+        <h3>SKILL UTILISATION</h3>
+        <MyRadar 
+          title={i18next.t('stats.statisticUsed')}
+          labels={mostRollSkill.name}
+          values={mostRollSkill.value}
+        />
       </div>
-      <div className='line tooltip tooltipStats'>
-        <span className="tooltiptext">{i18next.t('stats.average')}</span>
-        <span>
-          {i18next.t('stats.luckiestPlayer')} :
-        </span>
-        <div className='multiLineStat'>
-          <ul>
-            {luckiest.map(luck => (
-              <li>{`${luck.character} (${luck.average})`}</li>
-            ))}
-          </ul>
-        </div>
+      <div className='chartLong'>
+        <MyBar 
+          labels={stats.characters}
+          valuesOne={stats.criticalSuccess}
+          valuesTwo={stats.criticalFail}
+        />
       </div>
     </div>
   );

@@ -6,7 +6,7 @@
   "description": "Description",
   "dm": "Maître du jeu",
   "dm initial": "MJ",
-  "load more": "Charger plus de dès",
+  "load more": "Charger plus de dé",
   "invitation code": "Code d'invitation",
   "campaign name": "Nom de la nouvelle campagne",
   "create": "Créer",
@@ -144,11 +144,12 @@
   "settings campaign": "Configuration",
   "stats": {
     "title": "Statistiques",
-    "TotalRoll": "Nombre de lancé dans la campagne",
+    "TotalRoll": "Nombre de dé lancé",
     "criticFail": "Nombre d'échecs critiques",
     "criticSuccess": "Nombre de réussites critiques",
     "luckiestPlayer": "Classement des personnages par chance aux dés",
     "average": "Valeur moyenne des lancés",
-    "mostRollPlayer": "Personnage avec le plus grand nombre de lancés"
+    "mostRollPlayer": "Personnage avec le plus grand nombre de lancés",
+    "statisticUsed": "Utilisation des statistiques"
   }
 }

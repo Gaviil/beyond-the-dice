@@ -1,0 +1,45 @@
+.statsCampaign .chart {
+  max-width: 45%;
+  margin: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.statsCampaign .chart h3{
+  font-size: 0.75rem;
+  text-align: center;
+  color:#666;
+}
+.statsCampaign .chartLong {
+  width: 100%;
+  margin: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.blockStat {
+  display: flex;
+  flex-direction: column;
+  max-width: auto;
+  width: 180px;
+  padding: 0.05rem;
+  border-radius: 0.75rem;
+}
+.blockStat span {
+  color: #fff;
+  margin: 10px;
+  text-align: center;
+  flex: 1;
+}
+.blockStat span:last-child {
+  font-size: 2.5em;
+  font-weight: bold;
+  justify-self: flex-end;
+}
+.blockStat span:first-child {
+  color: #eaeaea;
+}
+.multiBlock {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}

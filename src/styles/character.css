@@ -305,7 +305,9 @@ table tr td:last-child {
   margin: 1rem;
   margin-left: 0;
 }
-
+.contentDm {
+  margin-top: 1rem;
+}
 .containerCharacterView .tabsContainer {
   display: flex;
   flex-direction: row;
@@ -368,7 +370,8 @@ input[type='number'].updateHp {
 }
 .statsCampaign {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   margin-bottom: 1rem;
 }
 .statsCampaign .multiLineStat ul{

@@ -1,13 +1,9 @@
-import i18next from 'i18next';
 import React from 'react';
 import Picture from './Picture';
 
 const Company = (props) => {
   return (
     <div className={props.list ? 'containerCompanyList' : 'containerCompany'}>
-      {props.list && (
-        <h2>{i18next.t('company')}</h2>
-      )}
       {props.company.map((compagnyMember,i) => (
         <div
           key={i}

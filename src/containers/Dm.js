@@ -29,6 +29,7 @@ import Company from '../components/Company';
 import {getLabelDice} from '../utils/dice'
 import {useHistory} from "react-router-dom";
 import Statistics from "../components/Statistics";
+import i18next from 'i18next';
 
 init();
 const db = firebase.firestore();
@@ -40,6 +41,7 @@ const Dm = (props) => {
   const [rollList, setRollList] = useState([]);
   const [hideRollSwitch,setHideRollSwitch] = useState(false);
   const [company, setCompany] = useState([]);
+  const [view, setView] = useState('company');
   const history = useHistory();
 
   useEffect(() => {
@@ -101,66 +103,72 @@ const Dm = (props) => {
 
   if(campaign.idUserDm === user.uid) {
     return (
-      <Switch>
-        <Route path={`${match.url}/chat`}>
-          <DiceChat
-            list={rollList}
-            setNewDice={(valMaxRoll) => {
-              sendNewRoll(getRoll(valMaxRoll,campaign.idUserDm, null, user, null, hideRollSwitch));
-            }}
-            hideRollSwitch={hideRollSwitch}
-            setHideRoll={(val) => {
-              setHideRollSwitch(val)
-             }}
-          />
-        </Route>
-        <Route path={match.path}>
-          <div className='containerCharacterView'>
-              <div className='characterContainer'>
-                <MobileView className='linkChatContainerDmView'>
-                    {/* <Link
-                      className='link'
-                      to={`${match.url}/chat`}
-                    >
-                      <img className="iconChat" src={chat} alt="chat" />
-                    </Link> */}
-                  </MobileView>
-                <div className='containerInfoComp'>
-                  {company && (
-                    <Company
-                      list
-                      withLife
-                      company={company}
-                    />
-                  )}
-                  {rollList.length > 0 && (
-                    <Statistics
-                      rollList={rollList}
-                      company={company}
-                    />
-                  )}
-                </div>
-                <BrowserView className='containerHisto'>
-                  <DiceHistorical
-                    list={rollList}
-                    hideRollSwitch={hideRollSwitch}
-                    setHideRoll={(val) => {
-                      setHideRollSwitch(val)
-                    }}
-                  />
-                </BrowserView>
-                <BrowserView>
-                  <DiceRoll
-                    chat={false}
-                    setNewDice={(valMaxRoll) => {
-                      sendNewRoll(getRoll(valMaxRoll,campaign.idUserDm, null, user, null, hideRollSwitch, null))
-                    }}
-                  />
-                </BrowserView>
-              </div>
+      <div className='containerCharacterView'>
+        <div className='characterContainer'>
+          <MobileView className='linkChatContainerDmView'>
+              {/* <Link
+                className='link'
+                to={`${match.url}/chat`}
+              >
+                <img className="iconChat" src={chat} alt="chat" />
+              </Link> */}
+            </MobileView>
+          <div className='containerInfoComp'>
+            <BrowserView className='tabsDetails'>
+            <ul className='tabsContainer'>
+              <li
+                className={`tab ${view === 'company' ? 'active' : ''}`}
+                onClick={() => {
+                  setView('company');
+                }}  
+              >
+                {i18next.t('company')}
+              </li>
+              <li
+                className={`tab ${view === 'stats' ? 'active' : ''}`}
+                onClick={() => {
+                  setView('stats');
+                }}  
+              >
+                {i18next.t('stats.title')}
+              </li>
+            </ul>
+          </BrowserView>
+            <div className='contentDm'>
+              {company && view === 'company' && (
+                <Company
+                  list
+                  withLife
+                  company={company}
+                />
+              )}
+              {rollList.length > 0 && view === 'stats' && (
+                <Statistics
+                  rollList={rollList}
+                  company={company}
+                />
+              )}
+            </div>
           </div>
-        </Route>
-      </Switch>
+          <BrowserView className='containerHisto'>
+            <DiceHistorical
+              list={rollList}
+              hideRollSwitch={hideRollSwitch}
+              setHideRoll={(val) => {
+                setHideRollSwitch(val)
+              }}
+            />
+          </BrowserView>
+          <BrowserView>
+            <DiceRoll
+              chat={false}
+              setNewDice={(valMaxRoll) => {
+                sendNewRoll(getRoll(valMaxRoll,campaign.idUserDm, null, user, null, hideRollSwitch, null))
+              }}
+            />
+          </BrowserView>
+        </div>
+      </div>
     );
   } else {
     history.goBack();
