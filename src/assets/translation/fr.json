@@ -151,5 +151,17 @@
     "average": "Valeur moyenne des lancés",
     "mostRollPlayer": "Personnage avec le plus grand nombre de lancés",
     "statisticUsed": "Utilisation des statistiques"
+  },
+  "alchemy": {
+    "isAlchemiste": "Le personnage est un alchimiste",
+    "isAlchemisteEdit": " est un alchimiste",
+    "title": "Alchimie",
+    "receiptTitle": "Recettes",
+    "potionTitle": "Potions",
+    "ingramus" : "Le feu ardent d’Ingramus le sage",
+    "ingramusDesc" : "Bien secouer avant utilisation. Lancer la potion dans un endroit éloigné et être prêt pour une grosse explosion",
+    "karloff": "Le passe-muraille de Karloff",
+    "karloffDesc": "Dissout tout, sauf le verre",
+    "createPotion": "Création de potion"
   }
 }

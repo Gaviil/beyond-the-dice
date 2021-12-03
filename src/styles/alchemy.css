@@ -1,0 +1,29 @@
+.receiptContainer, .potionContainer {
+  display: flex;
+  flex-direction: column;
+}
+.potionContainer {
+  margin-top: 2rem;
+}
+.lineReceiptAlchemy {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.lineReceiptAlchemy.alt {
+  background-color: rgba(172, 171, 171, 0.2);
+}
+
+.lineReceiptAlchemy span{
+  flex: 12;
+  padding: 0.5rem;
+  align-self: center;
+}
+.lineReceiptAlchemy span:first-child{
+  flex: 6;
+}
+.lineReceiptAlchemy span:last-child{
+  flex: 1;
+  text-align: end;
+}

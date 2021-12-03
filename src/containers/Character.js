@@ -42,6 +42,7 @@ import Skills from '../components/Skills';
 import Characteristics from '../components/Characteristics';
 import Company from '../components/Company';
 import {getLabelDice} from '../utils/dice'
+import Alchemy from '../components/Alchemy';
 
 init();
 const db = firebase.firestore();
@@ -192,6 +193,31 @@ const Character = (props) => {
     }
   }
 
+  const createReceipt = (receipt) => {
+      const statLaunch = {
+        isCustom: !receipt.default,
+        label: 'createPotion',
+        value: receipt.difficulty
+      }
+      const newRoll = getRoll(100,campaign.idUserDm, character, user, statLaunch, hideRollSwitch, "alchemy");
+      if(newRoll.value <= receipt.difficulty) {
+        const updatedCharacter = {...character};
+        const findPotion = updatedCharacter.alchemy.potion.find(potion => potion.name === receipt.name)
+        if(findPotion) {
+          findPotion.number += 1;
+        } else {
+          updatedCharacter.alchemy.potion.push({
+            "name": receipt.name,
+            "number": 1,
+            "default": false
+          })
+        }
+        updateCharacter({...updatedCharacter})
+        updateFirestoreCharacter(updatedCharacter);
+      }
+      sendNewRoll(newRoll);
+  }
+
   if(character) {
     return (
       <Switch>
@@ -249,6 +275,16 @@ const Character = (props) => {
                     >
                       {i18next.t('inventory')}
                     </li>
+                    {character.isAlchemist && (
+                      <li
+                        className={`tab ${view === 'alchemy' ? 'active' : ''}`}
+                        onClick={() => {
+                          setView('alchemy');
+                        }}  
+                      >
+                        {i18next.t('alchemy.title')}
+                      </li>
+                    )}
                     <li
                       className={`tab ${view === 'company' ? 'active' : ''}`}
                       onClick={() => {
@@ -382,6 +418,22 @@ const Character = (props) => {
                         updateFirestoreCharacter(characterWithNewInventory);
                       }}
                       />
+                  </div>
+                )}
+                {view === 'alchemy' && (
+                  <div className='containerInfo'>
+                    <Alchemy
+                      invAndReceipt={character.alchemy}
+                      create={(receipt) => {
+                        createReceipt(receipt);
+                      }}
+                      use={(potions) => {
+                        const updatedCharacter = {...character};
+                        updatedCharacter.alchemy.potion = potions
+                        updateCharacter({...updatedCharacter})
+                        updateFirestoreCharacter(updatedCharacter);
+                      }}
+                    />  
                   </div>
                 )}
                 {view === 'company' && (

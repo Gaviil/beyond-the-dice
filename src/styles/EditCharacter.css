@@ -10,6 +10,7 @@
 }
 .formUpdateCharacter .danger{
   width: max-content;
+  margin-top: 2rem;
 }
 .labelFormUpdate {
   width: 300px;

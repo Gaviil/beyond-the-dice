@@ -9,6 +9,7 @@ import i18next from 'i18next';
  * @returns {{}} Json with all data to send at Firestore
  */
 export const getRoll = (max, uidUserDmCampaign, character, user ,stat, hideRollSwitch = false, prefixTradStat) => {
+  console.log(stat);
     const randomValue = Math.floor(Math.random() * max) + 1;
     const isDm = uidUserDmCampaign === user.uid;
     const statRoll = { ...stat };

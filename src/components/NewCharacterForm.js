@@ -5,6 +5,7 @@ import CampaignContext from '../context/CampaignContext';
 import '../styles/characters.css';
 import {getAllStats} from '../utils/characterGeneration';
 import { toast } from 'react-toastify';
+import CheckboxSwitch from '../components/CheckboxSwitch';
 import 'react-toastify/dist/ReactToastify.css';
 
 const NewCharacterForm = (props) => {
@@ -16,6 +17,7 @@ const NewCharacterForm = (props) => {
   const [additionalSkillPoint, setAdditionalSkillPoint] = useState(50);
   const [listBonusSkills, setListBonusSkills] = useState([...dataCharacter.skillsBonus]);
   const [description, setDescription] = useState('');
+  const [isAlchemist, setIsAlchemist] = useState(false);
   const {createCharacter} = props;
   const skillsRef = useRef(null);
   const [generationCharacterClassic, setGenerationCharacterClassic] = useState(true)
@@ -76,7 +78,8 @@ const NewCharacterForm = (props) => {
                 alive: true,
                 characteristics: listCharac,
                 skills: skillsCalculated,
-                inventory: []
+                inventory: [],
+                isAlchemist: isAlchemist
               });
               setName('');
               setDescription('');
@@ -124,6 +127,13 @@ const NewCharacterForm = (props) => {
               />
             </label>
           </p>
+          <CheckboxSwitch
+            isChecked={isAlchemist}
+            label={i18next.t('alchemy.isAlchemiste')}
+            update={(val) => {
+              setIsAlchemist(val);
+            }}
+          />
         </div>
           <div className='characteristics'>
             <p>

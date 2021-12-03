@@ -28,6 +28,8 @@ import i18next from 'i18next';
 import Picture from '../components/Picture';
 import logo from '../assets/Images/logo150.png';
 import CampaignSettings from '../components/CampaignSettings';
+import alchemy from '../assets/alchemy.json';
+
 init();
 const db = firebase.firestore();
 
@@ -156,10 +158,14 @@ const Characters = (props) => {
       description: characterData.description,
       skills: [...characterData.skills],
       characteristics: [...characterData.characteristics],
+      isAlchemist: characterData.isAlchemist,
       inventory: [],
       picture: null,
       active: true
     };
+    if(characterData.isAlchemist) {
+      data.alchemy = alchemy;
+    }
     await db.collection('characters').doc(characterUid).set(data).then(res => {
       // const charactersList = getValueOnLocalStorage('characters');
       const charactersList = [...characters]

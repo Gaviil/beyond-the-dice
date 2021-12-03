@@ -17,20 +17,28 @@
   grid-area: tabsDetails;
 }
 .containerInventory{
-  grid-area: containerInventory;
+  /* grid-area: containerInventory; */
 }
 .containerInv {
   grid-area: containerInv;
 }
+.alchemyContainer {
+  /* grid-area: containerAlchemy; */
+  /* display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-self: center; */
+}
+
 .containerCompany {
-  grid-area: containerCompany;
+  /* grid-area: containerCompany; */
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-self: center;
 }
 .containerCompanyList {
-  grid-area: containerCompany;
+  /* grid-area: containerCompany; */
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -149,7 +157,7 @@
   color: #1b1d29
 }
 .inventory {
-  grid-area: inventory;
+  /* grid-area: inventory; */
   display: none;
 }
 .characterContainer {
@@ -431,11 +439,12 @@ input[type='number'].updateHp {
   }
   .containerInfo {
     display: grid;
-    grid-template-rows:3rem 0rem 0rem;
-    grid-template-columns: 1fr 1fr;
+    /* grid-template-rows:3rem 0rem 0rem;
+    grid-template-columns: 1fr 1fr; */
     grid-template-areas:
       "nameCharacteristics skillsDetail"
       "containerInv containerInv"
+      "containerAlchemy containerAlchemy"
       "containerCompany containerCompany";
   }
   .containerInventory {
@@ -486,6 +495,7 @@ input[type='number'].updateHp {
     grid-template-areas:
       "nameCharacteristics skillsDetail"
       "containerInv containerInv"
+      "containerAlchemy containerAlchemy"
       "containerCompany containerCompany";
   }
   .line.multiLine {

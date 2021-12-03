@@ -14,6 +14,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import Breadcrumb from '../components/Breadcrumb';
 import Picture from '../components/Picture';
 import FrameSelector from '../components/FrameSelector';
+import CheckboxSwitch from '../components/CheckboxSwitch';
+import alchemy from '../assets/alchemy.json'; 
 // init();
 // const db = firebase.firestore();
 
@@ -207,22 +209,35 @@ const EditCharacter = (props) => {
               {i18next.t('create skill')}
             </button>
           </div>
+          <div>
+            <h3>{i18next.t('management')} :</h3>
+              <CheckboxSwitch
+                isChecked={duplicateCharacter.isAlchemist}
+                label={`${duplicateCharacter.name} ${i18next.t('alchemy.isAlchemisteEdit')}`}
+                update={(val) => {
+                  duplicateCharacter.isAlchemist = val;
+                  if(val === true && !duplicateCharacter.alchemy) {
+                    duplicateCharacter.alchemy = alchemy;
+                  }
+                  setDuplicateCharacter({...duplicateCharacter});
+                }}
+              />
+              <button
+                className='danger'
+                onClick={(e) => {
+                  if(window.confirm(i18next.t('archive.character-validation'))) {
+                    duplicateCharacter.active = false;
+                    props.updateDataCharacter(duplicateCharacter);
+                    toast.success(i18next.t('archive.succed'), {});
+                  }
+                  e.preventDefault()
+                }}
+              >
+                {i18next.t('archive.character')}
+              </button>
+          </div>
           <input type="submit" value={i18next.t('save')} />
         </form>
-        <h3>{i18next.t('management')} :</h3>
-        <button
-          className='danger'
-          onClick={(e) => {
-            if(window.confirm(i18next.t('archive.character-validation'))) {
-              duplicateCharacter.active = false;
-              props.updateDataCharacter(duplicateCharacter);
-              toast.success(i18next.t('archive.succed'), {});
-            }
-            e.preventDefault()
-          }}
-        >
-          {i18next.t('archive.character')}
-        </button>
       </div>
     </div>
   );
