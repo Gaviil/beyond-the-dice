@@ -36,7 +36,7 @@ const Statistics = (props) => {
         />
       </div>
       <div className='chartLong'>
-        <h3>SKILL UTILISATION</h3>
+        <h3>Utilisation des compétences</h3>
         <MyRadar 
           title={i18next.t('stats.statisticUsed')}
           labels={mostRollSkill.name}
