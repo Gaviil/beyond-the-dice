@@ -147,7 +147,7 @@ export const MyRadar = (props) => {
         data: props.data[i].numberOfRoll,
         backgroundColor: colors[idColorSelected].empty,
         borderColor: colors[idColorSelected].full,
-        borderWidth: 1,
+        borderWidth: 2,
       });
     if(idColorSelected === colors.length) {
       idColorSelected = 0;

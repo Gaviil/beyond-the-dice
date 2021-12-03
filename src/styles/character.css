@@ -373,6 +373,7 @@ input[type='number'].updateHp {
   flex-direction: row;
   flex-wrap: wrap;
   margin-bottom: 1rem;
+  justify-content:space-around;
 }
 .statsCampaign .multiLineStat ul{
   margin-block-end: 0;

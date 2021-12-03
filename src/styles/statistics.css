@@ -4,7 +4,7 @@
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
-.statsCampaign .chart h3{
+.statsCampaign .chart h3, .statsCampaign .chartLong h3{
   font-size: 0.75rem;
   text-align: center;
   color:#666;
