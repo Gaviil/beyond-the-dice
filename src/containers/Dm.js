@@ -5,9 +5,6 @@ import "firebase/auth";
 import "firebase/firestore";
 import "firebase/database";
 import 'firebase/analytics';
-import {
-  useRouteMatch,
-} from "react-router-dom";
 import {init} from '../utils/initFirebase'
 import DiceHistorical from '../components/DiceHistorical';
 import DiceRoll from '../components/DiceRoll';
