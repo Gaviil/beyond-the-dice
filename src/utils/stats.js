@@ -14,18 +14,21 @@ export const getNumberOfCriticalSuccess = (rolls) => {
   return ArrayFilter.length;
 }
 
-export const getMostUsedSkills = (rolls) => {
+export const getMostUsedSkills = (rolls, company) => {
 
-  const nameOfSkills = [];
-  const numberOfRoll = [];
-  for(let i=0; i < characterGenerationData.skills.length; i+=1) {
-    nameOfSkills.push(i18next.t(`skills.${characterGenerationData.skills[i].label}`));
-    numberOfRoll.push(rolls.filter(roll => roll.stat && roll.stat.label === characterGenerationData.skills[i].label).length)
+  const skillsByCharacter = [];
+  for(let j=0; j < company.length; j += 1) {
+    skillsByCharacter.push({
+      name: company[j].name,
+      nameOfSkills: [],
+      numberOfRoll: [],
+    });
+    for(let i=0; i < characterGenerationData.skills.length; i+=1) {
+        skillsByCharacter[j].nameOfSkills.push(i18next.t(`skills.${characterGenerationData.skills[i].label}`));
+        skillsByCharacter[j].numberOfRoll.push(rolls.filter(roll => roll.stat && roll.characterId === company[j].uid && roll.stat.label === characterGenerationData.skills[i].label).length)
+      }
   }
-  return {
-    name: nameOfSkills,
-    value: numberOfRoll
-  }
+  return skillsByCharacter;
 }
 
 /**

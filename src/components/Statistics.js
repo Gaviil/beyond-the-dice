@@ -13,7 +13,7 @@ import { MyPie, MyBar, Block, MyRadar } from './Charts';
 const Statistics = (props) => {
   const {rollList, company} = props;
   const stats = getStats(rollList, company);
-  const mostRollSkill = getMostUsedSkills(rollList);
+  const mostRollSkill = getMostUsedSkills(rollList, company);
   return (
     <div className='statsCampaign'>
       <div className='chartLong multiBlock'>
@@ -38,9 +38,10 @@ const Statistics = (props) => {
       <div className='chartLong'>
         <h3>Utilisation des compétences</h3>
         <MyRadar 
-          title={i18next.t('stats.statisticUsed')}
-          labels={mostRollSkill.name}
-          values={mostRollSkill.value}
+          data={mostRollSkill}
+          // title={i18next.t('stats.statisticUsed')}
+          // labels={mostRollSkill.name}
+          // values={mostRollSkill.value}
         />
       </div>
       <div className='chartLong'>

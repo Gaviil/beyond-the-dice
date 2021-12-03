@@ -107,17 +107,54 @@ export const Block = (props) => {
 
 export const MyRadar = (props) => {
   const data = {
-    labels: props.labels,
-    datasets: [
-      {
-        label: props.title,
-        data: props.values,
-        backgroundColor: 'rgba(00, 79, 91, 0.2)',
-        borderColor: '#007991',
-        borderWidth: 1,
-      },
-    ],
+    labels: props.data[0].nameOfSkills,
+    datasets: [],
   };
+  const colors = [
+        {
+          full: 'rgba(00, 79, 91, 1)',
+          empty: 'rgba(00, 79, 91, 0.2)',
+        },
+        {
+          full:"rgba(213, 41, 65, 1)",
+          empty: "rgba(213, 41, 65, 0.2)"
+        },
+        {
+          full:"rgba(255, 173, 35, 1)",
+          empty: "rgba(255, 173, 35, 0.2)"
+        },
+        {
+          full:"rgba(27, 29, 41, 1)",
+          empty: "rgba(27, 29, 41, 0.2)"
+        },
+        {
+          full:"rgba(158, 189, 110, 1)",
+          empty: "rgba(158, 189, 110, 0.2)"
+        },
+        {
+          full:"rgba(123, 75, 148, 1)",
+          empty: "rgba(123, 75, 148, 0.2)"
+        },
+        {
+          full:"rgba(33, 41, 92, 1)",
+          empty: "rgba(33, 41, 92, 0.2)"
+        },
+      ];
+  let idColorSelected = 0;
+  for( let i = 0;i< props.data.length; i+= 1) {
+    data.datasets.push({
+        label: props.data[i].name,
+        data: props.data[i].numberOfRoll,
+        backgroundColor: colors[idColorSelected].empty,
+        borderColor: colors[idColorSelected].full,
+        borderWidth: 1,
+      });
+    if(idColorSelected === colors.length) {
+      idColorSelected = 0;
+    } else {
+      idColorSelected += 1;
+    }
+  }
   return (
     <Radar data={data} />
   )
