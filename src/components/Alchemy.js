@@ -3,7 +3,7 @@ import React from 'react';
 import '../styles/alchemy.css';
 
 const Alchemy = (props) => {
-  const {invAndReceipt} = props;
+  const {invAndReceipt, character} = props;
   const {potion, receipt} = invAndReceipt;
   return (
     <div className='alchemyContainer'>

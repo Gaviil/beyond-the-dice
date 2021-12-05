@@ -60,7 +60,7 @@ const Inventory = (props) => {
             character.inventory.sort(dynamicSort('name')).map((item, i) => (
               <div key={i} className='tableInvRow'>
                 <div>
-                  <span>{item.name}</span>
+                  <span>{`${item.type === 'alchemy' && item.default ? i18next.t(`alchemy.${item.name}`) : item.name}`}</span>
                 </div>
                 <div>
                   {lineToUpdateInv === i && (

@@ -12,17 +12,5 @@
       "difficulty": 60,
       "default": true
     }
-  ],
-  "potion": [
-    {
-      "name": "ingramus",
-      "number": 1,
-      "default": true
-    },
-    {
-      "name": "karloff",
-      "number": 1,
-      "default": true
-    }
   ]
 }
