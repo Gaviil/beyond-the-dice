@@ -3,12 +3,13 @@ import React from 'react';
 import '../styles/alchemy.css';
 
 const Alchemy = (props) => {
-  const {invAndReceipt} = props;
+  const {invAndReceipt, character} = props;
   const {potion, receipt} = invAndReceipt;
+  console.log(character.inventory.find((item) => item.type === 'alchemy'));
   return (
     <div className='alchemyContainer'>
       <ReceiptView receipt={receipt} create={(val) => {props.create(val)}}/>
-      <Potion potion={potion} use={(val) => {props.use(val)}}/>
+      <Potion potion={character.inventory.filter((item) => item.type === 'alchemy')} use={(val) => {props.use(val)}}/>
     </div>
   );
   

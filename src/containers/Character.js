@@ -202,16 +202,18 @@ const Character = (props) => {
       const newRoll = getRoll(100,campaign.idUserDm, character, user, statLaunch, hideRollSwitch, "alchemy");
       if(newRoll.value <= receipt.difficulty) {
         const updatedCharacter = {...character};
-        const findPotion = updatedCharacter.alchemy.potion.find(potion => potion.name === receipt.name)
+        const findPotion = updatedCharacter.inventory.find(potion => potion.name === receipt.name && potion.type === 'alchemy')
         if(findPotion) {
           findPotion.number += 1;
         } else {
-          updatedCharacter.alchemy.potion.push({
+          updatedCharacter.inventory.push({
             "name": receipt.name,
             "number": 1,
-            "default": false
+            "type": "alchemy",
+            "default": receipt.default
           })
         }
+        console.log(updatedCharacter);
         updateCharacter({...updatedCharacter})
         updateFirestoreCharacter(updatedCharacter);
       }
@@ -423,6 +425,7 @@ const Character = (props) => {
                 {view === 'alchemy' && (
                   <div className='containerInfo'>
                     <Alchemy
+                      character={character}
                       invAndReceipt={character.alchemy}
                       create={(receipt) => {
                         createReceipt(receipt);
