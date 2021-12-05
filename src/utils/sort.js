@@ -22,3 +22,14 @@ export const dynamicSortWithTraduction = (property, prefixTrad) => {
       }        
     }
 }
+
+export const dynamicSort = (property) => {
+    var sortOrder = 1;
+    return function (a,b) {
+      if(sortOrder === 1){
+        return a[property].localeCompare(b[property]);
+      }else{
+        return b[property].localeCompare(a[property]);
+      }        
+    }
+}
