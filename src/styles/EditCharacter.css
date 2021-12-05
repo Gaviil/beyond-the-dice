@@ -116,6 +116,13 @@ span.labelSkillUneditable {
 .editBlock h3 {
   text-decoration: underline;
 }
+.optionBtn {
+  height: 37px;
+  width: 40px;
+  padding: 0;
+  margin-left: 0.5rem;
+  border-radius: 0.25rem;
+}
 @media (min-width: 1000px) {
   .containerEditSkill {
     width: 50%;

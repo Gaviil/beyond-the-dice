@@ -21,7 +21,8 @@ const ReceiptView = (props) => {
       <div>
         {props.receipt.map((rec, i) => (
           <div
-            className={`lineReceiptAlchemy ${i%2 ? 'alt' : ''}`}
+            className={`lineReceiptAlchemy ${i%2 ? 'alt' : ''} click
+            `}
             onClick={() => {
               props.create(rec);
             }}
@@ -49,7 +50,7 @@ const Potion = (props) => {
       <div>
         {props.potion.map((pot, i) => (
           <div
-            className={`lineReceiptAlchemy ${i%2 ? 'alt' : ''}`}
+            className={`linePotionAlchemy ${i%2 ? 'alt' : ''} ${pot.number > 0 ? 'click': ''}`}
             onClick={() => {
               if(pot.number > 0) {
                 pot.number -= 1

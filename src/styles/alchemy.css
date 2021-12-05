@@ -9,13 +9,28 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  cursor: pointer;
+}
+.linePotionAlchemy {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 .lineReceiptAlchemy.alt {
   background-color: rgba(172, 171, 171, 0.2);
 }
+.linePotionAlchemy.alt {
+  background-color: rgba(172, 171, 171, 0.2);
+}
 
 .lineReceiptAlchemy span{
+  align-self: center;
+}
+.linePotionAlchemy span{
+  align-self: center;
+    padding: 0.5rem;
+
+}
+.lineReceiptAlchemy span:nth-child(2){
   flex: 12;
   padding: 0.5rem;
   align-self: center;
@@ -23,7 +38,31 @@
 .lineReceiptAlchemy span:first-child{
   flex: 6;
 }
-.lineReceiptAlchemy span:last-child{
+.lineReceiptAlchemy span:nth-child(3){
   flex: 1;
   text-align: end;
+}
+
+.linePotionAlchemy span:first-child{
+  flex: 6;
+}
+.linePotionAlchemy span:nth-child(3){
+  flex: 1;
+  text-align: end;
+}
+.lineReceiptAlchemy input:nth-child(2){
+  flex: 12;
+  padding: 0.5rem;
+  align-self: center;
+}
+.lineReceiptAlchemy input:first-child{
+  flex: 6;
+}
+.lineReceiptAlchemy input:nth-child(3){
+  flex: 1;
+  text-align: end;
+}
+.lineReceiptAlchemy button{
+  margin: 2px;
+  margin-left: 5px;
 }

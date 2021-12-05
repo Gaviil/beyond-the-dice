@@ -162,6 +162,8 @@
     "ingramusDesc" : "Bien secouer avant utilisation. Lancer la potion dans un endroit éloigné et être prêt pour une grosse explosion",
     "karloff": "Le passe-muraille de Karloff",
     "karloffDesc": "Dissout tout, sauf le verre",
-    "createPotion": "Création de potion"
+    "createPotion": "Création de potion",
+    "newNameReceipt": "Nom de la recette",
+    "newDescReceipt": "Description de la recette"
   }
 }
