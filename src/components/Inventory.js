@@ -101,7 +101,8 @@ const Inventory = (props) => {
                       <PencilIcon className="iconInv"/> 
                     </button>
                   )}
-                  <button
+                  { !item.default && (
+                    <button
                     className='optionBtnInv'
                     onClick={() => {
                       removeItem(i);
@@ -109,6 +110,7 @@ const Inventory = (props) => {
                   >
                     <TrashIcon className="iconInv" />
                   </button>
+                  )}
                 </div>
               </div>
             ))

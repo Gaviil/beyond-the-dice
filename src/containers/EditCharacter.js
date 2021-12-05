@@ -97,6 +97,14 @@ const EditCharacter = (props) => {
             } else {
               duplicateCharacter.framePicture = frame === '' ? null : frame;
               if(duplicateCharacter.maxHp !== '' && duplicateCharacter.currentHp !== '') {
+                if(duplicateCharacter.isAlchemist && !duplicateCharacter.inventory.find((item) => item.name === 'bottle' && item.default)) {
+                    duplicateCharacter.inventory.push({
+                      default: true,
+                      name: "bottle",
+                      number: 0,
+                      type: "alchemy"}
+                    )
+                }
                 if(duplicateCharacter.isAlchemist && nameReceipt && descReceipt && difReceipt) {
                   duplicateCharacter.alchemy.receipt.push({
                     "name": nameReceipt,

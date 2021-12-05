@@ -212,6 +212,7 @@ const Character = (props) => {
             "default": false
           })
         }
+        updatedCharacter.inventory.find((item) => item.name === 'bottle' && item.default).number -= 1;
         updateCharacter({...updatedCharacter})
         updateFirestoreCharacter(updatedCharacter);
       }

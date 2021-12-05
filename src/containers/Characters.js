@@ -165,6 +165,24 @@ const Characters = (props) => {
     };
     if(characterData.isAlchemist) {
       data.alchemy = alchemy;
+      data.inventory.push({
+        default: true,
+        name: "karloff",
+        number: 1,
+        type: "alchemy"}
+      )
+      data.inventory.push({
+        default: true,
+        name: "ingramus",
+        number: 1,
+        type: "alchemy"}
+      )
+      data.inventory.push({
+        default: true,
+        name: "bottle",
+        number: 3,
+        type: "alchemy"}
+      )
     }
     await db.collection('characters').doc(characterUid).set(data).then(res => {
       // const charactersList = getValueOnLocalStorage('characters');
