@@ -4,7 +4,7 @@ import '../styles/alchemy.css';
 
 const Alchemy = (props) => {
   const {invAndReceipt, character} = props;
-  const {potion, receipt} = invAndReceipt;
+  const {receipt} = invAndReceipt;
   return (
     <div className='alchemyContainer'>
       <ReceiptView inv={character.inventory} receipt={receipt} create={(val) => {props.create(val)}}/>
