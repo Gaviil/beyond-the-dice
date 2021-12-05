@@ -209,11 +209,11 @@ const Character = (props) => {
           updatedCharacter.inventory.push({
             "name": receipt.name,
             "number": 1,
-            "type": "alchemy",
-            "default": receipt.default
+            "default": receipt.default,
+            "type": "alchemy"
           })
         }
-        console.log(updatedCharacter);
+        updatedCharacter.inventory.find((item) => item.name === 'bottle' && item.default).number -= 1;
         updateCharacter({...updatedCharacter})
         updateFirestoreCharacter(updatedCharacter);
       }

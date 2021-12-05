@@ -164,6 +164,7 @@
     "karloffDesc": "Dissout tout, sauf le verre",
     "createPotion": "Création de potion",
     "newNameReceipt": "Nom de la recette",
-    "newDescReceipt": "Description de la recette"
+    "newDescReceipt": "Description de la recette",
+    "bottle": "Flacon / bouteille vide"
   }
 }

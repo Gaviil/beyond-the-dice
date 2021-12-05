@@ -177,6 +177,12 @@ const Characters = (props) => {
         number: 1,
         type: "alchemy"}
       )
+      data.inventory.push({
+        default: true,
+        name: "bottle",
+        number: 3,
+        type: "alchemy"}
+      )
     }
     await db.collection('characters').doc(characterUid).set(data).then(res => {
       // const charactersList = getValueOnLocalStorage('characters');

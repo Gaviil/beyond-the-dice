@@ -5,10 +5,9 @@ import '../styles/alchemy.css';
 const Alchemy = (props) => {
   const {invAndReceipt, character} = props;
   const {potion, receipt} = invAndReceipt;
-  console.log(character.inventory.find((item) => item.type === 'alchemy'));
   return (
     <div className='alchemyContainer'>
-      <ReceiptView receipt={receipt} create={(val) => {props.create(val)}}/>
+      <ReceiptView inv={character.inventory} receipt={receipt} create={(val) => {props.create(val)}}/>
       <Potion potion={character.inventory.filter((item) => item.type === 'alchemy')} use={(val) => {props.use(val)}}/>
     </div>
   );
@@ -25,7 +24,9 @@ const ReceiptView = (props) => {
             className={`lineReceiptAlchemy ${i%2 ? 'alt' : ''} click
             `}
             onClick={() => {
-              props.create(rec);
+              if(props.inv.find((item) => item.name === 'bottle' && item.default).number > 0) {
+                props.create(rec);
+              }
             }}
           >
             <span>
@@ -53,7 +54,7 @@ const Potion = (props) => {
           <div
             className={`linePotionAlchemy ${i%2 ? 'alt' : ''} ${pot.number > 0 ? 'click': ''}`}
             onClick={() => {
-              if(pot.number > 0) {
+              if(pot.number > 0 && (pot.name !== 'bottle' && pot.default)) {
                 pot.number -= 1
                 props.use(props.potion);
               }
