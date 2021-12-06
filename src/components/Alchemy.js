@@ -70,16 +70,19 @@ const ReceiptView = (props) => {
           className={'lineReceiptAlchemy receiptEdition'}
           onSubmit={ async (e) => {
             const newListReceipt = [...props.receipt];
-            newListReceipt.push({
-              "name": nameReceipt,
-              "description": descReceipt,
-              "difficulty": difReceipt,
-              "default": false
-            })
-            props.updateReceipt(newListReceipt)
-            setNameReceipt('');
-            setDescReceipt('');
-            setDifReceipt('');
+            if(nameReceipt && nameReceipt !== '' && difReceipt !== '') {
+              newListReceipt.push({
+                "name": nameReceipt,
+                "description": descReceipt,
+                "difficulty": difReceipt,
+                "default": false
+              })
+              props.updateReceipt(newListReceipt)
+              setNameReceipt('');
+              setDescReceipt('');
+              setDifReceipt('');
+            }
+            
             e.preventDefault();
           }}
         >
