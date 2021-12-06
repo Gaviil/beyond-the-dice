@@ -26,9 +26,6 @@ const EditCharacter = (props) => {
   const [image, setImage] = useState(null);
   const [url, setUrl] = useState("");
   const [frame, setFrame] = useState(null);
-  const [nameReceipt, setNameReceipt] = useState(null);
-  const [descReceipt, setDescReceipt] = useState(null);
-  const [difReceipt, setDifReceipt] = useState(null);
 
   useEffect( () => {
     setDuplicateCharacter({...character})
@@ -104,17 +101,6 @@ const EditCharacter = (props) => {
                       number: 0,
                       type: "alchemy"}
                     )
-                }
-                if(duplicateCharacter.isAlchemist && nameReceipt && descReceipt && difReceipt) {
-                  duplicateCharacter.alchemy.receipt.push({
-                    "name": nameReceipt,
-                    "description": descReceipt,
-                    "difficulty": difReceipt,
-                    "default": false
-                  })
-                  setNameReceipt(null);
-                  setDescReceipt(null);
-                  setDifReceipt(null);
                 }
                 props.updateDataCharacter(duplicateCharacter);
                 toast.success(i18next.t('update succed'), {});              
@@ -230,71 +216,6 @@ const EditCharacter = (props) => {
               {i18next.t('create skill')}
             </button>
           </div>
-          {duplicateCharacter.isAlchemist && (  
-            <div>
-              <h3>{i18next.t('alchemy.title')} :</h3>
-              <div>
-                {duplicateCharacter.alchemy.receipt.map((rec, i) => (
-                  <div
-                    className={`lineReceiptAlchemy ${i%2 ? 'alt' : ''}`}
-                  >
-                    <span>
-                      {rec.default ? i18next.t(`alchemy.${rec.name}`) : rec.name}
-                    </span>
-                    <span>
-                      {rec.default ? i18next.t(`alchemy.${rec.description}`) : rec.description}
-                    </span>
-                    <span>
-                      {rec.difficulty}
-                    </span>
-                    <button
-                      className='optionBtn'
-                      onClick={(e) => {
-                        duplicateCharacter.alchemy.receipt.splice(i,1);
-                        setDuplicateCharacter({...duplicateCharacter});
-                        e.preventDefault()
-                      }}
-                    >
-                      -
-                    </button>
-                  </div>
-                ))}
-                  <div
-                    className={`lineReceiptAlchemy receiptEdition`}
-                  >
-                    <input
-                      name="name new receipt"
-                      type="text"
-                      placeholder={i18next.t('alchemy.newNameReceipt')}
-                      value={nameReceipt}
-                      onChange={(e) => {
-                        setNameReceipt(e.target.value);
-                      }}
-                    />                    
-                    <input
-                      name="description new receipt"
-                      type="text"
-                      placeholder={i18next.t('alchemy.newDescReceipt')}
-                      value={descReceipt}
-                      onChange={(e) => {
-                        setDescReceipt(e.target.value);
-                      }}
-                    />                    
-                    <input
-                      name="description new receipt"
-                      type="number"
-                      min={0}
-                      max={100}
-                      placeholder="60"
-                      value={difReceipt}
-                      onChange={(e) => {
-                        setDifReceipt(e.target.value);
-                      }}
-                    />                    
-                  </div>
-              </div>
-            </div>
-          )}
           <div>
             <h3>{i18next.t('management')} :</h3>
               <CheckboxSwitch

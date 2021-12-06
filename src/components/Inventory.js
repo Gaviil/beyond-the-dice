@@ -6,7 +6,7 @@ import CharacterContext from '../context/CharacterContext';
 import '../styles/inventory.css'
 import { PencilIcon, TrashIcon, CheckIcon } from '@heroicons/react/solid'
 import i18next from 'i18next';
-import {dynamicSort} from '../utils/sort';
+import {dynamicSortInventory} from '../utils/sort';
 
 const Inventory = (props) => {
   const {character} = useContext(CharacterContext);
@@ -57,7 +57,7 @@ const Inventory = (props) => {
               </div>
             </div>
           {
-            character.inventory.sort(dynamicSort('name')).map((item, i) => (
+            character.inventory.sort(dynamicSortInventory('name', 'alchemy')).map((item, i) => (
               <div key={i} className='tableInvRow'>
                 <div>
                   <span>{`${item.type === 'alchemy' && item.default ? i18next.t(`alchemy.${item.name}`) : item.name}`}</span>

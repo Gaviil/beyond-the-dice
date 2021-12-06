@@ -193,11 +193,11 @@ const Character = (props) => {
     }
   }
 
-  const createReceipt = (receipt) => {
+  const createPotion = (receipt) => {
       const statLaunch = {
-        isCustom: !receipt.default,
+        isCustom: false,
         label: 'createPotion',
-        value: receipt.difficulty
+        value: parseInt(receipt.difficulty, 10)
       }
       const newRoll = getRoll(100,campaign.idUserDm, character, user, statLaunch, hideRollSwitch, "alchemy");
       if(newRoll.value <= receipt.difficulty) {
@@ -428,11 +428,16 @@ const Character = (props) => {
                       character={character}
                       invAndReceipt={character.alchemy}
                       create={(receipt) => {
-                        createReceipt(receipt);
+                        createPotion(receipt);
                       }}
-                      use={(potions) => {
+                      updateReceipt={(receipt) => {
                         const updatedCharacter = {...character};
-                        updatedCharacter.alchemy.potion = potions
+                        updatedCharacter.alchemy.receipt = receipt;
+                        updateCharacter({...updatedCharacter})
+                        updateFirestoreCharacter(updatedCharacter);
+                      }}
+                      use={() => {
+                        const updatedCharacter = {...character};
                         updateCharacter({...updatedCharacter})
                         updateFirestoreCharacter(updatedCharacter);
                       }}

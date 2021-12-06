@@ -33,3 +33,26 @@ export const dynamicSort = (property) => {
       }        
     }
 }
+
+export const dynamicSortInventory = (property, prefixTrad) => {
+    var sortOrder = 1;
+    let tradA = '';
+    let tradB = '';
+    return function (a,b) {
+      if(a.default && prefixTrad) {
+        tradA = i18next.t(`${prefixTrad}.${a[property]}`)
+      } else {
+        tradA = a[property];
+      }
+      if(b.default && prefixTrad) {
+        tradB = i18next.t(`${prefixTrad}.${b[property]}`)
+      } else {
+        tradB = b[property];
+      }
+      if(sortOrder === -1){
+        return tradB.localeCompare(tradA);
+      }else{
+        return tradA.localeCompare(tradB);
+      }        
+    }
+}
