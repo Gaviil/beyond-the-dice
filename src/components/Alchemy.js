@@ -54,9 +54,11 @@ const ReceiptView = (props) => {
             <div className='blockDelete'>
               {!rec.default && (
                 <button className='optionBtnInv' onClick={() => {
-                  const newList = [...props.receipt];
-                  newList.splice(i,1);
-                  props.updateReceipt(newList)
+                  if(window.confirm(i18next.t('alchemy.removeReceipt'))) {
+                    const newList = [...props.receipt];
+                    newList.splice(i,1);
+                    props.updateReceipt(newList)
+                  }
                 }}
                 >
                   <TrashIcon className="iconDelete" />
@@ -70,7 +72,7 @@ const ReceiptView = (props) => {
           className={'lineReceiptAlchemy receiptEdition'}
           onSubmit={ async (e) => {
             const newListReceipt = [...props.receipt];
-            if(nameReceipt && nameReceipt !== '' && difReceipt !== '') {
+            if(nameReceipt && nameReceipt !== '' && difReceipt && difReceipt !== '') {
               newListReceipt.push({
                 "name": nameReceipt,
                 "description": descReceipt,

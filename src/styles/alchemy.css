@@ -70,9 +70,8 @@
   flex: 1;
   text-align: end;
 }
-.lineReceiptAlchemy .blockDelete{
+.containerReceipt .blockDelete{
   text-align: end;
-  height: 33px;
   width: 38px;
   z-index: 999;
 }

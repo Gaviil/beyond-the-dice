@@ -214,6 +214,7 @@
 .namePictureCharacter h2{
   margin: 0.5rem;
   margin-left: 0;
+  max-width: 180px;
 }
 .hpCharacter {
   display: flex;
@@ -501,5 +502,13 @@ input[type='number'].updateHp {
   .line.multiLine {
     display: flex;
     flex-direction: row;
+  }
+}
+@media (min-width: 2000px) {
+  .characterContainer {
+    width: 60%;
+  }
+  .nameCharacteristics {
+    max-width: 400px;
   }
 }

@@ -165,6 +165,7 @@
     "createPotion": "Création de potion",
     "newNameReceipt": "Nom de la recette",
     "newDescReceipt": "Description de la recette",
-    "bottle": "Flacon / bouteille vide"
+    "bottle": "Flacon / bouteille vide",
+    "removeReceipt": "Êtes vous sur de vouloir effacer cette recette ?"
   }
 }
