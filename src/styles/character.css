@@ -422,6 +422,24 @@ input[type='number'].updateHp {
   color: #6c757d;
 }
 
+.altOptionContainer {
+  display: flex;
+}
+.altOptionContainer .blockCoin{
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+.altOptionContainer .coinIcon{
+  height: 35px;
+  width: 35px;
+  margin-bottom: 0.25rem;
+}
+
 @media (min-width: 800px) {
   .inventory {
     display: block;

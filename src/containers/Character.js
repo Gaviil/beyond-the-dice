@@ -43,6 +43,7 @@ import Characteristics from '../components/Characteristics';
 import Company from '../components/Company';
 import {getLabelDice} from '../utils/dice'
 import Alchemy from '../components/Alchemy';
+import Curency from '../components/Curency';
 
 init();
 const db = firebase.firestore();
@@ -173,12 +174,13 @@ const Character = (props) => {
   
   const updateHp = async(newHp) => {
     if(/^\d+$/.test(newHp)) {
+      const newValHp = parseInt(newHp,10);
       const updatedCharacter = {...character}
-      if(JSON.parse(newHp) !== updatedCharacter.currentHp) {
-        if(JSON.parse(newHp) === 0) {
+      if(newValHp !== updatedCharacter.currentHp) {
+        if(newValHp === 0) {
           await unlockFrame('deathGod');
         }
-        updatedCharacter.currentHp = JSON.parse(newHp);
+        updatedCharacter.currentHp = newValHp;
         updateCharacter(updatedCharacter);
         updateFirestoreCharacter(updatedCharacter);
       }
@@ -218,6 +220,27 @@ const Character = (props) => {
         updateFirestoreCharacter(updatedCharacter);
       }
       sendNewRoll(newRoll);
+  }
+
+  const updateCurency = (type, value) => {
+    const updatedCharacter = {...character}
+    const valueInt = parseInt(value, 10);
+    if(updatedCharacter.currency) {
+      if(updatedCharacter.currency[type] !== valueInt) {
+        updatedCharacter.currency[type] = valueInt;
+        updateCharacter(updatedCharacter);
+        updateFirestoreCharacter(updatedCharacter);
+      }
+    } else {
+      updatedCharacter.currency = {
+        gold: 0,
+        silver: 0,
+        bronze: 0,
+      }
+      updatedCharacter.currency[type] = valueInt;
+      updateCharacter(updatedCharacter);
+      updateFirestoreCharacter(updatedCharacter);
+    }
   }
 
   if(character) {
@@ -333,6 +356,29 @@ const Character = (props) => {
                         <span>{character.maxHp}</span>
                         <div className='hpBar' style={{width: `${(character.currentHp * 100) / character.maxHp}%`}}/>
                         <div className='hpBarEmpty'/>
+                      </div>
+                      <div className='altOptionContainer'>
+                        <Curency
+                          type='gold'
+                          value={character.currency && character.currency.gold ? character.currency.gold : 0}
+                          updateValue={(newVal) => {
+                            updateCurency('gold', newVal);
+                          }}
+                        />
+                        <Curency
+                          type='silver'
+                          value={character.currency && character.currency.silver ? character.currency.silver : 0}
+                          updateValue={(newVal) => {
+                            updateCurency('silver', newVal);
+                          }}
+                        />
+                        <Curency
+                          type='bronze'
+                          value={character.currency && character.currency.bronze ? character.currency.bronze : 0}
+                          updateValue={(newVal) => {
+                            updateCurency('bronze', newVal);
+                          }}
+                        />
                       </div>
                       <MobileView className='linkChatContainer'>
                         <Link
