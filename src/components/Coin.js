@@ -1,23 +1,27 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import goldCoin from '../assets/Images/goldCoin.png'
 import silverCoin from '../assets/Images/silverCoin.png'
 import bronzeCoin from '../assets/Images/bronzeCoin.png'
 
 const getCoinIcon = (type) => {
   if(type === 'gold') {
-    return <img className="coinIcon" src={goldCoin} alt="coin" />
+    return goldCoin;
   }
   if(type === 'silver') {
-    return <img className="coinIcon" src={silverCoin} alt="coin" />
+    return silverCoin;
   }
-  return <img className="coinIcon" src={bronzeCoin} alt="coin" />
+  if(type === 'bronze') {
+    return bronzeCoin;
+  }
 }
 
 const Coin = (props) => {
+  const inputRef = useRef(null);
   return (
     <div className="blockCoin">
-      {getCoinIcon(props.type)}
+      <img onClick={() => {inputRef.current.focus()}} className="coinIcon" src={getCoinIcon(props.type)} alt="coin" />
       <span
+        ref={inputRef}
         contentEditable
         onBlur={(e)=>{
           props.updateValue(e.currentTarget.textContent)
