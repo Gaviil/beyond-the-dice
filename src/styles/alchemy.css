@@ -15,6 +15,7 @@
   justify-content: space-between;
   align-items: center;
   flex: 5;
+  min-height: 26px;
 }
 .linePotionAlchemy {
   display: flex;
@@ -24,6 +25,7 @@
 }
 .lineReceiptAlchemy.alt {
   background-color: rgba(172, 171, 171, 0.2);
+  min-height: 26px;
 }
 .linePotionAlchemy.alt {
   background-color: rgba(172, 171, 171, 0.2);
