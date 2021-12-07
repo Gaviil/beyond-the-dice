@@ -43,7 +43,7 @@ import Characteristics from '../components/Characteristics';
 import Company from '../components/Company';
 import {getLabelDice} from '../utils/dice'
 import Alchemy from '../components/Alchemy';
-import Coin from '../components/Coin';
+import Curency from '../components/Curency';
 
 init();
 const db = firebase.firestore();
@@ -222,22 +222,22 @@ const Character = (props) => {
       sendNewRoll(newRoll);
   }
 
-  const updateCoin = (type, value) => {
+  const updateCurency = (type, value) => {
     const updatedCharacter = {...character}
     const valueInt = parseInt(value, 10);
-    if(updatedCharacter.coins) {
-      if(updatedCharacter.coins[type] !== valueInt) {
-        updatedCharacter.coins[type] = valueInt;
+    if(updatedCharacter.currency) {
+      if(updatedCharacter.currency[type] !== valueInt) {
+        updatedCharacter.currency[type] = valueInt;
         updateCharacter(updatedCharacter);
         updateFirestoreCharacter(updatedCharacter);
       }
     } else {
-      updatedCharacter.coins = {
+      updatedCharacter.currency = {
         gold: 0,
         silver: 0,
         bronze: 0,
       }
-      updatedCharacter.coins[type] = valueInt;
+      updatedCharacter.currency[type] = valueInt;
       updateCharacter(updatedCharacter);
       updateFirestoreCharacter(updatedCharacter);
     }
@@ -358,25 +358,25 @@ const Character = (props) => {
                         <div className='hpBarEmpty'/>
                       </div>
                       <div className='altOptionContainer'>
-                        <Coin
+                        <Curency
                           type='gold'
-                          value={character.coins && character.coins.gold ? character.coins.gold : 0}
+                          value={character.currency && character.currency.gold ? character.currency.gold : 0}
                           updateValue={(newVal) => {
-                            updateCoin('gold', newVal);
+                            updateCurency('gold', newVal);
                           }}
                         />
-                        <Coin
+                        <Curency
                           type='silver'
-                          value={character.coins && character.coins.silver ? character.coins.silver : 0}
+                          value={character.currency && character.currency.silver ? character.currency.silver : 0}
                           updateValue={(newVal) => {
-                            updateCoin('silver', newVal);
+                            updateCurency('silver', newVal);
                           }}
                         />
-                        <Coin
+                        <Curency
                           type='bronze'
-                          value={character.coins && character.coins.bronze ? character.coins.bronze : 0}
+                          value={character.currency && character.currency.bronze ? character.currency.bronze : 0}
                           updateValue={(newVal) => {
-                            updateCoin('bronze', newVal);
+                            updateCurency('bronze', newVal);
                           }}
                         />
                       </div>

@@ -425,14 +425,17 @@ input[type='number'].updateHp {
   display: flex;
 }
 .altOptionContainer .blockCoin{
-  margin-left: 0.25rem;
-  margin-right: 0.25rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
   display: flex;
   flex-direction: column;
   text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 .altOptionContainer .coinIcon{
   height: 35px;
+  width: 35px;
   margin-bottom: 0.25rem;
 }
 

@@ -15,7 +15,7 @@ const getCoinIcon = (type) => {
   }
 }
 
-const Coin = (props) => {
+const Currency = (props) => {
   const inputRef = useRef(null);
   return (
     <div className="blockCoin">
@@ -34,4 +34,4 @@ const Coin = (props) => {
   
 }
 
-export default Coin
+export default Currency
