@@ -141,7 +141,7 @@ const Potion = (props) => {
             }}
           >
             <span>
-              {pot.default ? i18next.t(`alchemy.${pot.name}`) : pot.name}
+              {pot.default ? i18next.t(`inventoryItem.${pot.name}`) : pot.name}
             </span>
             <span>
               {pot.number}

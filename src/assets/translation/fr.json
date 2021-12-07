@@ -165,7 +165,11 @@
     "createPotion": "Création de potion",
     "newNameReceipt": "Nom de la recette",
     "newDescReceipt": "Description de la recette",
-    "bottle": "Flacon / bouteille vide",
     "removeReceipt": "Êtes vous sur de vouloir effacer cette recette ?"
+  },
+  "inventoryItem": {
+    "bottle": "Flacon / bouteille vide",
+    "ingramus" : "Feu ardent d’Ingramus le sage",
+    "karloff": "Passe-muraille de Karloff"
   }
 }
