@@ -430,15 +430,42 @@ input[type='number'].updateHp {
   display: flex;
   flex-direction: column;
   text-align: center;
-  justify-content: center;
   align-items: center;
+  cursor: pointer;
+}
+
+.altOptionContainer .blockCoin span{
+  max-width: 40px;
+  max-height: 20px;
+  overflow: hidden;
+  padding: 0.25rem 0.5rem;
+}
+.blockCoin input[type='number'], .blockCoin input[type='number']::-webkit-outer-spin-button,.blockCoin input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  border: 0;
+  padding: 0.25rem 0;
+  background-color: transparent;
+  text-align: center;
+}
+.altOptionContainer .blockCoin input[type='number']{
+  width: 38px;
+  font-size: medium;
+}
+.altOptionContainer .blockCoin input[type='number']:focus{
+  background-color: #eaeaea;
 }
 .altOptionContainer .coinIcon{
   height: 35px;
   width: 35px;
   margin-bottom: 0.25rem;
 }
-
+.blockCoin:hover span {
+  background-color:#eaeaea;
+}
+.blockCoin:hover input[type='number'] {
+  background-color:#eaeaea;
+}
 @media (min-width: 800px) {
   .inventory {
     display: block;
