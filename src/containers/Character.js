@@ -224,10 +224,9 @@ const Character = (props) => {
 
   const updateCurency = (type, value) => {
     const updatedCharacter = {...character}
-    const valueInt = parseInt(value, 10);
     if(updatedCharacter.currency) {
-      if(updatedCharacter.currency[type] !== valueInt) {
-        updatedCharacter.currency[type] = valueInt;
+      if(updatedCharacter.currency[type] !== value) {
+        updatedCharacter.currency[type] = value;
         updateCharacter(updatedCharacter);
         updateFirestoreCharacter(updatedCharacter);
       }
@@ -237,7 +236,7 @@ const Character = (props) => {
         silver: 0,
         bronze: 0,
       }
-      updatedCharacter.currency[type] = valueInt;
+      updatedCharacter.currency[type] = value;
       updateCharacter(updatedCharacter);
       updateFirestoreCharacter(updatedCharacter);
     }
@@ -360,6 +359,8 @@ const Character = (props) => {
                       <div className='altOptionContainer'>
                         <Curency
                           type='gold'
+                          max={9999}
+                          min={0}
                           value={character.currency && character.currency.gold ? character.currency.gold : 0}
                           updateValue={(newVal) => {
                             updateCurency('gold', newVal);
@@ -367,6 +368,8 @@ const Character = (props) => {
                         />
                         <Curency
                           type='silver'
+                          max={9999}
+                          min={0}
                           value={character.currency && character.currency.silver ? character.currency.silver : 0}
                           updateValue={(newVal) => {
                             updateCurency('silver', newVal);
@@ -374,6 +377,8 @@ const Character = (props) => {
                         />
                         <Curency
                           type='bronze'
+                          max={9999}
+                          min={0}
                           value={character.currency && character.currency.bronze ? character.currency.bronze : 0}
                           updateValue={(newVal) => {
                             updateCurency('bronze', newVal);
