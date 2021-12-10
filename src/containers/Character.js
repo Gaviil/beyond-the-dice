@@ -44,6 +44,7 @@ import Company from '../components/Company';
 import {getLabelDice} from '../utils/dice'
 import Alchemy from '../components/Alchemy';
 import Curency from '../components/Curency';
+import Hp from '../components/Hp';
 
 init();
 const db = firebase.firestore();
@@ -173,17 +174,15 @@ const Character = (props) => {
   }
   
   const updateHp = async(newHp) => {
-    if(/^\d+$/.test(newHp)) {
-      const newValHp = parseInt(newHp,10);
-      const updatedCharacter = {...character}
-      if(newValHp !== updatedCharacter.currentHp) {
-        if(newValHp === 0) {
-          await unlockFrame('deathGod');
-        }
-        updatedCharacter.currentHp = newValHp;
-        updateCharacter(updatedCharacter);
-        updateFirestoreCharacter(updatedCharacter);
+    const newValHp = parseInt(newHp,10);
+    const updatedCharacter = {...character}
+    if(newValHp !== updatedCharacter.currentHp) {
+      if(newValHp === 0) {
+        await unlockFrame('deathGod');
       }
+      updatedCharacter.currentHp = newValHp;
+      updateCharacter(updatedCharacter);
+      updateFirestoreCharacter(updatedCharacter);
     }
   }
 
@@ -341,7 +340,7 @@ const Character = (props) => {
                           <PencilAltIcon className="iconEdit"/>
                         </Link>
                       </div>
-                      <div className='hpCharacter'>
+                      {/* <div className='hpCharacter'>
                         <span
                           onBlur={(e)=>{
                             updateHp(e.currentTarget.textContent)
@@ -355,7 +354,13 @@ const Character = (props) => {
                         <span>{character.maxHp}</span>
                         <div className='hpBar' style={{width: `${(character.currentHp * 100) / character.maxHp}%`}}/>
                         <div className='hpBarEmpty'/>
-                      </div>
+                      </div> */}
+                      <Hp
+                        character={character}
+                        updateValue={(valHp) => {
+                            updateHp(valHp)
+                        }}
+                      />
                       <div className='altOptionContainer'>
                         <Curency
                           type='gold'

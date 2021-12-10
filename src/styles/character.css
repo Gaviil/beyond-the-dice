@@ -467,6 +467,33 @@ input[type='number'].updateHp {
 .blockCoin:hover input[type='number'] {
   background-color:#eaeaea;
 }
+.hpCharacter {
+  cursor: pointer;
+}
+.hpCharacter input[type='number'], .hpCharacter input[type='number']::-webkit-outer-spin-button,.hpCharacter input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  border: 0;
+  padding: 0.25rem 0;
+  background-color: transparent;
+  text-align: center;
+}
+.hpCharacter input[type='number']{
+  width: 50px;
+  font-size: medium;
+  font-size: 1.25em;
+  font-weight: bold;
+  word-spacing: 0.5rem;
+  cursor: pointer;
+}
+.hpCharacter input[type='number']:focus{
+  background-color: #eaeaea;
+  cursor: text;
+}
+.hpCharacter:hover input[type='number'] {
+  background-color:#eaeaea;
+}
+
 @media (min-width: 800px) {
   .inventory {
     display: block;
