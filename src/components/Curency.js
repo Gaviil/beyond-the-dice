@@ -18,30 +18,17 @@ const getCoinIcon = (type) => {
 const Currency = (props) => {
   const inputRef = useRef(null);
   const [coinNumber, setCoinNumber] = useState(props.value)
-  const [isEdited, setIsEdited] = useState(true)
 
   return (
     <div className="blockCoin">
       <img
         onClick={() => {
-          setIsEdited(true);
           inputRef.current.focus();
         }}
         className="coinIcon"
         src={getCoinIcon(props.type)}
         alt="coin"
       />
-      {/* {!isEdited && (
-        <span
-          onClick={(e) => {
-            setIsEdited(true);
-            inputRef.current.focus();
-          }}
-        >
-          {props.value}
-        </span>
-      )} */}
-      {isEdited && (
         <input
           ref={inputRef}
           value={coinNumber}
@@ -66,19 +53,6 @@ const Currency = (props) => {
             props.updateValue(coinNumber)
           }}
         />
-      )}
-      {/* <span
-        ref={inputRef}
-        contentEditable
-        onClick={(e) => {
-          console.log('plop')
-        }}
-        onBlur={(e)=>{
-          props.updateValue(e.currentTarget.textContent)
-        }}
-      >
-        {props.value}
-      </span> */}
     </div>
   );
   
