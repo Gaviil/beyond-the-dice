@@ -2,6 +2,7 @@ import i18next from 'i18next';
 import React, {useState} from 'react';
 import '../styles/alchemy.css';
 import { TrashIcon } from '@heroicons/react/solid'
+import { toast } from 'react-toastify';
 
 const Alchemy = (props) => {
   const {invAndReceipt, character} = props;
@@ -38,6 +39,8 @@ const ReceiptView = (props) => {
               onClick={() => {
                 if(props.inv.find((item) => item.name === 'bottle' && item.default).number > 0) {
                   props.create(rec);
+                } else {
+                  toast.warning(i18next.t('alchemy.needBottle'));
                 }
               }}
             >

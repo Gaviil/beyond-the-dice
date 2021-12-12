@@ -165,7 +165,8 @@
     "createPotion": "Création de potion",
     "newNameReceipt": "Nom de la recette",
     "newDescReceipt": "Description de la recette",
-    "removeReceipt": "Êtes vous sur de vouloir effacer cette recette ?"
+    "removeReceipt": "Êtes vous sur de vouloir effacer cette recette ?",
+    "needBottle": "Aucun flacon ou bouteille disponible pour créer cette potion"
   },
   "inventoryItem": {
     "bottle": "Flacon / bouteille vide",
