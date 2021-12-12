@@ -1,7 +1,7 @@
 import React, {useRef, useState} from 'react';
-import goldCoin from '../assets/Images/goldCoin.png'
-import silverCoin from '../assets/Images/silverCoin.png'
-import bronzeCoin from '../assets/Images/bronzeCoin.png'
+import goldCoin from '../assets/Images/currency/gold40.png'
+import silverCoin from '../assets/Images/currency/silver40.png'
+import bronzeCoin from '../assets/Images/currency/bronze40.png'
 
 const getCoinIcon = (type) => {
   if(type === 'gold') {
