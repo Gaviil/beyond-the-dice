@@ -76,6 +76,23 @@ const EditCharacter = (props) => {
     }
   };
 
+  const saveCharacter = () => {
+    duplicateCharacter.framePicture = frame === '' ? null : frame;
+    duplicateCharacter.skills = duplicateCharacter.skills.filter((skill) => ( skill.label !== '' && skill.value !== ''))
+    if(duplicateCharacter.maxHp !== '' && duplicateCharacter.currentHp !== '') {
+      if(duplicateCharacter.isAlchemist && !duplicateCharacter.inventory.find((item) => item.name === 'bottle' && item.default)) {
+          duplicateCharacter.inventory.push({
+            default: true,
+            name: "bottle",
+            number: 0,
+            type: "alchemy"}
+          )
+      }
+      props.updateDataCharacter(duplicateCharacter);
+      toast.success(i18next.t('update succed'), {});              
+    }
+  }
+
   return (
     <div className='editContainer'>
       <Breadcrumb sentence={character.name}/>
@@ -87,24 +104,13 @@ const EditCharacter = (props) => {
             if(image) {
               try {
                 await handleUpload();
+                // saveCharacter();
               }
               catch (error) {
                 console.log('error',error)
               }
             } else {
-              duplicateCharacter.framePicture = frame === '' ? null : frame;
-              if(duplicateCharacter.maxHp !== '' && duplicateCharacter.currentHp !== '') {
-                if(duplicateCharacter.isAlchemist && !duplicateCharacter.inventory.find((item) => item.name === 'bottle' && item.default)) {
-                    duplicateCharacter.inventory.push({
-                      default: true,
-                      name: "bottle",
-                      number: 0,
-                      type: "alchemy"}
-                    )
-                }
-                props.updateDataCharacter(duplicateCharacter);
-                toast.success(i18next.t('update succed'), {});              
-              }
+              saveCharacter();
             }
             e.preventDefault();
           }}
