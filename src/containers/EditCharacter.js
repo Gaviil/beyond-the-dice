@@ -52,9 +52,10 @@ const EditCharacter = (props) => {
       uploadTask.on(
         "state_changed",
         snapshot => {
-          // const progress = Math.round(
-          //   (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          // );
+          const progress = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+          console.log(progress);
           // setProgress(progress);
         },
         error => {
@@ -104,7 +105,7 @@ const EditCharacter = (props) => {
             if(image) {
               try {
                 await handleUpload();
-                // saveCharacter();
+                saveCharacter();
               }
               catch (error) {
                 console.log('error',error)
