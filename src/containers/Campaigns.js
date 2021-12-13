@@ -156,6 +156,8 @@ const Campaigns = (props) => {
       });
       setCampaigns(savedCampaignsList);
       // setValueOnLocalStorage('campaignsList',savedCampaignsList);
+      setCampaign(data)
+      history.push(`${match.url}/${gameUid}`);
     }).catch(e => {
       console.log(e)
     });
