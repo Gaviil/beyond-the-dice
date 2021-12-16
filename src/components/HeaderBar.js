@@ -25,15 +25,14 @@ const HeaderBar = (props) => {
               {user.name}
             </button>
             <div className="dropdown-content">
-              {/* <button
+              <button
                 className="btnDrop" 
                 onClick={() => {
-                  localStorage.clear();
-                  document.location.reload();
+                  window.open('https://twitter.com/praythedice', '_blank');
                 }}
               >
-                {i18next.t('clear cache')}
-              </button> */}
+                {i18next.t('news')}
+              </button>
               <button
                 className="btnDrop"
                 onClick={() => {
