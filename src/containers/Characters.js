@@ -29,12 +29,14 @@ import Picture from '../components/Picture';
 import logo from '../assets/Images/logo150.png';
 import CampaignSettings from '../components/CampaignSettings';
 import alchemy from '../assets/alchemy.json';
+import {useHistory} from "react-router-dom";
 
 init();
 const db = firebase.firestore();
 
 const Characters = (props) => {
   let match = useRouteMatch();
+  const history = useHistory();
   let { campaignIdUrl } = useParams();
   const [characters, setCharacters] = useState([])
   const [character, setCharacter] = useState({
@@ -208,6 +210,8 @@ const Characters = (props) => {
         draggable: true,
         progress: undefined,
       });
+      setCharacter(data)
+      history.push(`${match.url}/${characterUid}`);
     }).catch(e => {
       console.log(e)
     });
@@ -256,6 +260,14 @@ if(user && campaign) {
                       </span>
                       <span>
                         {`${campaign.invitationCode}`}
+                      </span>
+                    </p>
+                    <p>
+                      <span>
+                        {`UID `}
+                      </span>
+                      <span>
+                        {`${campaign.uid}`}
                       </span>
                     </p>
                   </div>
