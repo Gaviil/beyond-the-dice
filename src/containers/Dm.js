@@ -69,8 +69,9 @@ const Dm = (props) => {
     const labelStat = newRoll.stat ? newRoll.stat.label : 'Custom'
     firebase.analytics().logEvent('Roll', {
       campaign: campaign.uid,
+      type: newRoll.diceType,
       stat: labelStat,
-      result: newRoll.value 
+      result: newRoll.value
     });
   }
 

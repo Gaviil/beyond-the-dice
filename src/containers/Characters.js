@@ -193,10 +193,11 @@ const Characters = (props) => {
       // getCharactersVisibleForUser(campaignIdUsed);
 
       firebase.analytics().logEvent('characterCreation',{
-        name: data.name,
-        idUser: data.idUser,
-        idCampaign: data.idCampaign,
-        uid: data.uid
+        characterName: data.name,
+        characterIdUser: data.idUser,
+        characterIdCampaign: data.idCampaign,
+        characterUid: data.uid,
+        characterIsAlchemist: characterData.isAlchemist,
       });
       toast.success(`${characterData.name} ${i18next.t('was created with success')}`, {
         position: "top-right",
@@ -216,6 +217,9 @@ const Characters = (props) => {
     newCampaignData.lastUpdateAt = firebase.firestore.FieldValue.serverTimestamp();
     await db.collection('campaigns').doc(newCampaignData.uid).set(newCampaignData).then(res => {
       toast.success(i18next.t('update succed'), {});
+      firebase.analytics().logEvent('updateConfigCampaign', {
+        ...newCampaignData
+      });
     }).catch(err => {
       toast.error(err, {});
     });

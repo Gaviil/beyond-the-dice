@@ -155,6 +155,16 @@ const Campaigns = (props) => {
         progress: undefined,
       });
       setCampaigns(savedCampaignsList);
+      firebase.analytics().setUserId(user.uid);
+      firebase.analytics().setUserProperties({
+        name: user.displayName,
+        uid: user.uid,
+      });
+      firebase.analytics().logEvent('campaignCreation', {
+        campaignCreatedBy: user.uid,
+        campaignInvitationCode: invitationCode,
+        campaignName: name,
+      });
       // setValueOnLocalStorage('campaignsList',savedCampaignsList);
     }).catch(e => {
       console.log(e)

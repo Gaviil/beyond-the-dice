@@ -126,8 +126,9 @@ const Character = (props) => {
     const labelStat = newRoll.stat ? newRoll.stat.label : 'Custom'
     firebase.analytics().logEvent('Roll', {
       campaign: campaign.uid,
+      type: newRoll.diceType,
       stat: labelStat,
-      result: newRoll.value 
+      result: newRoll.value
     });
   }
 
@@ -135,6 +136,14 @@ const Character = (props) => {
     newData.lastUpdateAt = firebase.firestore.FieldValue.serverTimestamp();
     await db.collection('characters').doc(newData.uid).set(newData).then(res => {
       // toast.success(i18next.t('update succed'), {});
+      firebase.analytics().setUserId(user.uid);
+      firebase.analytics().setUserProperties({
+        name: user.displayName,
+        campaign: campaign.uid,
+      });
+      firebase.analytics().logEvent('updateCharacter', {
+        characterUpdated: character.uid
+      });
     }).catch(e => {
       console.log(e)
     });
