@@ -1,5 +1,5 @@
 import React from 'react';
-import cards from '../assets/Images/cards.png';
+import cards from '../assets/Images/cards4.png';
 import '../styles/card.css'
 import i18next from 'i18next';
 

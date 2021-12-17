@@ -140,8 +140,8 @@
     "hide character stat value on chat": "Cacher les valeurs de statistique dans l'historique",
     "rename character": "Les joueurs peuvent renommer leurs personnages",
     "click to roll": "Les joueurs peuvent cliquer sur une statistique pour lancer un dé",
-    "player can see all cards": "Les mages peuvent voir le détail de leur deck de magie",
-    "player can edit cards": "Les mages peuvent changer l'état des cartes de leur deck"
+    "playerCanSeeCards": "Les mages peuvent voir le détail de leur deck de magie",
+    "playerCanEditCards": "Les mages peuvent changer l'état des cartes de leur deck"
   },
   "settings campaign": "Configuration",
   "stats": {

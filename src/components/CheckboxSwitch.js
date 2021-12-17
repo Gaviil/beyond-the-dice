@@ -2,9 +2,10 @@ import React from 'react';
 
 const CheckboxSwitch = (props) => {
   return (
-    <div className="switch">
+    <div className={`switch ${props.disabled ? 'disabled': ''}`}>
       <label>
         <input
+          disabled={props.disabled}
           type="checkbox"
           checked={props.isChecked}
           onChange={(e) => {

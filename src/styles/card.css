@@ -40,18 +40,18 @@
 }
 .playinCard {
   display: flex;
-  width: 6rem;
-  height: 8rem;
+  width: 4rem;
+  height: 6rem;
   margin: 0.5rem;
   justify-content: center;
   align-items: center;
   border-radius: 0.5rem;
   border:0.15rem solid #1b1d29;
-  box-shadow: 6px 6px 9px 3px rgba(0,0,0,0.12);
+  /* box-shadow: 3px 3px 5px 2px rgba(0,0,0,0.2); */
   background-color: #fff;
 }
 .playinCard span {
-  font-size: 2em;
+  font-size: 1.6em;
   /* cursor: default; */
 }
 .playinCard span.red {

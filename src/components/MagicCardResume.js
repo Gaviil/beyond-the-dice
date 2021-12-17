@@ -4,12 +4,12 @@ import '../styles/card.css'
 
 const Card = (props) => {
   return (
-    <div className={`playinCard ${props.isEditable ? 'click' : null}`} onClick={() => {
+    <div className={`playinCard ${props.isEditable ? 'click' : 'defaultCursor'}`} onClick={() => {
       if(props.isEditable) {
         props.updateCard(!props.card.enable);
       }
     }}>
-      <span className={`${/♥/.test(props.card.value) || /♦/.test(props.card.value) ? 'red' : 'black'} ${props.isEditable ? 'click' : null}`}>
+      <span className={`${/♥/.test(props.card.value) || /♦/.test(props.card.value) ? 'red' : 'black'} ${props.isEditable ? 'click' : ''}`}>
         {props.card.value}
       </span>
     </div>

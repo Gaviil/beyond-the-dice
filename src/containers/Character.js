@@ -319,7 +319,7 @@ const Character = (props) => {
                         {i18next.t('alchemy.title')}
                       </li>
                     )}
-                    {character.isMage && (
+                    {character.isMage && campaign.playerCanSeeAllCards && (
                       <li
                         className={`tab ${view === 'magic' ? 'active' : ''}`}
                         onClick={() => {
