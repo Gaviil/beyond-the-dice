@@ -9,7 +9,7 @@ const MagicCard = (props) => {
       <img src={cards} alt="" onClick={() => {
         props.drawCard();
       }}/>
-      <span className="tooltiptext">{`${props.magicCards.filter(card => card.enable).length} ${i18next.t('remaining cards')}`}</span>
+      <span className="tooltiptext">{`${props.magicCards.filter(card => card.enable).length} ${i18next.t('mage.remainingCards')}`}</span>
     </div>
   );  
 }
