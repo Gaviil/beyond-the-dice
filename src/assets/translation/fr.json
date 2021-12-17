@@ -137,9 +137,11 @@
   "signup": "Inscrivez-vous",
   "new frame unlock": "Nouvelle décoration d'image débloqué 🥳",
   "campaignSettings": {
-    "hide character stat value on chat": "Cacher les valeurs de statistique dans le l'historique",
+    "hide character stat value on chat": "Cacher les valeurs de statistique dans l'historique",
     "rename character": "Les joueurs peuvent renommer leurs personnages",
-    "click to roll": "Les joueurs peuvent cliquer sur une statistique pour lancer un dé"
+    "click to roll": "Les joueurs peuvent cliquer sur une statistique pour lancer un dé",
+    "player can see all cards": "Les mages peuvent voir le détail de leur deck de magie",
+    "player can edit cards": "Les mages peuvent changer l'état des cartes de leur deck"
   },
   "settings campaign": "Configuration",
   "stats": {
@@ -172,5 +174,13 @@
     "bottle": "Flacon / bouteille vide",
     "ingramus" : "Feu ardent d’Ingramus le sage",
     "karloff": "Passe-muraille de Karloff"
+  },
+  "mage": {
+    "isMage": "Le personnage est un mage d'Aria",
+    "remainingCards": "Carte(s) restante(s)",
+    "title": "Magie",
+    "cardsAvailable": "Carte(s) disponible(s)",
+    "cardsUsed": "Carte(s) utilisée(s)",
+    "magicSpell": "Carte de magie"
   }
 }

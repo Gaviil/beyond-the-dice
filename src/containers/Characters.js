@@ -30,6 +30,7 @@ import logo from '../assets/Images/logo150.png';
 import CampaignSettings from '../components/CampaignSettings';
 import alchemy from '../assets/alchemy.json';
 import {useHistory} from "react-router-dom";
+import cards from '../assets/cards.json';
 
 init();
 const db = firebase.firestore();
@@ -161,6 +162,7 @@ const Characters = (props) => {
       skills: [...characterData.skills],
       characteristics: [...characterData.characteristics],
       isAlchemist: characterData.isAlchemist,
+      isMage: characterData.isMage,
       inventory: [],
       picture: null,
       active: true
@@ -185,6 +187,9 @@ const Characters = (props) => {
         number: 3,
         type: "alchemy"}
       )
+    }
+    if(characterData.isMage) {
+      data.magicCards = [...cards]
     }
     await db.collection('characters').doc(characterUid).set(data).then(res => {
       // const charactersList = getValueOnLocalStorage('characters');

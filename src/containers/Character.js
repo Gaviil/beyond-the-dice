@@ -28,7 +28,7 @@ import EditCharacter from './EditCharacter';
 import MobileInventory from './MobileInventory';
 import { PencilAltIcon, ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/outline'
 import {dynamicSortWithTraduction} from '../utils/sort';
-import {getRoll} from '../utils/dice';
+import {getRoll, getMagicCard} from '../utils/dice';
 import {
   BrowserView,
   MobileView,
@@ -45,6 +45,8 @@ import {getLabelDice} from '../utils/dice'
 import Alchemy from '../components/Alchemy';
 import Curency from '../components/Curency';
 import Hp from '../components/Hp';
+import MagicCard from '../components/MagicCard';
+import MagicCardResume from '../components/MagicCardResume';
 
 init();
 const db = firebase.firestore();
@@ -317,6 +319,16 @@ const Character = (props) => {
                         {i18next.t('alchemy.title')}
                       </li>
                     )}
+                    {character.isMage && (
+                      <li
+                        className={`tab ${view === 'magic' ? 'active' : ''}`}
+                        onClick={() => {
+                          setView('magic');
+                        }}  
+                      >
+                        {i18next.t('mage.title')}
+                      </li>
+                    )}
                     <li
                       className={`tab ${view === 'company' ? 'active' : ''}`}
                       onClick={() => {
@@ -398,6 +410,19 @@ const Character = (props) => {
                             updateCurency('bronze', newVal);
                           }}
                         />
+                        {character.isMage && (
+                          <MagicCard
+                            magicCards={character.magicCards}
+                            drawCard={() => {
+                              const data = getMagicCard(character, user);
+                              if(data !== null ){
+                                updateCharacter(data.character);
+                                updateFirestoreCharacter(data.character);
+                                sendNewRoll(data.roll);
+                              }
+                            }}
+                          />
+                        )}
                       </div>
                       <MobileView className='linkChatContainer'>
                         <Link
@@ -507,6 +532,21 @@ const Character = (props) => {
                         updateFirestoreCharacter(updatedCharacter);
                       }}
                     />  
+                  </div>
+                )}
+                {view === 'magic' && (
+                  <div className='containerInfo'>
+                    <MagicCardResume
+                      isEditable={campaign.playerCanUpdateCardsUsed || false}
+                      cardsList={character.magicCards}
+                      updateCards={(newList) => {
+                        character.magicCards = newList;
+                        updateCharacter({
+                          ...character,
+                        });
+                        updateFirestoreCharacter(character);
+                      }}
+                    />
                   </div>
                 )}
                 {view === 'company' && (

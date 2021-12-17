@@ -12,14 +12,15 @@ import { MyPie, MyBar, Block, MyRadar } from './Charts';
 
 const Statistics = (props) => {
   const {rollList, company} = props;
-  const stats = getStats(rollList, company);
-  const mostRollSkill = getMostUsedSkills(rollList, company);
+  const cleanRollList = rollList.filter(roll => roll.diceType !== "Magic")
+  const stats = getStats(cleanRollList, company);
+  const mostRollSkill = getMostUsedSkills(cleanRollList, company);
   return (
     <div className='statsCampaign'>
       <div className='chartLong multiBlock'>
-        <Block label={i18next.t('stats.TotalRoll')} value={getNumberOfDiceRoll(rollList)}/>
-        <Block label={i18next.t('stats.criticSuccess')} value={getNumberOfCriticalSuccess(rollList)} background="#007991"/>
-        <Block label={i18next.t('stats.criticFail')} value={getNumberOfCriticalFail(rollList)} background="#D52941"/>
+        <Block label={i18next.t('stats.TotalRoll')} value={getNumberOfDiceRoll(cleanRollList)}/>
+        <Block label={i18next.t('stats.criticSuccess')} value={getNumberOfCriticalSuccess(cleanRollList)} background="#007991"/>
+        <Block label={i18next.t('stats.criticFail')} value={getNumberOfCriticalFail(cleanRollList)} background="#D52941"/>
       </div>
       <div className='chart'>
         <h3>Moyenne de résultat (d100)</h3>

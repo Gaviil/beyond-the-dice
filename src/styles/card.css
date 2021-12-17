@@ -1,0 +1,59 @@
+.containerCardIcon.tooltip {
+  display: flex;
+  justify-content: flex-end;
+  border-bottom: none;
+  height: 3rem;
+  position: relative;
+}
+.containerCardIcon img{
+  cursor: pointer;
+}
+.containerCardIcon.tooltip .tooltiptext{
+  min-width: 195px;
+  background-color: #1b1d29;
+  color: #fff;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  left: -210px;
+  bottom: 8px;
+  cursor: default;
+}
+.containerCardIcon.tooltip .tooltiptext::before{
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 7.5px 0 7.5px 6px;
+  border-color: transparent transparent transparent #1b1d29;
+  top: 35%;
+  right: -6px;
+}
+.containerCardResume {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.playinCard {
+  display: flex;
+  width: 6rem;
+  height: 8rem;
+  margin: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  border:0.15rem solid #1b1d29;
+  box-shadow: 6px 6px 9px 3px rgba(0,0,0,0.12);
+  background-color: #fff;
+}
+.playinCard span {
+  font-size: 2em;
+  /* cursor: default; */
+}
+.playinCard span.red {
+  color: #D52941;
+}
+.playinCard span.black {
+  color: #1b1d29;
+}
