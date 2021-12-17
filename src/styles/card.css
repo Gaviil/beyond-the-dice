@@ -1,3 +1,6 @@
+.containerCardIcon {
+  justify-self: flex-end;
+}
 .containerCardIcon.tooltip {
   display: flex;
   justify-content: flex-end;

@@ -383,33 +383,35 @@ const Character = (props) => {
                         }}
                       />
                       <div className='altOptionContainer'>
-                        <Curency
-                          type='gold'
-                          max={9999}
-                          min={0}
-                          value={character.currency && character.currency.gold ? character.currency.gold : 0}
-                          updateValue={(newVal) => {
-                            updateCurency('gold', newVal);
-                          }}
-                        />
-                        <Curency
-                          type='silver'
-                          max={9999}
-                          min={0}
-                          value={character.currency && character.currency.silver ? character.currency.silver : 0}
-                          updateValue={(newVal) => {
-                            updateCurency('silver', newVal);
-                          }}
-                        />
-                        <Curency
-                          type='bronze'
-                          max={9999}
-                          min={0}
-                          value={character.currency && character.currency.bronze ? character.currency.bronze : 0}
-                          updateValue={(newVal) => {
-                            updateCurency('bronze', newVal);
-                          }}
-                        />
+                        <div>
+                          <Curency
+                            type='gold'
+                            max={9999}
+                            min={0}
+                            value={character.currency && character.currency.gold ? character.currency.gold : 0}
+                            updateValue={(newVal) => {
+                              updateCurency('gold', newVal);
+                            }}
+                          />
+                          <Curency
+                            type='silver'
+                            max={9999}
+                            min={0}
+                            value={character.currency && character.currency.silver ? character.currency.silver : 0}
+                            updateValue={(newVal) => {
+                              updateCurency('silver', newVal);
+                            }}
+                          />
+                          <Curency
+                            type='bronze'
+                            max={9999}
+                            min={0}
+                            value={character.currency && character.currency.bronze ? character.currency.bronze : 0}
+                            updateValue={(newVal) => {
+                              updateCurency('bronze', newVal);
+                            }}
+                          />
+                        </div>
                         {character.isMage && (
                           <MagicCard
                             magicCards={character.magicCards}
