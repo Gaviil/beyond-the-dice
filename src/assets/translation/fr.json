@@ -177,6 +177,7 @@
   },
   "mage": {
     "isMage": "Le personnage est un mage d'Aria",
+    "isMageEdit": " est un mage d'Aria",
     "remainingCards": "Carte(s) restante(s)",
     "title": "Magie",
     "cardsAvailable": "Carte(s) disponible(s)",

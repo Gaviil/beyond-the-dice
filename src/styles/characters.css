@@ -111,6 +111,9 @@ input[type=text].nameNewCharacter {
     "skillsContainer"
     "createCharacterButton";
 }
+.formNewCharacter .switch{
+  margin-bottom: 1rem;
+}
 .inputCharacteristics, .inputSkills {
   width: 50px;
   margin: 0.25rem;
