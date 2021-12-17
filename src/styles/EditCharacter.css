@@ -123,6 +123,18 @@ span.labelSkillUneditable {
   margin-left: 0.5rem;
   border-radius: 0.25rem;
 }
+.editContainer .formAssign {
+  display: flex;
+  flex-direction: column;
+}
+.editContainer input[type='submit'],.editContainer button {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+.editContainer button {
+  margin-top: 2rem;
+}
+
 @media (min-width: 1000px) {
   .containerEditSkill {
     width: 50%;
@@ -152,5 +164,20 @@ span.labelSkillUneditable {
   .editContainer {
     width: 70%;
     margin: auto;
+  }
+  .editContainer .formAssign {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+  .formAssign input[type='text'] {
+    width: 400px;
+  }
+  .editContainer input[type='submit'],.editContainer button {
+    width: auto;
+    margin-top: 0.5rem;
+  }
+  .editContainer button {
+    margin-top: 2rem;
   }
 }

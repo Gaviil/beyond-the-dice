@@ -20,13 +20,15 @@ import alchemy from '../assets/alchemy.json';
 // const db = firebase.firestore();
 
 const EditCharacter = (props) => {
+  const db = firebase.firestore();
   const {character} = useContext(CharacterContext);
   const {user} = useContext(UserContext);
   const [duplicateCharacter, setDuplicateCharacter] = useState({...character});
   const [image, setImage] = useState(null);
   const [url, setUrl] = useState("");
   const [frame, setFrame] = useState(null);
-
+  const [newUserEmail, setNewUserEmail] = useState(null);
+  
   useEffect( () => {
     setDuplicateCharacter({...character})
   }, [character]);
@@ -94,6 +96,28 @@ const EditCharacter = (props) => {
     }
   }
 
+  const setNewUser = async () => {
+    await db.collection('users').where('email', '==', newUserEmail).get()
+    .then(querySnapshot => {
+      if(querySnapshot.size) {
+        querySnapshot.forEach(doc => {
+          if(window.confirm(`${i18next.t('assignUser.confirm')} ${doc.data().name} ?`)) {
+            duplicateCharacter.idUser = doc.data().uid;
+            props.updateDataCharacter(duplicateCharacter);
+            toast.success(i18next.t('assignUser.succed'), {});
+            setNewUserEmail('');
+          }
+        });
+      } else {
+        toast.error(i18next.t('assignUser.noUserFound'), {});  
+      }
+    })
+    .catch(err => {
+      toast.success(i18next.t('errorApi'), {});
+      console.log(err)
+    })
+  }
+  
   return (
     <div className='editContainer'>
       <Breadcrumb sentence={character.name}/>
@@ -174,6 +198,17 @@ const EditCharacter = (props) => {
               }}
             />
           </label>
+          <CheckboxSwitch
+            isChecked={duplicateCharacter.isAlchemist}
+            label={`${duplicateCharacter.name} ${i18next.t('alchemy.isAlchemisteEdit')}`}
+            update={(val) => {
+              duplicateCharacter.isAlchemist = val;
+              if(val === true && !duplicateCharacter.alchemy) {
+                duplicateCharacter.alchemy = alchemy;
+              }
+              setDuplicateCharacter({...duplicateCharacter});
+            }}
+          />
           <h3>{i18next.t('skill')} :</h3>
           <div className='containerEditSkill'>
             {
@@ -223,35 +258,46 @@ const EditCharacter = (props) => {
               {i18next.t('create skill')}
             </button>
           </div>
-          <div>
-            <h3>{i18next.t('management')} :</h3>
-              <CheckboxSwitch
-                isChecked={duplicateCharacter.isAlchemist}
-                label={`${duplicateCharacter.name} ${i18next.t('alchemy.isAlchemisteEdit')}`}
-                update={(val) => {
-                  duplicateCharacter.isAlchemist = val;
-                  if(val === true && !duplicateCharacter.alchemy) {
-                    duplicateCharacter.alchemy = alchemy;
-                  }
-                  setDuplicateCharacter({...duplicateCharacter});
-                }}
-              />
-              <button
-                className='danger'
-                onClick={(e) => {
-                  if(window.confirm(i18next.t('archive.character-validation'))) {
-                    duplicateCharacter.active = false;
-                    props.updateDataCharacter(duplicateCharacter);
-                    toast.success(i18next.t('archive.succed'), {});
-                  }
-                  e.preventDefault()
-                }}
-              >
-                {i18next.t('archive.character')}
-              </button>
-          </div>
           <input type="submit" value={i18next.t('save')} />
         </form>
+        <div>
+          <h3>{i18next.t('management')} :</h3>
+          <form
+            className='formAssign'
+            onSubmit={ async (e) => {
+              if(newUserEmail !== '' && newUserEmail) {
+                setNewUser();
+              } else {
+                toast.error(i18next.t('assignUser.noEmail'), {});
+              }
+              e.preventDefault();
+            }}
+            >
+            <input
+              name="email new user"
+              type="text"
+              placeholder={i18next.t('assignUser.placeholderEmail')}
+              value={newUserEmail}
+              onChange={(e) => {
+                setNewUserEmail(e.target.value.trim());
+              }}
+            />
+            <input type="submit" className='outline' value={i18next.t('assignUser.assign')} />
+          </form>
+          <button
+            className='danger'
+            onClick={(e) => {
+              if(window.confirm(i18next.t('archive.character-validation'))) {
+                duplicateCharacter.active = false;
+                props.updateDataCharacter(duplicateCharacter);
+                toast.success(i18next.t('archive.succed'), {});
+              }
+              e.preventDefault()
+            }}
+          >
+            {i18next.t('archive.character')}
+          </button>
+        </div>
       </div>
     </div>
   );

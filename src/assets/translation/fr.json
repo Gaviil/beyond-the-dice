@@ -172,5 +172,15 @@
     "bottle": "Flacon / bouteille vide",
     "ingramus" : "Feu ardent d’Ingramus le sage",
     "karloff": "Passe-muraille de Karloff"
-  }
+  },
+  "assignUser": {
+    "emailToAssign": "Email du nouvel utilisateur",
+    "confirm": "Voulez vous assigner ce personnage à",
+    "succed": "Personnage assigné avec succès",
+    "placeholderEmail": "Email du nouvel utilisateur",
+    "assign": "Assigner",
+    "noUserFound": "Aucun utilisateur n'a été trouvé avec cette adresse mail.",
+    "noEmail": "Une adresse mail est obligatoire pour assigner ce personnage à un autre joueur."
+  },
+  "errorApi": "Une erreur étrange est apparu, nous travaillons sur une résolution."
 }
