@@ -9,6 +9,7 @@ import i18next from 'i18next';
 import '../styles/EditCharacter.css';
 import CharacterContext from '../context/CharacterContext';
 import UserContext from '../context/UserContext';
+import CampaignContext from '../context/CampaignContext';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Breadcrumb from '../components/Breadcrumb';
@@ -22,6 +23,7 @@ import alchemy from '../assets/alchemy.json';
 const EditCharacter = (props) => {
   const db = firebase.firestore();
   const {character} = useContext(CharacterContext);
+  const {campaign} = useContext(CampaignContext);
   const {user} = useContext(UserContext);
   const [duplicateCharacter, setDuplicateCharacter] = useState({...character});
   const [image, setImage] = useState(null);
@@ -262,28 +264,30 @@ const EditCharacter = (props) => {
         </form>
         <div>
           <h3>{i18next.t('management')} :</h3>
-          <form
-            className='formAssign'
-            onSubmit={ async (e) => {
-              if(newUserEmail !== '' && newUserEmail) {
-                setNewUser();
-              } else {
-                toast.error(i18next.t('assignUser.noEmail'), {});
-              }
-              e.preventDefault();
-            }}
-            >
-            <input
-              name="email new user"
-              type="text"
-              placeholder={i18next.t('assignUser.placeholderEmail')}
-              value={newUserEmail}
-              onChange={(e) => {
-                setNewUserEmail(e.target.value.trim());
+          {user.uid === campaign.idUserDm && (
+            <form
+              className='formAssign'
+              onSubmit={ async (e) => {
+                if(newUserEmail !== '' && newUserEmail) {
+                  setNewUser();
+                } else {
+                  toast.error(i18next.t('assignUser.noEmail'), {});
+                }
+                e.preventDefault();
               }}
-            />
-            <input type="submit" className='outline' value={i18next.t('assignUser.assign')} />
-          </form>
+              >
+              <input
+                name="email new user"
+                type="text"
+                placeholder={i18next.t('assignUser.placeholderEmail')}
+                value={newUserEmail}
+                onChange={(e) => {
+                  setNewUserEmail(e.target.value.trim());
+                }}
+              />
+              <input type="submit" className='outline' value={i18next.t('assignUser.assign')} />
+            </form>
+          )}
           <button
             className='danger'
             onClick={(e) => {
