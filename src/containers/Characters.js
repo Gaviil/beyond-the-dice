@@ -267,14 +267,6 @@ if(user && campaign) {
                         {`${campaign.invitationCode}`}
                       </span>
                     </p>
-                    <p>
-                      <span>
-                        {`UID `}
-                      </span>
-                      <span>
-                        {`${campaign.uid}`}
-                      </span>
-                    </p>
                   </div>
                   <div>
                     {campaign.createdBy && (
