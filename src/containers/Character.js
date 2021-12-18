@@ -28,7 +28,7 @@ import EditCharacter from './EditCharacter';
 import MobileInventory from './MobileInventory';
 import { PencilAltIcon, ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/outline'
 import {dynamicSortWithTraduction} from '../utils/sort';
-import {getRoll} from '../utils/dice';
+import {getRoll, getMagicCard} from '../utils/dice';
 import {
   BrowserView,
   MobileView,
@@ -45,6 +45,8 @@ import {getLabelDice} from '../utils/dice'
 import Alchemy from '../components/Alchemy';
 import Curency from '../components/Curency';
 import Hp from '../components/Hp';
+import MagicCard from '../components/MagicCard';
+import MagicCardResume from '../components/MagicCardResume';
 
 init();
 const db = firebase.firestore();
@@ -317,6 +319,16 @@ const Character = (props) => {
                         {i18next.t('alchemy.title')}
                       </li>
                     )}
+                    {character.isMage && campaign.playerCanSeeAllCards && (
+                      <li
+                        className={`tab ${view === 'magic' ? 'active' : ''}`}
+                        onClick={() => {
+                          setView('magic');
+                        }}  
+                      >
+                        {i18next.t('mage.title')}
+                      </li>
+                    )}
                     <li
                       className={`tab ${view === 'company' ? 'active' : ''}`}
                       onClick={() => {
@@ -371,33 +383,48 @@ const Character = (props) => {
                         }}
                       />
                       <div className='altOptionContainer'>
-                        <Curency
-                          type='gold'
-                          max={9999}
-                          min={0}
-                          value={character.currency && character.currency.gold ? character.currency.gold : 0}
-                          updateValue={(newVal) => {
-                            updateCurency('gold', newVal);
-                          }}
-                        />
-                        <Curency
-                          type='silver'
-                          max={9999}
-                          min={0}
-                          value={character.currency && character.currency.silver ? character.currency.silver : 0}
-                          updateValue={(newVal) => {
-                            updateCurency('silver', newVal);
-                          }}
-                        />
-                        <Curency
-                          type='bronze'
-                          max={9999}
-                          min={0}
-                          value={character.currency && character.currency.bronze ? character.currency.bronze : 0}
-                          updateValue={(newVal) => {
-                            updateCurency('bronze', newVal);
-                          }}
-                        />
+                        <div>
+                          <Curency
+                            type='gold'
+                            max={9999}
+                            min={0}
+                            value={character.currency && character.currency.gold ? character.currency.gold : 0}
+                            updateValue={(newVal) => {
+                              updateCurency('gold', newVal);
+                            }}
+                          />
+                          <Curency
+                            type='silver'
+                            max={9999}
+                            min={0}
+                            value={character.currency && character.currency.silver ? character.currency.silver : 0}
+                            updateValue={(newVal) => {
+                              updateCurency('silver', newVal);
+                            }}
+                          />
+                          <Curency
+                            type='bronze'
+                            max={9999}
+                            min={0}
+                            value={character.currency && character.currency.bronze ? character.currency.bronze : 0}
+                            updateValue={(newVal) => {
+                              updateCurency('bronze', newVal);
+                            }}
+                          />
+                        </div>
+                        {character.isMage && (
+                          <MagicCard
+                            magicCards={character.magicCards}
+                            drawCard={() => {
+                              const data = getMagicCard(character, user);
+                              if(data !== null ){
+                                updateCharacter(data.character);
+                                updateFirestoreCharacter(data.character);
+                                sendNewRoll(data.roll);
+                              }
+                            }}
+                          />
+                        )}
                       </div>
                       <MobileView className='linkChatContainer'>
                         <Link
@@ -507,6 +534,21 @@ const Character = (props) => {
                         updateFirestoreCharacter(updatedCharacter);
                       }}
                     />  
+                  </div>
+                )}
+                {view === 'magic' && (
+                  <div className='containerInfo'>
+                    <MagicCardResume
+                      isEditable={campaign.playerCanUpdateCardsUsed || false}
+                      cardsList={character.magicCards}
+                      updateCards={(newList) => {
+                        character.magicCards = newList;
+                        updateCharacter({
+                          ...character,
+                        });
+                        updateFirestoreCharacter(character);
+                      }}
+                    />
                   </div>
                 )}
                 {view === 'company' && (

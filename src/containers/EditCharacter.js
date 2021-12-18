@@ -17,6 +17,8 @@ import Picture from '../components/Picture';
 import FrameSelector from '../components/FrameSelector';
 import CheckboxSwitch from '../components/CheckboxSwitch';
 import alchemy from '../assets/alchemy.json'; 
+import cards from '../assets/cards.json';
+
 // init();
 // const db = firebase.firestore();
 
@@ -211,6 +213,17 @@ const EditCharacter = (props) => {
               setDuplicateCharacter({...duplicateCharacter});
             }}
           />
+            <CheckboxSwitch
+              isChecked={duplicateCharacter.isMage}
+              label={`${duplicateCharacter.name} ${i18next.t('mage.isMageEdit')}`}
+              update={(val) => {
+                duplicateCharacter.isMage = val;
+                if(val === true && !duplicateCharacter.magicCards) {
+                  duplicateCharacter.magicCards = cards;
+                }
+                setDuplicateCharacter({...duplicateCharacter});
+              }}
+            />
           <h3>{i18next.t('skill')} :</h3>
           <div className='containerEditSkill'>
             {

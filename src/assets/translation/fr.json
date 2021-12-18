@@ -137,9 +137,11 @@
   "signup": "Inscrivez-vous",
   "new frame unlock": "Nouvelle décoration d'image débloqué 🥳",
   "campaignSettings": {
-    "hide character stat value on chat": "Cacher les valeurs de statistique dans le l'historique",
+    "hide character stat value on chat": "Cacher les valeurs de statistique dans l'historique",
     "rename character": "Les joueurs peuvent renommer leurs personnages",
-    "click to roll": "Les joueurs peuvent cliquer sur une statistique pour lancer un dé"
+    "click to roll": "Les joueurs peuvent cliquer sur une statistique pour lancer un dé",
+    "playerCanSeeCards": "Les mages peuvent voir le détail de leur deck de magie",
+    "playerCanEditCards": "Les mages peuvent changer l'état des cartes de leur deck"
   },
   "settings campaign": "Configuration",
   "stats": {
@@ -182,5 +184,14 @@
     "noUserFound": "Aucun utilisateur n'a été trouvé avec cette adresse mail.",
     "noEmail": "Une adresse mail est obligatoire pour assigner ce personnage à un autre joueur."
   },
-  "errorApi": "Une erreur étrange est apparu, nous travaillons sur une résolution."
+  "errorApi": "Une erreur étrange est apparu, nous travaillons sur une résolution.",
+  "mage": {
+    "isMage": "Le personnage est un mage d'Aria",
+    "isMageEdit": " est un mage d'Aria",
+    "remainingCards": "Carte(s) restante(s)",
+    "title": "Magie",
+    "cardsAvailable": "Carte(s) disponible(s)",
+    "cardsUsed": "Carte(s) utilisée(s)",
+    "magicSpell": "Carte de magie"
+  }
 }

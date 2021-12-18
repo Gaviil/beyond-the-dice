@@ -18,6 +18,7 @@ const NewCharacterForm = (props) => {
   const [listBonusSkills, setListBonusSkills] = useState([...dataCharacter.skillsBonus]);
   const [description, setDescription] = useState('');
   const [isAlchemist, setIsAlchemist] = useState(false);
+  const [isMage, setIsMage] = useState(false);
   const {createCharacter} = props;
   const skillsRef = useRef(null);
   const [generationCharacterClassic, setGenerationCharacterClassic] = useState(true)
@@ -79,7 +80,9 @@ const NewCharacterForm = (props) => {
                 characteristics: listCharac,
                 skills: skillsCalculated,
                 inventory: [],
-                isAlchemist: isAlchemist
+                isAlchemist: isAlchemist,
+                isMage: isMage
+
               });
               setName('');
               setDescription('');
@@ -132,6 +135,13 @@ const NewCharacterForm = (props) => {
             label={i18next.t('alchemy.isAlchemiste')}
             update={(val) => {
               setIsAlchemist(val);
+            }}
+          />
+          <CheckboxSwitch
+            isChecked={isMage}
+            label={i18next.t('mage.isMage')}
+            update={(val) => {
+              setIsMage(val);
             }}
           />
         </div>

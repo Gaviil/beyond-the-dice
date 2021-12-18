@@ -33,6 +33,28 @@ const CampaignSettings = (props) => {
           props.update(newData);
         }}
       />
+      <CheckboxSwitch
+        isChecked={campaign.playerCanSeeAllCards}
+        label={i18next.t('campaignSettings.playerCanSeeCards')}
+        update={(value) => {
+          const newData = {...campaign}
+          if(value === false ) {
+            newData.playerCanUpdateCardsUsed = false;
+          }
+          newData.playerCanSeeAllCards = value;
+          props.update(newData);
+        }}
+      />
+      <CheckboxSwitch
+        disabled={!campaign.playerCanSeeAllCards}
+        isChecked={campaign.playerCanUpdateCardsUsed}
+        label={i18next.t('campaignSettings.playerCanEditCards')}
+        update={(value) => {
+          const newData = {...campaign}
+          newData.playerCanUpdateCardsUsed = value;
+          props.update(newData);
+        }}
+      />
       <button
         className='danger'
         onClick={(e) => {
