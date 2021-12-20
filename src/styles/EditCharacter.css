@@ -170,17 +170,24 @@ span.labelSkillUneditable {
   }
   .editContainer .formAssign {
     display: flex;
-    justify-content: space-between;
-    flex-direction: row;
+    flex-direction: column;
   }
   .formAssign input[type='text'] {
     width: 400px;
   }
-  .editContainer input[type='submit'],.editContainer button {
+  .editContainer button {
     width: auto;
     margin-top: 0.5rem;
   }
+  .editContainer input[type='submit'] {
+    width: auto;
+    margin-top: 0rem;
+  }
   .editContainer button {
     margin-top: 2rem;
+  }
+  .editContainer span{
+    font-size: 0.75em;
+    font-weight: bold;
   }
 }

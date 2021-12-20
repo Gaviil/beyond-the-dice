@@ -182,7 +182,8 @@
     "placeholderEmail": "Email du joueur",
     "assign": "Assigner",
     "noUserFound": "Aucun utilisateur n'a été trouvé avec cette adresse mail.",
-    "noEmail": "Une adresse mail est obligatoire pour assigner ce personnage à un autre joueur."
+    "noEmail": "Une adresse mail est obligatoire pour assigner ce personnage à un autre joueur.",
+    "title": "Entrez l'adresse mail d'un joueur déjà inscrit à l'application pour lui attribuer ce personnage."
   },
   "errorApi": "Une erreur étrange est apparu, nous travaillons sur une résolution.",
   "mage": {

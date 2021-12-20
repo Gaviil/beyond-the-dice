@@ -289,16 +289,19 @@ const EditCharacter = (props) => {
                 e.preventDefault();
               }}
               >
-              <input
-                name="email new user"
-                type="text"
-                placeholder={i18next.t('assignUser.placeholderEmail')}
-                value={newUserEmail}
-                onChange={(e) => {
-                  setNewUserEmail(e.target.value.trim());
-                }}
-              />
-              <input type="submit" className='outline' value={i18next.t('assignUser.assign')} />
+              <span>{i18next.t('assignUser.title')}</span>
+              <div className='titleAssign'>
+                <input
+                  name="email new user"
+                  type="text"
+                  placeholder={i18next.t('assignUser.placeholderEmail')}
+                  value={newUserEmail}
+                  onChange={(e) => {
+                    setNewUserEmail(e.target.value.trim());
+                  }}
+                />
+                <input type="submit" className='outline' value={i18next.t('assignUser.assign')} />
+              </div>
             </form>
           )}
           <button
