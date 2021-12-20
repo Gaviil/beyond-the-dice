@@ -4,7 +4,7 @@ import '../styles/card.css'
 
 const Card = (props) => {
   return (
-    <div className={`playinCard ${props.isEditable ? 'click' : 'defaultCursor'}`} onClick={() => {
+    <div className={`${props.isEditable ? 'click playinCardEditable' : 'defaultCursor playinCard'} ${props.enable ? 'enable' : 'used'}`} onClick={() => {
       if(props.isEditable) {
         props.updateCard(!props.card.enable);
       }
@@ -25,6 +25,7 @@ const MagicCardResume = (props) => {
           <div className='containerCardResume'>
             {props.cardsList.filter(card => card.enable === true).map(card => (
               <Card
+                enable
                 isEditable={props.isEditable}
                 card={card}
                 updateCard={(newVal) => {
@@ -42,6 +43,7 @@ const MagicCardResume = (props) => {
           <div className='containerCardResume'>
             {props.cardsList.filter(card => card.enable === false).map(card => (
               <Card
+                enable={false}
                 isEditable={props.isEditable}
                 card={card}
                 updateCard={(newVal) => {

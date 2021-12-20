@@ -38,7 +38,7 @@
   justify-content: flex-start;
   flex-wrap: wrap;
 }
-.playinCard {
+.playinCard, .playinCardEditable {
   display: flex;
   width: 4rem;
   height: 6rem;
@@ -47,16 +47,48 @@
   align-items: center;
   border-radius: 0.5rem;
   border:0.15rem solid #1b1d29;
-  /* box-shadow: 3px 3px 5px 2px rgba(0,0,0,0.2); */
   background-color: #fff;
+  position: relative;
 }
-.playinCard span {
+.playinCardEditable:hover::before {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: 35%;
+  border: solid rgba(0,0,0,0.15);
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 0.5rem;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  animation: bounceDown 1.25s ease infinite;
+}
+.playinCardEditable.used:hover::before {
+  top: 5px;
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+  bottom: auto;
+  animation: bounceUp 1.25s ease-in-out infinite;
+}
+
+.playinCard span,.playinCardEditable span {
   font-size: 1.6em;
   /* cursor: default; */
 }
-.playinCard span.red {
+.playinCard span.red, .playinCardEditable span.red {
   color: #D52941;
 }
-.playinCard span.black {
+.playinCard span.black, .playinCardEditable span.black {
   color: #1b1d29;
+}
+
+@keyframes bounceDown {
+  from {bottom: 5px;}
+  50%  {bottom: 10px;}
+  to   {bottom: 5px;}
+}
+@keyframes bounceUp {
+  from {top: 5px;}
+  50%  {top: 10px;}
+  to   {top: 5px;}
 }
