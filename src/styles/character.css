@@ -37,13 +37,7 @@
   flex-wrap: wrap;
   justify-self: center;
 }
-.containerCompanyList {
-  /* grid-area: containerCompany; */
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  /* justify-self: center; */
-}
+
 .diceHistorical {
   grid-area: diceHistorical;
   overflow: auto;
@@ -314,9 +308,6 @@ table tr td:last-child {
   margin: 1rem;
   margin-left: 0;
 }
-.contentDm {
-  margin-top: 1rem;
-}
 .containerCharacterView .tabsContainer {
   display: flex;
   flex-direction: row;
@@ -363,12 +354,6 @@ table tr td:last-child {
   flex-direction: column;
   align-items: center;
   padding: 1rem;
-}
-.memberCompanyList {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 0.25rem;
 }
 input[type='number'].updateHp {
   margin-bottom: 0.5rem;

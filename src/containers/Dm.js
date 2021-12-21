@@ -19,7 +19,7 @@ import {
   isMobile
 } from "react-device-detect";
 import { toast } from 'react-toastify';
-import Company from '../components/Company';
+import DmCompany from '../components/DmCompany';
 import {getLabelDice} from '../utils/dice'
 import {useHistory} from "react-router-dom";
 import Statistics from "../components/Statistics";
@@ -78,20 +78,18 @@ const Dm = (props) => {
   const getCharactersCompany = async (currentCampaign) => {
     try {
       const listCharactersGroup = [];
-      await db.collection('characters').where('idCampaign', '==', currentCampaign.uid).where('active', '==', true).get()
+      await db.collection('characters').where('idCampaign', '==', currentCampaign.uid).where('active', '==', true).where('idUser', '!=', currentCampaign.idUserDm).get()
         .then(querySnapshot => {
           querySnapshot.forEach(doc => {
-            if(doc.data().idUser !== currentCampaign.idUserDm) {
-              listCharactersGroup.push(doc.data())
-            }
+            listCharactersGroup.push(doc.data())
           });
           setCompany(listCharactersGroup);
         })
         .catch(err => {
-          console.log(err.messsage)
+          console.log('err',err)
         })
     } catch (error) {
-      console.log(error);
+      console.log('error',error);
     }
   }
 
@@ -130,9 +128,10 @@ const Dm = (props) => {
           </BrowserView>
             <div className='contentDm'>
               {company && view === 'company' && (
-                <Company
-                  list
-                  withLife
+                <DmCompany
+                  reloadCompany={() => {
+                    getCharactersCompany(campaign)
+                  }}
                   company={company}
                 />
               )}

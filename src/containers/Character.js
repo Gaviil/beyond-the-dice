@@ -154,12 +154,10 @@ const Character = (props) => {
   const getCharactersCompany = async (currentCampaign) => {
     try {
       const listCharactersGroup = [];
-      await db.collection('characters').where('idCampaign', '==', currentCampaign.uid).where('active', '==', true).get()
+      await db.collection('characters').where('idCampaign', '==', currentCampaign.uid).where('active', '==', true).where('idUser', '!=', currentCampaign.idUserDm).get()
         .then(querySnapshot => {
           querySnapshot.forEach(doc => {
-            if(doc.data().idUser !== currentCampaign.idUserDm) {
-              listCharactersGroup.push(doc.data())
-            }
+            listCharactersGroup.push(doc.data())
           });
           setCompany(listCharactersGroup);
 
@@ -474,10 +472,8 @@ const Character = (props) => {
                             user={user}
                             hideRollSwitch={hideRollSwitch}
                             sendNewRoll={(roll) => {
-                              if(campaign.clickStat) {
-                                sendNewRoll(roll)}
-                              }
-                            }
+                                sendNewRoll(roll)
+                            }}
                           />
                       </div>
                     </div>
@@ -492,10 +488,8 @@ const Character = (props) => {
                             user={user}
                             hideRollSwitch={hideRollSwitch}
                             sendNewRoll={(roll) => {
-                              if(campaign.clickStat) {
-                                sendNewRoll(roll)}
-                              }
-                            }
+                              sendNewRoll(roll)
+                            }}
                           />
                         </div>
                       </div>

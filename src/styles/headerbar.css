@@ -98,6 +98,11 @@ header {
     width: 85%;
   }
 }
+@media (min-width: 1900px) {
+  .header {
+    width: 70%;
+  }
+}
 @media (min-width: 1500px) {
   .dropdown:hover .dropdown-content {
     right:auto;

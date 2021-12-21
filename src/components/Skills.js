@@ -12,7 +12,10 @@ const Skills = (props) => {
             style={{cursor: props.campaign.clickStat ? 'pointer' : 'default'}}
             key={i}
             onClick={() => {
-              props.sendNewRoll(getRoll(100,props.campaign.idUserDm, props.character, props.user, skill, props.hideRollSwitch, 'skills'))
+              if(props.campaign.clickStat) {
+                props.sendNewRoll(getRoll(100,props.campaign.idUserDm, props.character, props.user, skill, props.hideRollSwitch, 'skills'))
+              }
+              
             }}
           >
             <span>

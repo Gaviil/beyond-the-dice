@@ -3,18 +3,15 @@ import Picture from './Picture';
 
 const Company = (props) => {
   return (
-    <div className={props.list ? 'containerCompanyList' : 'containerCompany'}>
+    <div className='containerCompany'>
       {props.company.map((compagnyMember,i) => (
         <div
           key={i}
-          className={props.list ? 'memberCompanyList' : 'memberCompany'}
+          className='memberCompany'
         >
           <Picture character={compagnyMember}/>
           <div>
             <b>{compagnyMember.name}</b><br/>
-            {props.withLife && (
-              <span>{compagnyMember.currentHp} / {compagnyMember.maxHp}</span>
-            )}
           </div>
         </div>
       ))}
