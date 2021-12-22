@@ -289,7 +289,7 @@ const EditCharacter = (props) => {
                 e.preventDefault();
               }}
               >
-              <span>{i18next.t('assignUser.title')}</span>
+              <span className='assignInfo'>{i18next.t('assignUser.title')}</span>
               <div className='titleAssign'>
                 <input
                   name="email new user"

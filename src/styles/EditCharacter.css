@@ -186,7 +186,7 @@ span.labelSkillUneditable {
   .editContainer button {
     margin-top: 2rem;
   }
-  .editContainer span{
+  .assignInfo{
     font-size: 0.75em;
     font-weight: bold;
   }

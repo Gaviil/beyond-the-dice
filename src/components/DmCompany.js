@@ -13,18 +13,21 @@ const StatInfo = (props) => {
   return (
     <div className='blockInfoDM'>
       <h3>{props.name}</h3>
-      <Characteristics
-        characteristics={props.characteristics}
-        campaign={{clickStat: false}}
-        hideRollSwitch={false}
-        sendNewRoll={() => {}}
-      />
-      <Skills
-        skills={props.skills}
-        campaign={{clickStat: false}}
-        hideRollSwitch={false}
-        sendNewRoll={() => {}}
-      />
+      <div className='stats'>
+        <Characteristics
+          characteristics={props.characteristics}
+          campaign={{clickStat: false}}
+          hideRollSwitch={false}
+          sendNewRoll={() => {}}
+        />
+        <Skills
+          skills={props.skills}
+          campaign={{clickStat: false}}
+          hideRollSwitch={false}
+          sendNewRoll={() => {}}
+        />
+      </div>
+      
     </div>
   );
 }
