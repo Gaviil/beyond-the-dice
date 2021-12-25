@@ -20,6 +20,7 @@ import {init} from './utils/initFirebase';
 import UserContext from "./context/UserContext";
 import './index.css';
 import './styles/login.css';
+import './styles/darkMode.css';
 import Loader from "react-js-loader";
 
 init();
@@ -85,7 +86,8 @@ const App = () => {
       };
       setUser(mergeUser);
       setLoading(false);
-
+      const element = document.getElementsByTagName('body')[0];
+      element.setAttribute('data-theme', mergeUser.theme);
     })
     .catch(err => {
       console.log(err.messsage)
@@ -98,7 +100,7 @@ const App = () => {
       <UserContext.Provider value={contextValue}>
         {loading &&  (
           <div className='loaderContainer'>
-              <Loader type="bubble-loop" bgColor={"#ffad23"} size={80} />
+            <Loader type="bubble-loop" bgColor={"#ffad23"} size={80} />
           </div>
         )}
         {!loading && (

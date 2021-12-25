@@ -10,6 +10,7 @@ import i18next from 'i18next';
 import logo from '../assets/Images/logo150.png';
 
 const HeaderBar = (props) => {
+  const db = firebase.firestore();
   const {user, updateUser} = useContext(UserContext)
   return (
     <header>
@@ -32,6 +33,20 @@ const HeaderBar = (props) => {
                 }}
               >
                 {i18next.t('news')}
+              </button>
+              <button
+                className="btnDrop" 
+                onClick={async () => {
+                  user.theme = user.theme === 'dark' ? 'light' : 'dark';
+                  const element = document.getElementsByTagName('body')[0];
+                  element.setAttribute('data-theme', user.theme);
+                  updateUser(user);
+                  await db.collection("users").doc(user.uid).set({
+                    ...user
+                  }); 
+                }}
+              >
+                {i18next.t('theme')}
               </button>
               <button
                 className="btnDrop"

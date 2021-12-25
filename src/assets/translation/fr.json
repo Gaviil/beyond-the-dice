@@ -99,6 +99,7 @@
     "survive": "Mélange de sens de l’orientation, de repérage aux étoiles et de débrouillardise, cette compétence vous permet de vous accommoder des lieux que vous ne connaissez pas. Elle est notamment employée pour déterminer si vous trouvez de quoi subvenir à vos besoins en milieu sauvage.",
     "steal": "Compétence préférée des roublards et autre tire-laine, Voler permet au personnage de soulager un propriétaire de ses menues possessions, qu’il s’agisse d’une bourse pleine de pièces, d’une bague ou autres objets. Le MJ peut imposer un malus si l’objet à dérober est particulièrement imposant. La victime du larcin a droit à un jet sous Perception pour prendre le voleur sur le fait."
   },
+  "theme": "Changer de thèmes",
   "news": "Nouveautés",
   "logout": "Déconnexion",
   "hide roll": "Cacher mes jets",
