@@ -1,6 +1,7 @@
 [data-theme='dark'] {
-  background-color: #1E1E1E;
-  background-image: none;
+  /* background-color: #191919;
+  background-image: none; */
+  background-image: url('../assets/Images/darkBack.png');
 }
 [data-theme='dark'] header,[data-theme='dark'] .dropdown-content{
   background-color: #2a2a2a;
@@ -37,7 +38,7 @@
 }
 
 [data-theme='dark'] .skillsContainer .active:after,[data-theme='dark'] .skillsContainer .active:before {
-  background-color: #1E1E1E;
+  background-color: #191919;
 }
 
 [data-theme='dark'] input[type=submit].disabled,[data-theme='dark'] button.disabled {
@@ -53,7 +54,7 @@
   background-color: #2a2a2a;
 }
 [data-theme='dark'] .containerCharacterView .active:after,[data-theme='dark'] .containerCharacterView .active:before {
-  background-color: #1E1E1E;
+  background-color: #191919;
 }
 [data-theme='dark'] .containerCharacterView .active:before {
   box-shadow: 5px -5px 0 #2a2a2a;
@@ -68,8 +69,8 @@
   border-color: #c4c4c4;
 }
 [data-theme='dark'] .hpCharacter input[type='number'] {
-  background-color: #1E1E1E;
-  border-color: #1E1E1E;
+  background-color: #191919;
+  border-color: #191919;
 }
 [data-theme='dark'] .hpCharacter:hover input[type='number'] {
   background-color: #2a2a2a;
@@ -78,8 +79,8 @@
   background-color: #2a2a2a;
 }
 [data-theme='dark'] .blockCoin input[type='number'] {
-  background-color: #1E1E1E;
-  border-color: #1E1E1E;
+  background-color: #191919;
+  border-color: #191919;
 }
 [data-theme='dark'] .blockCoin:hover input[type='number'] {
   background-color: #2a2a2a;
@@ -109,7 +110,7 @@
   color: #c4c4c4;
 }
 [data-theme='dark'] input[type=submit].outline, [data-theme='dark'] button.outline {
-  background-color: #1E1E1E;
+  background-color: #191919;
 }
 [data-theme='dark'] input[type=submit].outline:hover, [data-theme='dark'] button.outline:hover {
   background-color: #ffad23;
@@ -119,7 +120,7 @@
   color: #c4c4c4;
 }
 [data-theme='dark'] .formNewInv {
-  background-color: #1E1E1E;
+  background-color: #191919;
 }
 [data-theme='dark'] .tableInvHeader {
   background-color: #007991;
