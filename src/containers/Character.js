@@ -26,7 +26,7 @@ import '../styles/modal.css';
 import DiceChat from './DiceChat';
 import EditCharacter from './EditCharacter';
 import MobileInventory from './MobileInventory';
-import { PencilAltIcon, ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/outline'
+import { PencilAltIcon, ChevronDownIcon, ChevronUpIcon, AnnotationIcon } from '@heroicons/react/outline'
 import {dynamicSortWithTraduction} from '../utils/sort';
 import {getRoll, getMagicCard} from '../utils/dice';
 import {
@@ -429,7 +429,8 @@ const Character = (props) => {
                           className='link'
                           to={`${match.url}/chat`}
                         >
-                          <img className="iconChat" src={chat} alt="chat" />
+                          <AnnotationIcon className='iconChat' />
+                          {/* <img className="iconChat" src={chat} alt="chat" /> */}
                         </Link>
                       </MobileView>
                       {character.description && (
