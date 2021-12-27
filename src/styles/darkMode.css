@@ -1,16 +1,20 @@
+:root {
+  --main-dark: #191919;
+  --second-dark: #2a2a2a;
+  --grey-text-color: #c4c4c4
+}
+
 [data-theme='dark'] {
-  /* background-color: #191919;
-  background-image: none; */
   background-image: url('../assets/Images/darkBack.png');
 }
 [data-theme='dark'] header,[data-theme='dark'] .dropdown-content{
-  background-color: #2a2a2a;
+  background-color: var(--second-dark);
 }
 [data-theme='dark'] .link {
   color: #cccccc
 }
 [data-theme='dark'] h3,[data-theme='dark'] h2 , [data-theme='dark'] span, [data-theme='dark'] label, [data-theme='dark'] p {
-  color: #c4c4c4
+  color: var(--grey-text-color)
 }
 [data-theme='dark'] .campaignInformation div p span:first-child {
   color: #939393
@@ -20,16 +24,16 @@
 }
 
 [data-theme='dark'] .dropdown button {
-  background-color: #2a2a2a;
+  background-color: var(--second-dark);
 }
 [data-theme='dark'] .switch label .lever {
   background-color: rgba(147,147,147,1);
   color: #fff;
 }
 [data-theme='dark'] input[type=text],[data-theme='dark'] input[type=number],[data-theme='dark'] textarea {
-  border: 2px solid #2a2a2a;
+  border: 2px solid var(--second-dark);
   background-color: rgba(0,0,0,0.2);
-  color: #c4c4c4;
+  color: var(--grey-text-color);
 }
 [data-theme='dark'] input:focus,[data-theme='dark'] textarea:focus {
   outline: none;
@@ -37,118 +41,118 @@
 }
 [data-theme='dark'] input[type='number'],[data-theme='dark'] input[type='number']::-webkit-outer-spin-button,[data-theme='dark'] input[type='number']::-webkit-inner-spin-button {
   -webkit-appearance: none;
-  color: #c4c4c4;
+  color: var(--grey-text-color);
 }
 
 [data-theme='dark'] .skillsContainer .active:after,[data-theme='dark'] .skillsContainer .active:before {
-  background-color: #191919;
+  background-color: var(--main-dark);
 }
 
 [data-theme='dark'] input[type=submit].disabled,[data-theme='dark'] button.disabled {
   background-color: #161616;
 }
 [data-theme='dark'] .dropdown-content .btnDrop,[data-theme='dark'] .containerCharacterView .tab {
-  color: #c4c4c4
+  color: var(--grey-text-color)
 }
 [data-theme='dark'] .dropdown-content .btnDrop:hover {
   background-color: #363636;
 }
 [data-theme='dark'] .containerCharacterView .tab.active {
-  background-color: #2a2a2a;
+  background-color: var(--second-dark);
 }
 [data-theme='dark'] .containerCharacterView .active:after,[data-theme='dark'] .containerCharacterView .active:before {
-  background-color: #191919;
+  background-color: var(--main-dark);
 }
 [data-theme='dark'] .containerCharacterView .active:before {
-  box-shadow: 5px -5px 0 #2a2a2a;
+  box-shadow: 5px -5px 0 var(--second-dark);
 }
 [data-theme='dark'] .containerCharacterView .active:after {
-  box-shadow: -5px -5px 0 #2a2a2a;
+  box-shadow: -5px -5px 0 var(--second-dark);
 }
 [data-theme='dark'] .skillsDetail ul li span {
-  color: #c4c4c4;
+  color: var(--grey-text-color);
 }
 [data-theme='dark'] .skillsDetail ul li {
-  border-color: #c4c4c4;
+  border-color: var(--grey-text-color);
 }
 [data-theme='dark'] .hpCharacter input[type='number'] {
-  background-color: #191919;
-  border-color: #191919;
+  background-color: var(--main-dark);
+  border-color: var(--main-dark);
 }
 [data-theme='dark'] .hpCharacter:hover input[type='number'] {
-  background-color: #2a2a2a;
+  background-color: var(--second-dark);
 }
 [data-theme='dark'] .hpCharacter input[type='number']:focus {
-  background-color: #2a2a2a;
+  background-color: var(--second-dark);
 }
 [data-theme='dark'] .blockCoin input[type='number'] {
-  background-color: #191919;
-  border-color: #191919;
+  background-color: var(--main-dark);
+  border-color: var(--main-dark);
 }
 [data-theme='dark'] .blockCoin:hover input[type='number'] {
-  background-color: #2a2a2a;
+  background-color: var(--second-dark);
 }
 [data-theme='dark'] .blockCoin input[type='number']:focus {
-  background-color: #2a2a2a;
+  background-color: var(--second-dark);
 }
 [data-theme='dark'] .hpCharacter .hpBarEmpty {
-    background-color: #2a2a2a;
+    background-color: var(--second-dark);
 }
 [data-theme='dark'] .characteristicsDetail ul li {
-  background-color: #2a2a2a;
+  background-color: var(--second-dark);
 }
 [data-theme='dark'] .myhistoRow {
-  background-color: #2a2a2a;
+  background-color: var(--second-dark);
 }
 [data-theme='dark'] .histoRow {
   background-color: #525252;
 }
 [data-theme='dark'] .histoRow .histoLeftSide span:first-child {
-  color: #c4c4c4;
+  color: var(--grey-text-color);
 }
 [data-theme='dark'] .tooltip .tooltiptext {
   background-color: #5a5a5a;
 }
 [data-theme='dark'] .iconBreadcrumb {
-  color: #c4c4c4;
+  color: var(--grey-text-color);
 }
 [data-theme='dark'] input[type=submit].outline, [data-theme='dark'] button.outline {
-  background-color: #191919;
+  background-color: var(--main-dark);
 }
 [data-theme='dark'] input[type=submit].outline:hover, [data-theme='dark'] button.outline:hover {
   background-color: #ffad23;
   color: #fff;
 }
 [data-theme='dark'] .memberCompany b {
-  color: #c4c4c4;
+  color: var(--grey-text-color);
 }
 [data-theme='dark'] .formNewInv {
-  background-color: #191919;
+  background-color: var(--main-dark);
 }
 [data-theme='dark'] .tableInvHeader {
   background-color: #007991;
 }
 [data-theme='dark'] button.empty {
-  color: #c4c4c4;
+  color: var(--grey-text-color);
 }
 [data-theme='dark'] .playinCard, .playinCardEditable {
-  background-color: #2a2a2a;
+  background-color: var(--second-dark);
   border-color: #404040;
 }
 [data-theme='dark'] .playinCard span.black,[data-theme='dark'] .playinCardEditable span.black {
-  color: #c4c4c4;
+  color: var(--grey-text-color);
 }
 [data-theme='dark'] .playinCardEditable:hover::before {
   border-color: rgba(255,255,255,0.5);
 }
 [data-theme='dark'] .blockInfoDM ul li {
-  border-bottom: 1px solid #c4c4c4;
+  border-bottom: 1px solid var(--grey-text-color);
 }
 [data-theme='dark'] .blockInfoDM ul li span {
-  color: #c4c4c4;
+  color: var(--grey-text-color);
 }
 [data-theme='dark'] .nameHpCharacter b {
-  color: #c4c4c4;
+  color: var(--grey-text-color);
 }
 [data-theme='dark'] .fullButton {
   background-color: #007991;
@@ -160,8 +164,8 @@
   background-color: #404040;
 }
 [data-theme='dark'] .histoRow .histoLeftSide span {
-  color: #c4c4c4;
+  color: var(--grey-text-color);
 }
 [data-theme='dark'] .iconReload {
-  color: #c4c4c4;
+  color: var(--grey-text-color);
 }
