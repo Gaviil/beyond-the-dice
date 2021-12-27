@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import Picture from './Picture';
+import { RefreshIcon } from '@heroicons/react/outline'
 import refresh from '../assets/Images/refresh.png'
-import sheet from '../assets/Images/sheet.png'
 import Skills from '../components/Skills';
 import Characteristics from '../components/Characteristics';
 import '../styles/dm.css'
 import {
   BrowserView,
+  isBrowser
 } from "react-device-detect";
 
 const StatInfo = (props) => {
@@ -36,22 +37,18 @@ const CompanyMemberDetails = (props) => {
   const {member} = props;
   return (
     <div
-      className={'memberCompanyList'}
+      className={`memberCompanyList ${isBrowser ? 'click' : ''}`}
+      onClick={() => {
+        if(isBrowser) {
+          props.select(member);
+        }
+      }}
     >
       <Picture character={member}/>
       <div className='nameHpCharacter'>
         <b>{member.name}</b><br/>
         <span>{member.currentHp} / {member.maxHp}</span>
       </div>
-      <BrowserView className='sheetIcon'>
-        <img
-          onClick={() => {
-            props.select(member)
-          }}
-          src={sheet}
-          alt="sheet"
-        />
-      </BrowserView>
     </div>
   );
 }
@@ -62,13 +59,11 @@ const DmCompany = (props) => {
   return (
     <div className='containerCompanyList'>
       <div className='containerInfoCharacterDm'>
-        <img
-          className='refreshCompany'
+        <RefreshIcon
+          className="iconReload"
           onClick={() => {
             props.reloadCompany();
           }}
-          src={refresh}
-          alt="refresh"
         />
         <div className='companyList'>
           {company.map((compagnyMember,i) => (

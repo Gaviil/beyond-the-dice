@@ -430,7 +430,6 @@ const Character = (props) => {
                           to={`${match.url}/chat`}
                         >
                           <AnnotationIcon className='iconChat' />
-                          {/* <img className="iconChat" src={chat} alt="chat" /> */}
                         </Link>
                       </MobileView>
                       {character.description && (

@@ -162,3 +162,6 @@
 [data-theme='dark'] .histoRow .histoLeftSide span {
   color: #c4c4c4;
 }
+[data-theme='dark'] .iconReload {
+  color: #c4c4c4;
+}
