@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import Picture from './Picture';
 import { RefreshIcon } from '@heroicons/react/outline'
-import refresh from '../assets/Images/refresh.png'
 import Skills from '../components/Skills';
 import Characteristics from '../components/Characteristics';
 import '../styles/dm.css'

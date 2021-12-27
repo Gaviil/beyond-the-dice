@@ -36,7 +36,6 @@ import {
 } from "react-device-detect";
 import { toast } from 'react-toastify';
 import backpack from '../assets/Images/backpack.png'
-import chat from '../assets/Images/chat.png'
 import Picture from '../components/Picture';
 import Skills from '../components/Skills';
 import Characteristics from '../components/Characteristics';
