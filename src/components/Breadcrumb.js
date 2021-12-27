@@ -12,8 +12,8 @@ const Breadcrumb = (props) => {
       margin: '0.5rem 0px',
       cursor: 'pointer',
     }}>
-      <ChevronLeftIcon className='iconBreadcrumb'/>
-      <span className='link' style={{fontSize: "1.25rem"}} onClick={() => {history.goBack()}}>
+      <span className='link' style={{fontSize: "1.25rem", display: 'flex', alignItems: 'center'}} onClick={() => {history.goBack()}}>
+        <ChevronLeftIcon className='iconBreadcrumb'/>
         {props.sentence}
       </span>
     </div>
