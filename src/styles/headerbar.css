@@ -98,7 +98,12 @@ header {
     width: 85%;
   }
 }
-@media (min-width: 1900px) {
+/* @media (min-width: 1900px) {
+  .header {
+    width: 70%;
+  }
+} */
+@media (min-width: 2000px) {
   .header {
     width: 70%;
   }
