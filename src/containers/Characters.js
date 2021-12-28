@@ -312,7 +312,7 @@ if(user && campaign) {
                         }}
                       >
                         <Picture character={{picture: logo}}/>
-                        {i18next.t('dm initial')}
+                        {i18next.t('dm')}
                       </Link>
                     </li>
                   )}
