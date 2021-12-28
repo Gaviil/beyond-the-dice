@@ -114,14 +114,6 @@ const Dm = (props) => {
     return (
       <div className='containerCharacterView'>
         <div className='characterContainer'>
-          <MobileView className='linkChatContainerDmView'>
-              {/* <Link
-                className='link'
-                to={`${match.url}/chat`}
-              >
-                <img className="iconChat" src={chat} alt="chat" />
-              </Link> */}
-            </MobileView>
           <div className='containerInfoComp'>
             <BrowserView className='tabsDetails'>
               <ul className='tabsContainer'>
