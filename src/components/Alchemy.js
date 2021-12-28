@@ -3,6 +3,9 @@ import React, {useState} from 'react';
 import '../styles/alchemy.css';
 import { TrashIcon } from '@heroicons/react/solid'
 import { toast } from 'react-toastify';
+import {
+  PlusIcon
+} from '@heroicons/react/outline'
 
 const Alchemy = (props) => {
   const {invAndReceipt, character} = props;
@@ -121,7 +124,7 @@ const ReceiptView = (props) => {
           }}
         />
         <button>
-          +
+          <PlusIcon style={{height: 12, width: 12}}/>
         </button>                  
       </form>
     </div>

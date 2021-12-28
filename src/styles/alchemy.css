@@ -5,6 +5,7 @@
 .containerReceipt {
   display: flex;
   align-items: center;
+  min-height: 37px;
 }
 .potionContainer {
   margin-top: 2rem;
@@ -41,18 +42,11 @@
   padding: 0.5rem;
 }
 .lineReceiptAlchemy span:nth-child(2){
-  flex: 12;
-  padding: 0.5rem;
-  align-self: center;
-}
-.lineReceiptAlchemy span:first-child{
-  flex: 6;
+  display: none;
 }
 .lineReceiptAlchemy span:nth-child(3){
-  flex: 1;
   text-align: end;
 }
-
 .linePotionAlchemy span:first-child{
   flex: 6;
 }
@@ -60,18 +54,7 @@
   flex: 1;
   text-align: end;
 }
-.lineReceiptAlchemy input:nth-child(2){
-  flex: 12;
-  padding: 0.5rem;
-  align-self: center;
-}
-.lineReceiptAlchemy input:first-child{
-  flex: 6;
-}
-.lineReceiptAlchemy input:nth-child(3){
-  flex: 1;
-  text-align: end;
-}
+
 .containerReceipt .blockDelete{
   text-align: end;
   width: 38px;
@@ -87,9 +70,68 @@
   width: auto;
   line-height: normal;
 }
-.receiptEdition {
-  margin-top: 0.5rem;
-}
 .iconDelete {
   height: 22px;
+}
+.optionBtnInv {
+  margin-left: 0;
+}
+.receiptEdition {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  flex-wrap: wrap;
+}
+.receiptEdition input{
+  width: calc(100% - 20px);
+  max-width: none;
+}
+.receiptEdition button {
+  width: 100%;
+  max-width: none;
+}
+@media (min-width: 1100px) {
+  .lineReceiptAlchemy span:nth-child(2){
+    flex: 12;
+    padding: 0.5rem;
+    align-self: center;
+    display: flex;
+  }
+  .lineReceiptAlchemy span:first-child{
+    flex: 6;
+  }
+  .lineReceiptAlchemy span:nth-child(3){
+    flex: 1;
+    text-align: end;
+  }
+  .containerReceipt {
+    min-height: none;
+  }
+  .lineReceiptAlchemy input:nth-child(2){
+    flex: 12;
+    padding: 0.5rem;
+    align-self: center;
+  }
+  .lineReceiptAlchemy input:first-child{
+    flex: 6;
+  }
+  .lineReceiptAlchemy input:nth-child(3){
+    flex: 1;
+    text-align: end;
+  }
+  .receiptEdition {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    flex-wrap: wrap;
+  }
+  .receiptEdition input{
+    width: auto;
+  }
+  .receiptEdition button {
+    width: auto;
+    max-width: none;
+  }
 }

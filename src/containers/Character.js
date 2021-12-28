@@ -26,7 +26,17 @@ import '../styles/modal.css';
 import DiceChat from './DiceChat';
 import EditCharacter from './EditCharacter';
 import MobileInventory from './MobileInventory';
-import { PencilAltIcon, ChevronDownIcon, ChevronUpIcon, AnnotationIcon, UserIcon, MapIcon, UsersIcon, BeakerIcon, SparklesIcon} from '@heroicons/react/outline'
+import {
+  PencilAltIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  AnnotationIcon,
+  UserIcon,
+  MapIcon,
+  UsersIcon,
+  BeakerIcon,
+  SparklesIcon
+} from '@heroicons/react/outline'
 import {dynamicSortWithTraduction} from '../utils/sort';
 import {getRoll, getMagicCard} from '../utils/dice';
 import {
