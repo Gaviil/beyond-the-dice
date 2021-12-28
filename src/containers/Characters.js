@@ -27,7 +27,7 @@ import i18next from 'i18next';
 // import {setValueOnLocalStorage, getValueOnLocalStorage} from "../utils/localStorage";
 import Picture from '../components/Picture';
 import logo from '../assets/Images/logo150.png';
-import CampaignSettings from '../components/CampaignSettings';
+// import CampaignSettings from '../components/CampaignSettings';
 import alchemy from '../assets/alchemy.json';
 import {useHistory} from "react-router-dom";
 import cards from '../assets/cards.json';
