@@ -294,6 +294,11 @@ input[type=checkbox] {
   outline: 0.15rem solid #1b1d29;
   border-radius: 0.25rem;
 }
+.iconTabMobile {
+  width:35px;
+  height:35px;
+  color: #fff
+}
 @media (min-width: 800px) {
   .compactPage {
     width: 70%;

@@ -136,11 +136,6 @@
   border-radius: 50%;
   margin-top: -15px;
 }
-.iconTabDm {
-  width:35px;
-  height:35px;
-  color: #fff
-}
 .mobileTabsContainer .tab.active {
   background-color: #ffad23;
   border: 0.25rem solid #fff;

@@ -153,7 +153,7 @@ const Dm = (props) => {
                     setView('company');
                   }}  
                 >
-                  <UserIcon className='iconTabDm' />
+                  <UserIcon className='iconTabMobile' />
                 </li>
                 { rollList.length > 0 && (
                   <li
@@ -162,7 +162,7 @@ const Dm = (props) => {
                       setView('diceChat');
                     }}  
                   >
-                    <AnnotationIcon className='iconTabDm' />
+                    <AnnotationIcon className='iconTabMobile' />
                   </li>
                 )}
                 { rollList.length > 0 && company.length > 0 && (
@@ -172,7 +172,7 @@ const Dm = (props) => {
                       setView('stats');
                     }}  
                   >
-                    <ChartPieIcon className='iconTabDm' />
+                    <ChartPieIcon className='iconTabMobile' />
                   </li>
                 )}
                 <li
@@ -181,7 +181,7 @@ const Dm = (props) => {
                     setView('settings');
                   }}  
                 >
-                    <CogIcon className='iconTabDm' />
+                    <CogIcon className='iconTabMobile' />
                 </li>
               </ul>
             </MobileView>

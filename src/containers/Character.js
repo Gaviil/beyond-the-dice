@@ -26,7 +26,7 @@ import '../styles/modal.css';
 import DiceChat from './DiceChat';
 import EditCharacter from './EditCharacter';
 import MobileInventory from './MobileInventory';
-import { PencilAltIcon, ChevronDownIcon, ChevronUpIcon, AnnotationIcon } from '@heroicons/react/outline'
+import { PencilAltIcon, ChevronDownIcon, ChevronUpIcon, AnnotationIcon, UserIcon, MapIcon, UsersIcon, BeakerIcon, SparklesIcon} from '@heroicons/react/outline'
 import {dynamicSortWithTraduction} from '../utils/sort';
 import {getRoll, getMagicCard} from '../utils/dice';
 import {
@@ -336,6 +336,64 @@ const Character = (props) => {
                     </li>
                   </ul>
                 </BrowserView>
+                <MobileView className='tabsDetailsMobile'>
+                  <ul className='mobileTabsContainer'>
+                    <li
+                      className={`tab ${view === 'character' ? 'active' : ''}`}
+                      onClick={() => {
+                        setView('character');
+                      }}  
+                    >
+                      <UserIcon className='iconTabMobile' />
+                    </li>
+                    { rollList.length > 0 && (
+                      <li
+                        className={`tab ${view === 'diceHisto' ? 'active' : ''}`}
+                        onClick={() => {
+                          setView('diceHisto');
+                        }}  
+                      >
+                        <AnnotationIcon className='iconTabMobile' />
+                      </li>
+                    )}
+                    <li
+                      className={`tab ${view === 'inventory' ? 'active' : ''}`}
+                      onClick={() => {
+                        setView('inventory');
+                      }}  
+                    >
+                      <MapIcon className='iconTabMobile' />
+                    </li>
+                    {character.isAlchemist && (
+                      <li
+                        className={`tab ${view === 'alchemy' ? 'active' : ''}`}
+                        onClick={() => {
+                          setView('alchemy');
+                        }}  
+                      >
+                        <BeakerIcon className='iconTabMobile' />
+                      </li>
+                    )}
+                    {character.isMage && campaign.playerCanSeeAllCards && (
+                      <li
+                        className={`tab ${view === 'magic' ? 'active' : ''}`}
+                        onClick={() => {
+                          setView('magic');
+                        }}  
+                      >
+                        <SparklesIcon className='iconTabMobile' />
+                      </li>
+                    )}
+                    <li
+                      className={`tab ${view === 'company' ? 'active' : ''}`}
+                      onClick={() => {
+                        setView('company');
+                      }}  
+                    >
+                      <UsersIcon className='iconTabMobile' />
+                    </li>
+                  </ul>
+                </MobileView>
                 {view === 'character' && (
                   <div className='containerInfo'>
                     <div className='nameCharacteristics'>
@@ -423,14 +481,14 @@ const Character = (props) => {
                           />
                         )}
                       </div>
-                      <MobileView className='linkChatContainer'>
+                      {/* <MobileView className='linkChatContainer'>
                         <Link
                           className='link'
                           to={`${match.url}/chat`}
                         >
                           <AnnotationIcon className='iconChat' />
                         </Link>
-                      </MobileView>
+                      </MobileView> */}
                       {character.description && (
                         <div className='descriptionDetails'>
                           <p
@@ -553,6 +611,15 @@ const Character = (props) => {
                     )}
                   </div>
                 )}
+                {view === 'diceHisto' && (
+                  <DiceHistorical
+                    list={rollList}
+                    hideRollSwitch={hideRollSwitch}
+                    setHideRoll={(val) => {
+                      setHideRollSwitch(val)
+                    }}
+                  />
+                )}
                 <BrowserView className='containerHisto'>
                   <DiceHistorical
                     list={rollList}
@@ -570,7 +637,7 @@ const Character = (props) => {
                     }}
                   />
                 </BrowserView>
-                <MobileView className='mobileInv'>
+                {/* <MobileView className='mobileInv'>
                   <Link
                     className='fullButton'
                     to={`${match.url}/inventory`}
@@ -578,7 +645,7 @@ const Character = (props) => {
                     <img className="iconInvLarge" src={backpack} alt="Backpack" />
                     <span>{i18next.t('inventory')}</span>
                   </Link>
-                </MobileView>
+                </MobileView> */}
               </div>
             )}
           </div>

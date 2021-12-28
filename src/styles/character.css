@@ -450,7 +450,9 @@ input[type='number'].updateHp {
 .containerCharacterView .tab {
   display: none;
 }
-
+.containerCharacterView {
+  padding-bottom: 40px;
+}
 @media (min-width: 800px) {
   .inventory {
     display: block;
@@ -542,6 +544,9 @@ input[type='number'].updateHp {
   .containerCharacterView .active:before{
     left: -10px;
     box-shadow: 5px -5px 0 #1b1d29;
+  }
+  .containerCharacterView {
+    padding-bottom: 0px;
   }
 }
 @media (min-width: 1500px) {
