@@ -5,7 +5,7 @@ import UserContext from '../context/UserContext';
 import '../styles/diceHisto.css';
 import i18next from 'i18next';
 import { EyeOffIcon } from '@heroicons/react/outline'
-import {isDesktop, isMobile} from "react-device-detect";
+import {isDesktop} from "react-device-detect";
 import {getLabelDice} from '../utils/dice';
 
 const cleanDuplicate = (arrayRoll, userUid, campaignUserUidDm, diceLoaded = 10) => {
