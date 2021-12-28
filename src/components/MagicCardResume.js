@@ -21,7 +21,7 @@ const MagicCardResume = (props) => {
     <div>
       {props.cardsList.filter(card => card.enable === true).length > 0 && (
         <div>
-          <h2>{i18next.t('mage.cardsAvailable')}</h2>
+          <h3>{i18next.t('mage.cardsAvailable')}</h3>
           <div className='containerCardResume'>
             {props.cardsList.filter(card => card.enable === true).map(card => (
               <Card
@@ -39,7 +39,7 @@ const MagicCardResume = (props) => {
       )}
       {props.cardsList.filter(card => card.enable === false).length > 0 && (
         <div>
-          <h2>{i18next.t('mage.cardsUsed')}</h2>
+          <h3>{i18next.t('mage.cardsUsed')}</h3>
           <div className='containerCardResume'>
             {props.cardsList.filter(card => card.enable === false).map(card => (
               <Card

@@ -135,7 +135,7 @@
 [data-theme='dark'] button.empty {
   color: var(--grey-text-color);
 }
-[data-theme='dark'] .playinCard, .playinCardEditable {
+[data-theme='dark'] .playinCard, [data-theme='dark'] .playinCardEditable {
   background-color: var(--second-dark);
   border-color: #404040;
 }

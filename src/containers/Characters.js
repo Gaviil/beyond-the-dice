@@ -222,17 +222,17 @@ const Characters = (props) => {
     });
   }
 
-  const updateCampaignFirestore = async (newCampaignData) => {
-    newCampaignData.lastUpdateAt = firebase.firestore.FieldValue.serverTimestamp();
-    await db.collection('campaigns').doc(newCampaignData.uid).set(newCampaignData).then(res => {
-      toast.success(i18next.t('update succed'), {});
-      firebase.analytics().logEvent('updateConfigCampaign', {
-        ...newCampaignData
-      });
-    }).catch(err => {
-      toast.error(err, {});
-    });
-  }
+  // const updateCampaignFirestore = async (newCampaignData) => {
+  //   newCampaignData.lastUpdateAt = firebase.firestore.FieldValue.serverTimestamp();
+  //   await db.collection('campaigns').doc(newCampaignData.uid).set(newCampaignData).then(res => {
+  //     toast.success(i18next.t('update succed'), {});
+  //     firebase.analytics().logEvent('updateConfigCampaign', {
+  //       ...newCampaignData
+  //     });
+  //   }).catch(err => {
+  //     toast.error(err, {});
+  //   });
+  // }
 
 if(user && campaign) {
   return (
@@ -291,7 +291,7 @@ if(user && campaign) {
                     )}
                   </div>
                 </div>
-                {user.uid === campaign.idUserDm && (
+                {/* {user.uid === campaign.idUserDm && (
                   <CampaignSettings
                     campaign={campaign}
                     update={(campagneUpdated) => {
@@ -299,7 +299,7 @@ if(user && campaign) {
                       updateCampaignFirestore(campagneUpdated);
                     }}
                   />
-                )}
+                )} */}
                 <h3>{i18next.t('my characters')}</h3>
                 <ul className='list'>
                   {user.uid === campaign.idUserDm && (

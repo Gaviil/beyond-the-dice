@@ -5,7 +5,7 @@ const CampaignSettings = (props) => {
   const {campaign} = props;
   return (
     <div className='settingsCampaign'>
-      <h3>{i18next.t('settings campaign')}</h3>
+      {/* <h3>{i18next.t('settings campaign')}</h3> */}
       <CheckboxSwitch
         isChecked={campaign.hideValueCharacterStatsOnChat}
         label={i18next.t('campaignSettings.hide character stat value on chat')}

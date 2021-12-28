@@ -24,13 +24,13 @@ import {getLabelDice} from '../utils/dice'
 import {useHistory} from "react-router-dom";
 import Statistics from "../components/Statistics";
 import i18next from 'i18next';
-
+import CampaignSettings from '../components/CampaignSettings';
 init();
 const db = firebase.firestore();
 
 const Dm = (props) => {
   const {user} = useContext(UserContext);
-  const {campaign} = useContext(CampaignContext);
+  const {campaign, updateCampaign} = useContext(CampaignContext)
   const [rollList, setRollList] = useState([]);
   const [hideRollSwitch,setHideRollSwitch] = useState(false);
   const [company, setCompany] = useState([]);
@@ -93,6 +93,18 @@ const Dm = (props) => {
     }
   }
 
+  const updateCampaignFirestore = async (newCampaignData) => {
+    newCampaignData.lastUpdateAt = firebase.firestore.FieldValue.serverTimestamp();
+    await db.collection('campaigns').doc(newCampaignData.uid).set(newCampaignData).then(res => {
+      toast.success(i18next.t('update succed'), {});
+      firebase.analytics().logEvent('updateConfigCampaign', {
+        ...newCampaignData
+      });
+    }).catch(err => {
+      toast.error(err, {});
+    });
+  }
+
   if(campaign.idUserDm === user.uid) {
     return (
       <div className='containerCharacterView'>
@@ -114,7 +126,7 @@ const Dm = (props) => {
                   setView('company');
                 }}  
               >
-                {i18next.t('company')}
+                {i18next.t('characters')}
               </li>
               <li
                 className={`tab ${view === 'stats' ? 'active' : ''}`}
@@ -123,6 +135,14 @@ const Dm = (props) => {
                 }}  
               >
                 {i18next.t('stats.title')}
+              </li>
+              <li
+                className={`tab ${view === 'settings' ? 'active' : ''}`}
+                onClick={() => {
+                  setView('settings');
+                }}  
+              >
+                {i18next.t('settings campaign')}
               </li>
             </ul>
           </BrowserView>
@@ -140,6 +160,16 @@ const Dm = (props) => {
                   rollList={rollList}
                   company={company}
                 />
+              )}
+              {view === 'settings' && (
+                <CampaignSettings 
+                  campaign={campaign}
+                  update={(campagneUpdated) => {
+                    updateCampaign(campagneUpdated);
+                    updateCampaignFirestore(campagneUpdated);
+                  }}
+                />
+                
               )}
             </div>
           </div>

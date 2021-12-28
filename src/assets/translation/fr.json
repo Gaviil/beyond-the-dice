@@ -30,6 +30,7 @@
   "was created with success": "à été créé avec succès",
   "campaign information": "Information de la campagne",
   "character": "Personnage",
+  "characters": "Personnages",
   "join": "Rejoindre",
   "search": "Rechercher",
   "validate": "Valider",
@@ -138,10 +139,10 @@
   "signup": "Inscrivez-vous",
   "new frame unlock": "Nouvelle décoration d'image débloqué 🥳",
   "campaignSettings": {
-    "hide character stat value on chat": "Cacher les valeurs de statistique dans l'historique",
+    "hide character stat value on chat": "Cacher les valeurs de statistique dans l'historique de dé pour les joueurs",
     "rename character": "Les joueurs peuvent renommer leur personnage",
     "click to roll": "Les joueurs peuvent cliquer sur une statistique pour lancer un dé",
-    "playerCanSeeCards": "Les mages peuvent voir le détail de leur deck de magie",
+    "playerCanSeeCards": "Les mages peuvent voir le détail de leur deck de magie ( carte disponible et utilisé )",
     "playerCanEditCards": "Les mages peuvent changer l'état des cartes de leur deck"
   },
   "settings campaign": "Configuration",
