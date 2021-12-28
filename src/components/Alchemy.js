@@ -1,10 +1,10 @@
 import i18next from 'i18next';
 import React, {useState} from 'react';
 import '../styles/alchemy.css';
-import { TrashIcon } from '@heroicons/react/solid'
 import { toast } from 'react-toastify';
 import {
-  PlusIcon
+  PlusIcon,
+  TrashIcon
 } from '@heroicons/react/outline'
 
 const Alchemy = (props) => {
