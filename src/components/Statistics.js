@@ -18,7 +18,7 @@ const Statistics = (props) => {
   return (
     <div className='statsCampaign'>
       <div className='chartLong multiBlock'>
-        <Block label={i18next.t('stats.TotalRoll')} value={getNumberOfDiceRoll(cleanRollList)}/>
+        <Block label={i18next.t('stats.TotalRoll')} value={getNumberOfDiceRoll(cleanRollList)} background="#ea9010"/>
         <Block label={i18next.t('stats.criticSuccess')} value={getNumberOfCriticalSuccess(cleanRollList)} background="#007991"/>
         <Block label={i18next.t('stats.criticFail')} value={getNumberOfCriticalFail(cleanRollList)} background="#D52941"/>
       </div>
