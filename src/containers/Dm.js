@@ -25,7 +25,7 @@ import {useHistory} from "react-router-dom";
 import Statistics from "../components/Statistics";
 import i18next from 'i18next';
 import CampaignSettings from '../components/CampaignSettings';
-import { UserIcon, ChartPieIcon, CogIcon } from '@heroicons/react/outline'
+import { UserIcon, ChartPieIcon, CogIcon, AnnotationIcon } from '@heroicons/react/outline';
 
 init();
 const db = firebase.firestore();
@@ -163,6 +163,16 @@ const Dm = (props) => {
                 >
                   <UserIcon className='iconTabDm' />
                 </li>
+                { rollList.length > 0 && (
+                  <li
+                    className={`tab ${view === 'diceChat' ? 'active' : ''}`}
+                    onClick={() => {
+                      setView('diceChat');
+                    }}  
+                  >
+                    <AnnotationIcon className='iconTabDm' />
+                  </li>
+                )}
                 { rollList.length > 0 && company.length > 0 && (
                   <li
                     className={`tab ${view === 'stats' ? 'active' : ''}`}
@@ -207,6 +217,15 @@ const Dm = (props) => {
                   }}
                 />
                 
+              )}
+              {view === 'diceChat' && (
+                <DiceHistorical
+                  list={rollList}
+                  hideRollSwitch={hideRollSwitch}
+                  setHideRoll={(val) => {
+                    setHideRollSwitch(val)
+                  }}
+                />
               )}
             </div>
           </div>
