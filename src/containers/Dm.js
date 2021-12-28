@@ -25,6 +25,8 @@ import {useHistory} from "react-router-dom";
 import Statistics from "../components/Statistics";
 import i18next from 'i18next';
 import CampaignSettings from '../components/CampaignSettings';
+import { UserIcon, ChartPieIcon, CogIcon } from '@heroicons/react/outline'
+
 init();
 const db = firebase.firestore();
 
@@ -122,35 +124,65 @@ const Dm = (props) => {
             </MobileView>
           <div className='containerInfoComp'>
             <BrowserView className='tabsDetails'>
-            <ul className='tabsContainer'>
-              <li
-                className={`tab ${view === 'company' ? 'active' : ''}`}
-                onClick={() => {
-                  setView('company');
-                }}  
-              >
-                {i18next.t('characters')}
-              </li>
-              { rollList.length > 0 && company.length > 0 && (
+              <ul className='tabsContainer'>
                 <li
-                  className={`tab ${view === 'stats' ? 'active' : ''}`}
+                  className={`tab ${view === 'company' ? 'active' : ''}`}
                   onClick={() => {
-                    setView('stats');
+                    setView('company');
                   }}  
                 >
-                  {i18next.t('stats.title')}
+                  {i18next.t('characters')}
                 </li>
-              )}
-              <li
-                className={`tab ${view === 'settings' ? 'active' : ''}`}
-                onClick={() => {
-                  setView('settings');
-                }}  
-              >
-                {i18next.t('settings campaign')}
-              </li>
-            </ul>
-          </BrowserView>
+                { rollList.length > 0 && company.length > 0 && (
+                  <li
+                    className={`tab ${view === 'stats' ? 'active' : ''}`}
+                    onClick={() => {
+                      setView('stats');
+                    }}  
+                  >
+                    {i18next.t('stats.title')}
+                  </li>
+                )}
+                <li
+                  className={`tab ${view === 'settings' ? 'active' : ''}`}
+                  onClick={() => {
+                    setView('settings');
+                  }}  
+                >
+                  {i18next.t('settings campaign')}
+                </li>
+              </ul>
+            </BrowserView>
+            <MobileView className='tabsDetailsMobile'>
+              <ul className='mobileTabsContainer'>
+                <li
+                  className={`tab ${view === 'company' ? 'active' : ''}`}
+                  onClick={() => {
+                    setView('company');
+                  }}  
+                >
+                  <UserIcon className='iconTabDm' />
+                </li>
+                { rollList.length > 0 && company.length > 0 && (
+                  <li
+                    className={`tab ${view === 'stats' ? 'active' : ''}`}
+                    onClick={() => {
+                      setView('stats');
+                    }}  
+                  >
+                    <ChartPieIcon className='iconTabDm' />
+                  </li>
+                )}
+                <li
+                  className={`tab ${view === 'settings' ? 'active' : ''}`}
+                  onClick={() => {
+                    setView('settings');
+                  }}  
+                >
+                    <CogIcon className='iconTabDm' />
+                </li>
+              </ul>
+            </MobileView>
             <div className='contentDm'>
               {company && view === 'company' && (
                 <DmCompany

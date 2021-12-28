@@ -2,7 +2,7 @@
   padding: 0 0.5rem;
 }
 .contentDm {
-  margin-top: 3rem;
+  padding-bottom: 50px;
 }
 .containerInfoCharacterDm {
   display: flex;
@@ -103,12 +103,83 @@
 .contentDm .danger {
   margin-top: 2rem;
 }
+.tabsDetailsMobile {
+  position: fixed;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  background-color: #1b1d29;
+  height: 60px;
+  z-index: 100;
+  border-top: 0.5rem solid #fff;
+}
+.tabsDetailsMobile:before {
+  content: "";
+  position: absolute;
+  background-color: #fff;
+  top: -8px;
+  height: 8px;
+  left: 0;
+  right: 0;
+}
+.mobileTabsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  position: relative
+}
+.mobileTabsContainer .tab {
+  display: block;
+  padding: 0.5rem;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  margin-top: -15px;
+}
+.iconTabDm {
+  width:35px;
+  height:35px;
+  color: #fff
+}
+.mobileTabsContainer .tab.active {
+  background-color: #ffad23;
+  border: 0.25rem solid #fff;
+  margin-top: -40px;
+  /* transition: 0.25s; */
+  position: relative;
+}
+.mobileTabsContainer .tab.active:after, .mobileTabsContainer .tab.active:before {
+  content: '';
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  background-color: #1b1d29;
+  top: 20px;
+}
+.mobileTabsContainer .tab.active:before {
+  border-top-right-radius: 50%;
+  left: -19px;
+  box-shadow: 1px -8px 0 0 #fff;
+}
+.mobileTabsContainer .tab.active:after {
+  border-top-left-radius: 50%;
+  right: -19px;
+  box-shadow: -1px -8px 0 0 #fff;
+}
+
 @media (min-width: 1100px) {
   .memberCompanyList .sheetIcon {
     display: block;
   }
   .infoCharacter {
     display: block;
+  }
+  .contentDm {
+    margin-top: 3rem;
+    padding-bottom: 0px;
+  }
+  .mobileTabsContainer {
+    display: none;
   }
 }
 @media (min-width: 1400px) {

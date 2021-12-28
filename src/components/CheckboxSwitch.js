@@ -13,7 +13,7 @@ const CheckboxSwitch = (props) => {
           }}
         />
         <span className="lever"></span>
-        {props.label}
+        <span className='switchName'>{props.label}</span>
       </label>
     </div>
   );

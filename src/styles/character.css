@@ -314,39 +314,6 @@ table tr td:last-child {
   position: relative;
   margin: 0 3rem;
 }
-.containerCharacterView .tab {
-  /* width: 43%; */
-  position: relative;
-  text-align: center;
-  padding:0.5rem 1rem;
-  cursor:pointer;
-  border-radius: 0 0 0.25rem 0.25rem;
-  color:#1b1d29;
-}
-.containerCharacterView .tab.active {
-  background-color: #1b1d29;
-  /* box-shadow:inset 0px -10em 0px 0px #1b1d29; */
-  position:relative;
-  color:#fff;
-}
-.containerCharacterView .active:after,
-.containerCharacterView .active:before{
-  content:'';
-  position:absolute;
-  top: 0;
-  width: 10px;
-  height: 10px;
-  background-color: #fff;
-  border-radius: 50%;
-}
-.containerCharacterView .active:after{
-  right: -10px;
-  box-shadow: -5px -5px 0 #1b1d29;
-}
-.containerCharacterView .active:before{
-  left: -10px;
-  box-shadow: 5px -5px 0 #1b1d29;
-}
 .memberCompany {
   display: flex;
   flex-direction: column;
@@ -480,6 +447,9 @@ input[type='number'].updateHp {
 .hpCharacter:hover input[type='number'] {
   background-color:#eaeaea;
 }
+.containerCharacterView .tab {
+  display: none;
+}
 
 @media (min-width: 800px) {
   .inventory {
@@ -538,6 +508,40 @@ input[type='number'].updateHp {
   .containerPicture {
     display: flex;
     flex-direction: row;
+  }
+  .containerCharacterView .tab {
+    /* width: 43%; */
+    display: block;
+    position: relative;
+    text-align: center;
+    padding:0.5rem 1rem;
+    cursor:pointer;
+    border-radius: 0 0 0.25rem 0.25rem;
+    color:#1b1d29;
+  }
+  .containerCharacterView .tab.active {
+    background-color: #1b1d29;
+    /* box-shadow:inset 0px -10em 0px 0px #1b1d29; */
+    position:relative;
+    color:#fff;
+  }
+  .containerCharacterView .active:after,
+  .containerCharacterView .active:before{
+    content:'';
+    position:absolute;
+    top: 0;
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+  }
+  .containerCharacterView .active:after{
+    right: -10px;
+    box-shadow: -5px -5px 0 #1b1d29;
+  }
+  .containerCharacterView .active:before{
+    left: -10px;
+    box-shadow: 5px -5px 0 #1b1d29;
   }
 }
 @media (min-width: 1500px) {
