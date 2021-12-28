@@ -36,7 +36,7 @@ const Statistics = (props) => {
           values={stats.numberOfRoll}
         />
       </div>
-      <div className='chartLong'>
+      <div className='chartLong radar'>
         <h3>Utilisation des compétences</h3>
         <MyRadar 
           data={mostRollSkill}

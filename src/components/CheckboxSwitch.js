@@ -4,6 +4,7 @@ const CheckboxSwitch = (props) => {
   return (
     <div className={`switch ${props.disabled ? 'disabled': ''}`}>
       <label>
+        <span className='switchName'>{props.label}</span>
         <input
           disabled={props.disabled}
           type="checkbox"
@@ -13,7 +14,6 @@ const CheckboxSwitch = (props) => {
           }}
         />
         <span className="lever"></span>
-        <span className='switchName'>{props.label}</span>
       </label>
     </div>
   );

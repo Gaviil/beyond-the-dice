@@ -169,3 +169,25 @@
 [data-theme='dark'] .iconReload {
   color: var(--grey-text-color);
 }
+[data-theme='dark'] .tabsDetailsMobile {
+  background-color: var(--second-dark);
+}
+[data-theme='dark'] .tabsDetailsMobile:before {
+  background-color: var(--main-dark);
+}
+[data-theme='dark'] .mobileTabsContainer .tab.active:after, [data-theme='dark'] .mobileTabsContainer .tab.active:before {
+  background-color: var(--second-dark);
+  box-shadow: var(--main-dark);
+}
+[data-theme='dark'] .mobileTabsContainer .tab.active:after {
+  box-shadow: -1px -8px 0 0 var(--main-dark);
+}
+[data-theme='dark'] .mobileTabsContainer .tab.active:before {
+  box-shadow: 1px -8px 0 0 var(--main-dark);
+}
+[data-theme='dark'] .mobileTabsContainer .tab.active {
+  border-color: var(--main-dark);
+}
+[data-theme='dark'] .mobileTabsContainer .tab.active {
+  background-color: #007991;
+}
