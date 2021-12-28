@@ -105,6 +105,9 @@ const Dm = (props) => {
     });
   }
 
+  if(campaign.uid && campaign.idUserDm !== user.uid ) {
+    history.goBack();
+  }
   if(campaign.idUserDm === user.uid) {
     return (
       <div className='containerCharacterView'>
@@ -128,14 +131,16 @@ const Dm = (props) => {
               >
                 {i18next.t('characters')}
               </li>
-              <li
-                className={`tab ${view === 'stats' ? 'active' : ''}`}
-                onClick={() => {
-                  setView('stats');
-                }}  
-              >
-                {i18next.t('stats.title')}
-              </li>
+              { rollList.length > 0 && company.length > 0 && (
+                <li
+                  className={`tab ${view === 'stats' ? 'active' : ''}`}
+                  onClick={() => {
+                    setView('stats');
+                  }}  
+                >
+                  {i18next.t('stats.title')}
+                </li>
+              )}
               <li
                 className={`tab ${view === 'settings' ? 'active' : ''}`}
                 onClick={() => {
@@ -194,7 +199,6 @@ const Dm = (props) => {
       </div>
     );
   } else {
-    history.goBack();
     return null;
   }
 }
