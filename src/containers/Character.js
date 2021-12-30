@@ -45,7 +45,6 @@ import {
   isMobile
 } from "react-device-detect";
 import { toast } from 'react-toastify';
-import backpack from '../assets/Images/backpack.png'
 import Picture from '../components/Picture';
 import Skills from '../components/Skills';
 import Characteristics from '../components/Characteristics';
