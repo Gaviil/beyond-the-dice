@@ -5,14 +5,22 @@ import UserContext from '../context/UserContext';
 import '../styles/diceHisto.css';
 import i18next from 'i18next';
 import { EyeOffIcon } from '@heroicons/react/outline'
-import {isDesktop} from "react-device-detect";
+import {isDesktop, isMobile} from "react-device-detect";
 import {getLabelDice} from '../utils/dice';
 
 const cleanDuplicate = (arrayRoll, userUid, campaignUserUidDm, diceLoaded = 10) => {
 
   let savedDate = null;
+  let savedDateFix = null;
   let savedPictureUrl = null;
 
+  // Fix the undefined on roll date
+  for(let i = 0; i < arrayRoll.length; i+=1) {
+    if(!arrayRoll[i].createdAt){
+      arrayRoll[i].createdAt = savedDateFix;
+    }
+    savedDateFix = arrayRoll[i].createdAt;
+  }
   let arrayVisible = [];
   for (let i = 0; i < arrayRoll.length; i+= 1) {
     if(!arrayRoll[i].isHided || (arrayRoll[i].isHided && arrayRoll[i].userUid === userUid) || (arrayRoll[i].isHided && campaignUserUidDm === userUid)) {
@@ -24,8 +32,9 @@ const cleanDuplicate = (arrayRoll, userUid, campaignUserUidDm, diceLoaded = 10) 
     roll.displayPicture = true;
     if(roll.createdAt && savedDate !== roll.createdAt) {
       savedDate = roll.createdAt;
+      roll.showDate = true;
     } else {
-      roll.createdAt = null;
+      roll.showDate = false;
     }
     if(roll.pictureUserSendRoll && savedPictureUrl !== roll.pictureUserSendRoll) {
       savedPictureUrl = roll.pictureUserSendRoll;
@@ -34,7 +43,6 @@ const cleanDuplicate = (arrayRoll, userUid, campaignUserUidDm, diceLoaded = 10) 
     }
     return null;
   });
-
   return arrayVisible;
 };
 
@@ -46,13 +54,13 @@ const DiceHistorical = (props) => {
   const [diceHistorical, setDiceHistorical] = useState([]);
   const histoView = useRef(null)
 
-  // useEffect(() => {
-  //   if(document.getElementById("last") && isMobile) {
-  //     setTimeout(function(){
-  //       document.getElementById("last").scrollIntoView({ behavior: 'smooth'});
-  //     }, 250);
-  //   }
-  // });
+  useEffect(() => {
+    if(document.getElementById("last") && isMobile) {
+      setTimeout(function(){
+        document.getElementById("last").scrollIntoView({ behavior: 'smooth'});
+      }, 250);
+    }
+  });
 
   useEffect(() => {
     const rolls = cleanDuplicate(list, user.uid, campaign.idUserDm, limitHisto);
@@ -102,7 +110,7 @@ const DiceHistorical = (props) => {
           diceHistorical.map((histo, i) => {
             return (
               <div key={i}>
-                {histo.createdAt && (
+                {histo.showDate && (
                   <span className='date'>
                     {histo.createdAt}
                   </span>
