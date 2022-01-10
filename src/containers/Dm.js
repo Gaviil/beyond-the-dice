@@ -113,7 +113,7 @@ const Dm = (props) => {
   if(campaign.idUserDm === user.uid) {
     return (
       <div className='containerCharacterView'>
-        <div className='characterContainer'>
+        <div className={view === 'company' ? 'DMContainer' : 'DMContainerFull'}>
           <div className='containerInfoComp'>
             <BrowserView className='tabsDetails'>
               <ul className='tabsContainer'>
@@ -221,15 +221,17 @@ const Dm = (props) => {
               )}
             </div>
           </div>
-          <BrowserView className='containerHisto'>
-            <DiceHistorical
-              list={rollList}
-              hideRollSwitch={hideRollSwitch}
-              setHideRoll={(val) => {
-                setHideRollSwitch(val)
-              }}
-            />
-          </BrowserView>
+          {view === 'company' && (
+            <BrowserView className='containerHisto'>
+              <DiceHistorical
+                list={rollList}
+                hideRollSwitch={hideRollSwitch}
+                setHideRoll={(val) => {
+                  setHideRollSwitch(val)
+                }}
+              />
+            </BrowserView>
+          )}
           <BrowserView>
             <DiceRoll
               chat={false}

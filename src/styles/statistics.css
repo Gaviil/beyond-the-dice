@@ -1,19 +1,85 @@
+.containerStats {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+.navFilterStats {
+  background-color: #1b1d29;
+  color: #fff;
+  padding: 0.25rem 1rem;
+  /* width: 200px; */
+  border-top-left-radius: 0.25rem;
+  border-radius: 0.5rem;
+  height: fit-content;
+}
+.navFilterStats ul {
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  cursor: pointer;
+}
+.navFilterStats ul li {
+  padding: 0.5rem 0;
+  cursor: pointer;
+}
+.navFilterStats ul li.divider {
+  border-bottom: 0.1rem solid #4d4e58;
+  padding: 0;
+}
+.statsCampaign {
+  /* display: flex; */
+  flex: 1;
+  /* flex-direction: row;
+  flex-wrap: wrap; */
+  /* margin-bottom: 0 0 1rem 1rem; */
+  /* justify-content:space-around; */
+}
+.globalStats {
+  display: flex;
+  flex-direction: column;
+}
+.statsCampaign .multiLineStat ul{
+  margin-block-end: 0;
+  margin-block-start: 0;
+  text-align: end;
+}
+.statsCampaign .multiLineStat ul li{
+  margin-bottom: 0.25rem;
+}
+.statsCampaign div.line{
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 0.05rem #d6d6d6 solid;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.statsCampaign .shortChart {
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  /* background-color: red; */
+  /* justify-content: center; */
+}
 .statsCampaign .chart {
-  max-width: 100%;
+  max-width: 20%;
+  /* max-height: 100px; */
   margin: 0.5rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  display: inline-block;
+  flex: 1;
 }
-.statsCampaign .chart h3, .statsCampaign .chartLong h3{
+.statsCampaign .chart h3, .statsCampaign .longChart h3, .statsCampaign .shortChart h3{
   font-size: 0.75rem;
   text-align: center;
   color:#666;
 }
-.statsCampaign .chartLong {
-  width: 100%;
+.statsCampaign .longChart {
   margin: 0.5rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  /* flex: 1; */
+  width: fit-content;
 }
 .blockStat {
   display: flex;
@@ -36,7 +102,7 @@
   justify-self: flex-end;
 }
 .blockStat span:first-child {
-  color: #eaeaea;
+  /* color: #eaeaea; */
 }
 .multiBlock {
   display: flex;
@@ -47,12 +113,56 @@
 .radar {
   display: none;
 }
+.statsPerDate {
+  width: 100%;
+  max-width: 100%;
+  /* overflow-x: scroll; */
+}
+.table {
+  /* background-color: red; */
+  width: 100%;
+  /* overflow-x: scroll; */
+  /* display: flex; */
+  flex-direction: row;
+}
+.tableColumn {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.tableRow {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+/* .tableRow .blockInfo.success{
+  background-color: rgba(0,255,0,0.1);
+}
+.tableRow .blockInfo.fail{
+  background-color: rgba(255,0,0,0.1);
+} */
+.tableRow .blockInfo{
+  flex: 1;
+  display: flex;
+  min-width: 100px;
+  border-bottom: 1px solid #e7e7e7;
+  min-height: 36px;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+}
+.tableRow .blockInfo.head{
+  font-weight: bold;
+}
+.tableRow .blockInfo:first-child{
+  justify-content: flex-start;
+}
+.tableRow .blockInfo:last-child{
+  justify-content: center;
+}
 @media (min-width: 1100px) {
   .blockStat {
     margin: 0rem;
-  }
-  .statsCampaign .chart {
-    max-width: 45%;
   }
   .radar {
     display: block;

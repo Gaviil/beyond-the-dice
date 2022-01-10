@@ -162,6 +162,10 @@ input[type=checkbox] {
   flex-wrap: nowrap;
   justify-content: space-between;
 }
+.settingsCampaign .switch label {
+  width: fit-content;
+  flex-direction: row-reverse;
+}
 .switch label input[type=checkbox]:checked + .lever {
   background-color: #ffad23;
 }

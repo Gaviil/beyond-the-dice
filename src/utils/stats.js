@@ -5,14 +5,58 @@ export const getNumberOfDiceRoll = (rolls) => {
   return rolls.filter(roll => roll.diceType !== 'Magic').length;
 }
 
-export const getNumberOfCriticalFail = (rolls) => {
-  const ArrayFilter = rolls.filter(roll => roll.diceType === 100 && roll.value >= 90);
-  return ArrayFilter.length;
+export const getPercentOfCriticalSuccess = (rolls) => {
+  if(!rolls.length){
+    return 0;
+  }
+  return ((rolls.filter(roll => roll.diceType === 100 && roll.value <= 10).length * 100) / rolls.length).toFixed(2)
 }
+export const getPercentOfSuccess = (rolls) => {
+  if(!rolls.length){
+    return 0;
+  }
+  return ((rolls.filter(roll => roll.diceType === 100 && roll.stat && roll.value <= roll.stat.value).length * 100) / rolls.length).toFixed(2) 
+}
+
+export const getPercentOfCriticalFail = (rolls) => {
+  if(!rolls.length){
+    return 0;
+  }
+  return ((rolls.filter(roll => roll.diceType === 100 && roll.value >= 90).length * 100) / rolls.length).toFixed(2)
+}
+export const getPercentOfFail = (rolls) => {
+  if(!rolls.length){
+    return 0;
+  }
+  return ((rolls.filter(roll => roll.diceType === 100 && roll.stat && roll.value > roll.stat.value).length * 100) / rolls.length).toFixed(2)
+}
+
 export const getNumberOfCriticalSuccess = (rolls) => {
-  const ArrayFilter = rolls.filter(roll => roll.diceType === 100 && roll.value <= 10);
-  return ArrayFilter.length;
+  if(!rolls.length){
+    return 0;
+  }
+  return rolls.filter(roll => roll.diceType === 100 && roll.value <= 10).length
 }
+export const getNumberOfSuccess = (rolls) => {
+  if(!rolls.length){
+    return 0;
+  }
+  return rolls.filter(roll => roll.diceType === 100 && roll.stat && roll.value <= roll.stat.value).length
+}
+
+export const getNumberOfCriticalFail = (rolls) => {
+  if(!rolls.length){
+    return 0;
+  }
+  return rolls.filter(roll => roll.diceType === 100 && roll.value >= 90).length
+}
+export const getNumberOfFail = (rolls) => {
+  if(!rolls.length){
+    return 0;
+  }
+  return rolls.filter(roll => roll.diceType === 100 && roll.stat && roll.value > roll.stat.value).length
+}
+
 
 export const getMostUsedSkills = (rolls, company) => {
 
@@ -71,3 +115,73 @@ const buildDataForChart = (listOfData) => {
   return finalResult;
 }
 const reducer = (previousValue, currentValue) => previousValue + currentValue;
+
+/**
+ * @param  {[]} rolls list of dice roll
+ * @returns {[]} Array of rolls for a date with param for date
+*/
+export const getSessionPlayed = (rolls) => {
+  let dateSaved = null;
+  let rollThisSession = 0;
+  let sessions = [];
+  for (let i = 0; i < rolls.length; i += 1) {
+    if(dateSaved !== rolls[i].createdAt){
+      dateSaved = rolls[i].createdAt;
+      rollThisSession = rolls.filter(roll => roll.createdAt === rolls[i].createdAt);
+      if(rollThisSession.length > 3) {
+        sessions.push({
+          date: dateSaved,
+          rolls: rollThisSession
+        })
+      }
+    }
+  }
+  return sessions;
+}
+
+export const getRollByDiceType = (rollList) => {
+  const diceType = [4,6,8,10,12,20,100];
+  const rollByType = [];
+  
+  for(let i = 0; i< diceType.length; i+=1) {
+    rollByType[i] = rollList.filter(roll => roll.diceType === diceType[i]).length;
+  }
+
+  return {
+    type : diceType,
+    roll: rollByType
+  }
+}
+
+export const sortRoll = (rollList) => {
+  return rollList.map(function(v) {
+    return v.value;
+  }).sort(function(a, b) {
+    return a - b;
+  });
+}
+
+export const getMedium = (rollList) => {
+  if(!rollList.length) {
+    return 0;
+  }
+  let valueMedium = 0;
+  for (let i = 0; i < rollList.length; i+= 1) {
+    valueMedium += rollList[i].value;
+  }
+  return (valueMedium / rollList.length).toFixed(2) 
+}
+
+export const getMedian = (rollList) => {
+  if(!rollList.length) {
+    return 0;
+  }
+  var m = sortRoll(rollList);
+
+  var middle = Math.floor((m.length - 1) / 2);
+  if (m.length % 2) {
+    return m[middle];
+  } else {
+    return (m[middle] + m[middle + 1]) / 2.0;
+  }
+}
