@@ -191,3 +191,29 @@
 [data-theme='dark'] .mobileTabsContainer .tab.active {
   background-color: #007991;
 }
+[data-theme='dark'] .navFilterStats ul li {
+  background-color: var(--second-dark);
+}
+[data-theme='dark'] .navFilterStats ul li.active{
+  background-color: #414141;
+}
+[data-theme='dark'] .navFilterStats ul li.divider {
+  border-bottom: 0.1rem solid var(--grey-text-color);
+  padding: 0;
+}
+[data-theme='dark'] .containerStats .blockStat {
+  background-color: var(--second-dark);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+[data-theme='dark'] .containerStats .table {
+  background-color: var(--second-dark);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+[data-theme='dark'] .containerStats .tableRow .blockInfo {
+  border-bottom: 1px solid var(--main-dark);
+}
+[data-theme='dark'] .containerStats .custom-tooltip {
+  background-color: var(--second-dark);
+  border: 1px solid var(--main-dark);
+  padding: 0.25rem 0.5rem;
+}

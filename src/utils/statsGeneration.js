@@ -70,13 +70,13 @@ export const getPercentOfSucAndFailByCharacters = (rollList, company) => {
   const data = [];
   let rollByThisCharacter = 0;
   for (let i = 0; i < company.length; i+=1) {
-    rollByThisCharacter = rollList.filter(roll => roll.characterId === company[i].uid).length;
+    rollByThisCharacter = rollList.filter(roll => roll.characterId === company[i].uid && roll.stat).length || 1;
     data.push({
       name: company[i].name.substring(0, 12),
-      success: ((rollList.filter(roll => roll.characterId === company[i].uid && roll.diceType === 100 && roll.stat && roll.value <= roll.stat.value).length * 100) / rollByThisCharacter).toFixed(2),
-      fail: ((rollList.filter(roll => roll.characterId === company[i].uid && roll.diceType === 100 && roll.stat && roll.value > roll.stat.value).length * 100) / rollByThisCharacter).toFixed(2),
-      successCrit: ((rollList.filter(roll => roll.characterId === company[i].uid && roll.diceType === 100 && roll.value <= 10).length * 100) / rollByThisCharacter).toFixed(2),
-      failCrit: ((rollList.filter(roll => roll.characterId === company[i].uid && roll.diceType === 100 && roll.value >= 90).length * 100) / rollByThisCharacter).toFixed(2),
+      success: ((rollList.filter(roll => roll.characterId === company[i].uid && roll.diceType === 100 && roll.stat && roll.value <= roll.stat.value).length * 100) / rollByThisCharacter).toFixed(2) || 0,
+      fail: ((rollList.filter(roll => roll.characterId === company[i].uid && roll.diceType === 100 && roll.stat && roll.value > roll.stat.value).length * 100) / rollByThisCharacter).toFixed(2) || 0,
+      successCrit: ((rollList.filter(roll => roll.characterId === company[i].uid && roll.diceType === 100 && roll.stat && roll.value <= 10).length * 100) / rollByThisCharacter).toFixed(2) || 0,
+      failCrit: ((rollList.filter(roll => roll.characterId === company[i].uid && roll.diceType === 100 && roll.stat && roll.value >= 90).length * 100) / rollByThisCharacter).toFixed(2) || 0,
     })
   }
   return data

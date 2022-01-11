@@ -21,31 +21,27 @@ import {
   Cell,
   BarChart,
   Bar,
-  Legend,
 } from 'recharts';
+import i18next from 'i18next';
 
 
 const Statistics = (props) => {
   const {rollList, company} = props;
   const [filter, setFilter] = useState(null);
-  const [filterType, setFilterType] = useState(null);
 
   const cleanRollList = rollList.filter(roll => roll.diceType !== "Magic");
   return (
-    <div className='containerStats'>
+    <div className='containerStats' id="containerStats">
       <div className='navFilterStats'>
         <ul>
-          <li onClick={() => {
+          <li className={`${!filter ? 'active' : ''}`} onClick={() => {
               setFilter(null);
-              setFilterType(null);
             }}>
-            Campagne
+            {i18next.t('stats.campaign')}
           </li>
-          <li className='divider'></li>
-          {getSessionPlayed(cleanRollList).reverse().map(session => (
-            <li onClick={() => {
+          {getSessionPlayed(cleanRollList).reverse().map((session, i) => (
+            <li key={i} className={`${session.date === filter ? 'active' : ''}`} onClick={() => {
               setFilter(session.date);
-              setFilterType('date');
             }}>
               {session.date}
             </li>
@@ -59,7 +55,7 @@ const Statistics = (props) => {
             rollList={cleanRollList}
           />
         )}
-        {filter && filterType === 'date' && (
+        {filter && (
           <StatsByDate
             company={company}
             rollList={cleanRollList.filter(roll => roll.createdAt === filter)}
@@ -74,20 +70,68 @@ const Statistics = (props) => {
 const StatsGlobal = (props) => {
   const {rollList, company} = props;
   const dataRollCrit = [
-    { name: 'Réussite critique', value: rollList.filter(roll => roll.diceType === 100 && roll.value <= 10).length },
-    { name: 'Echec critique', value: rollList.filter(roll => roll.diceType === 100 && roll.value >= 90).length },
+    { name: i18next.t(`stats.successCrit`), value: rollList.filter(roll => roll.diceType === 100 && roll.value <= 10).length },
+    { name: i18next.t(`stats.failCrit`), value: rollList.filter(roll => roll.diceType === 100 && roll.value >= 90).length },
   ];
   const dataRoll = [
-    { name: 'Réussite', value: rollList.filter(roll => roll.diceType === 100 && roll.stat && roll.value <= roll.stat.value).length },
-    { name: 'Echec', value: rollList.filter(roll => roll.diceType === 100 && roll.stat && roll.value > roll.stat.value).length },
+    { name: i18next.t(`stats.success`), value: rollList.filter(roll => roll.diceType === 100 && roll.stat && roll.value <= roll.stat.value).length },
+    { name: i18next.t(`stats.fail`), value: rollList.filter(roll => roll.diceType === 100 && roll.stat && roll.value > roll.stat.value).length },
   ];
-  const COLORS = ['#007991', '#D52941', '#ffad23','#9EBD6E', '#FF8042' , '#7B4B94', '#0088FE', '#00C49F' ];
-  const dataAllCharacterRoll = getPercentOfSucAndFailByCharacters(rollList, company)
+  const COLORS = ['#007991', '#ffad23' ];
+  const dataAllCharacterRoll = getPercentOfSucAndFailByCharacters(rollList, company);
   return (
     <div className='globalStats'>
-      <div className='shortChart'>
-        <div>
-          <h3>Ratio de jet critique</h3>
+      <div className='columnChart longChart'>
+        <div className={'blockStat'}>
+          <h3>{i18next.t('stats.graph1')}</h3>
+          <AreaChart width={1000} height={250} data={getSessionPlayed(rollList)}
+            margin={{ top: 10, right: 50, left: 0, bottom: 0 }}>
+            <defs>
+              <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#ffad23" stopOpacity={0.8}/>
+                <stop offset="95%" stopColor="#ffad23" stopOpacity={0}/>
+              </linearGradient>
+            </defs>
+            <XAxis dataKey="date" />
+            <YAxis />
+            {/* <CartesianGrid strokeDasharray="3 3" /> */}
+            <Area type="monotone" dataKey="numberOfRolls" stroke="#ffad23" strokeWidth="3" fillOpacity={1} fill="url(#colorUv)" />
+            <Tooltip content={<CustomTooltipArea />}/>
+          </AreaChart>
+        </div>
+        <div className={'blockStat'}>
+          <h3>{i18next.t('stats.graph2')}</h3>
+          <BarChart
+            width={1000}
+            height={300}
+            data={dataAllCharacterRoll}
+            margin={{
+              top: 5,
+              right: 30,
+              left: 20,
+              bottom: 5,
+            }}
+          >
+            {/* <CartesianGrid strokeDasharray="3 3" /> */}
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip content={<CustomTooltipBar />} cursor={false}/>
+            <Bar dataKey="success" fill="#4059AD" />
+            <Bar dataKey="successCrit" fill="#007991" />
+            <Bar dataKey="fail" fill="#ffad23" />
+            <Bar dataKey="failCrit" fill="#FF4242" />
+          </BarChart>
+        </div>
+      </div>
+      <div className='columnChart'>
+        <div className='blockStat fix'>
+          <h3>{i18next.t('stats.graph3')}</h3>
+          <div>
+            <span>7</span>
+          </div>
+        </div>
+        <div className='blockStat'>
+          <h3>{i18next.t('stats.graph4')}</h3>
           <PieChart width={300} height={120}>
             <Pie
               data={dataRollCrit}
@@ -105,11 +149,11 @@ const StatsGlobal = (props) => {
                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
               ))}
             </Pie>
-            <Tooltip />
+            <Tooltip content={<CustomTooltipPie />}/>
           </PieChart>
         </div>
-        <div>
-          <h3>Ratio réussite  / Echec</h3>
+        <div className='blockStat'>
+          <h3>{i18next.t('stats.graph5')}</h3>
           <PieChart width={300} height={120}>
             <Pie
               data={dataRoll}
@@ -127,50 +171,9 @@ const StatsGlobal = (props) => {
                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
               ))}
             </Pie>
-            <Tooltip />
+            <Tooltip  content={<CustomTooltipPie />}/>
           </PieChart>
         </div>
-      </div>
-      <div className='longChart'>
-        <h3>Nombre de dés lancés par session</h3>
-        <AreaChart width={800} height={250} data={getSessionPlayed(rollList)}
-          margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
-          <defs>
-            <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#007991" stopOpacity={0.8}/>
-              <stop offset="95%" stopColor="#007991" stopOpacity={0}/>
-            </linearGradient>
-          </defs>
-          <XAxis dataKey="date" />
-          <YAxis />
-          {/* <CartesianGrid strokeDasharray="3 3" /> */}
-          <Area type="monotone" dataKey="numberOfRolls" stroke="#007991" fillOpacity={1} fill="url(#colorUv)" />
-          <Tooltip />
-        </AreaChart>
-      </div>
-      <div className='longChart'>
-        <h3>Pourcentage de réussite et d'échec par personnage (dés de statistique)</h3>
-        <BarChart
-          width={800}
-          height={300}
-          data={dataAllCharacterRoll}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
-        >
-          {/* <CartesianGrid strokeDasharray="3 3" /> */}
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Legend /> 
-          <Bar dataKey="success" fill="#007991" />
-          <Bar dataKey="successCrit" fill="#40376E" />
-          <Bar dataKey="fail" fill="#FF8042" />
-          <Bar dataKey="failCrit" fill="#D52941" />
-        </BarChart>
       </div>
     </div>
   );
@@ -182,7 +185,7 @@ const ColumnStatCharacter = (props) => {
     return (
       <div className='tableRow'>
         <div className='blockInfo'>
-          <span style={{color: color, fontWeight: 'bold'}}>{member.name}</span>
+          <span style={{textDecoration: 'underline', textDecorationColor: color, fontWeight: 'bold', textDecorationThickness: 3, textUnderlineOffset: 3}}>{member.name}</span>
         </div>
         <div className='blockInfo'>
           <span>{getMedium(characterRoll)}</span>
@@ -202,19 +205,19 @@ const ColumnStatCharacter = (props) => {
   return (
     <div className='tableRow'>
       <div className='blockInfo head'>
-        Nom
+        <span>{i18next.t('name')}</span>
       </div>
       <div className='blockInfo head'>
-        Moyenne
+        <span>{i18next.t('stats.average')}</span>
       </div>
       <div className='blockInfo head'>
-        Mediane
+        <span>{i18next.t('stats.median')}</span>
       </div>
       <div className='blockInfo head'>
-        Plus petit dés
+        <span>{i18next.t('stats.lowerDice')}</span>
       </div>
       <div className='blockInfo head'>
-        Plus haut
+        <span>{i18next.t('stats.hightestDice')}</span>
       </div>
     </div>
   );
@@ -222,20 +225,43 @@ const ColumnStatCharacter = (props) => {
 
 const StatsByDate = (props) => {
   const {rollList, company} = props;
-  const COLORS = ['#007991', '#D52941', '#ffad23','#9EBD6E', '#FF8042' , '#7B4B94', '#0088FE', '#00C49F' ];
-  // const COLORSOPA = ['rgba(0, 121, 145, 0.2)', 'rgba(213, 41, 65, 0.2)', 'rgba(255, 173, 35, 0.2)','rgba(158, 189, 110, 0.2)', 'rgba(255, 128, 66, 0.2)' , 'rgba(123, 75, 148, 0.2)', 'rgba(0, 136, 254, 0.2)', 'rgba(0, 196, 159, 0.2)' ];
+  const COLORS = ['#ffad23', '#ffc96e', '#FF4242', '#007991', '#64c6d9' , '#4059AD', '#798cc9', '#00C49F' ];
   const rollbyCharacter = getRollByCharacterForGraph(rollList,company);
   const dataAllCharacterRoll = getPercentOfSucAndFailByCharacters(rollList, company)
+  console.log(dataAllCharacterRoll);
   return (
     <div className='statsPerDate'>
       <div className='shortChart'>
-        <div>
-          <h3>Nombre de dés lancé par personnage</h3>
-          <PieChart width={300} height={220}>
+        <div className={'blockStat'}>
+          <h3>{i18next.t('stats.graph6')}</h3>
+          <BarChart
+            width={800}
+            height={300}
+            data={dataAllCharacterRoll}
+            margin={{
+              top: 5,
+              right: 30,
+              left: 20,
+              bottom: 5,
+            }}
+          >
+            {/* <CartesianGrid strokeDasharray="3 3" /> */}
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip content={<CustomTooltipBar />} cursor={false}/>
+            <Bar dataKey="success" fill="#4059AD" />
+            <Bar dataKey="successCrit" fill="#007991" />
+            <Bar dataKey="fail" fill="#ffad23" />
+            <Bar dataKey="failCrit" fill="#FF4242" />
+          </BarChart>
+        </div>
+        <div className={'blockStat'}>
+          <h3>{i18next.t('stats.graph7')}</h3>
+          <PieChart width={300} height={300}>
             <Pie
               data={rollbyCharacter}
               cx={145}
-              cy={110}
+              cy={135}
               startAngle={90}
               endAngle={450}
               innerRadius={50}
@@ -248,33 +274,9 @@ const StatsByDate = (props) => {
                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
               ))}
             </Pie>
-            <Tooltip />
+            <Tooltip content={<CustomTooltipPie />}/>
           </PieChart>
         </div>
-        <div>
-        <h3>Pourcentage de réussite et d'échec par personnage (dés de statistique)</h3>
-        <BarChart
-          width={800}
-          height={300}
-          data={dataAllCharacterRoll}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
-        >
-          {/* <CartesianGrid strokeDasharray="3 3" /> */}
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Legend /> 
-          <Bar dataKey="success" fill="#007991" />
-          <Bar dataKey="successCrit" fill="#40376E" />
-          <Bar dataKey="fail" fill="#FF8042" />
-          <Bar dataKey="failCrit" fill="#D52941" />
-        </BarChart>
-      </div>
       </div>
       <div className='table'>
         <ColumnStatCharacter />
@@ -290,5 +292,45 @@ const StatsByDate = (props) => {
     </div>
   );
 }
+
+
+function CustomTooltipArea({ payload, label, active }) {
+  if (active) {
+    return (
+      <div className="custom-tooltip">
+        <p className="label">{`${label} : ${payload[0].value}`}</p>
+      </div>
+    );
+  }
+
+  return null;
+}
+
+function CustomTooltipBar ({ payload, label, active }) {
+  if (active) {
+    return (
+      <div className="custom-tooltip">
+        <p className="label" style={{color: payload[0].fill}}>{`${i18next.t(`stats.${payload[0].name}`)} : ${payload[0].value}%`}</p>
+        <p className="label" style={{color: payload[1].fill}}>{`${i18next.t(`stats.${payload[1].name}`)} : ${payload[1].value}%`}</p>
+        <p className="label" style={{color: payload[2].fill}}>{`${i18next.t(`stats.${payload[2].name}`)} : ${payload[2].value}%`}</p>
+        <p className="label" style={{color: payload[3].fill}}>{`${i18next.t(`stats.${payload[3].name}`)} : ${payload[3].value}%`}</p>
+      </div>
+    );
+  }
+
+  return null;
+}
+function CustomTooltipPie ({ payload, label, active }) {
+  if (active) {
+    return (
+      <div className="custom-tooltip">
+        <p className="label">{`${payload[0].name} : ${payload[0].value}`}</p>
+      </div>
+    );
+  }
+
+  return null;
+}
+
 
 export default Statistics;

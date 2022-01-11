@@ -16,7 +16,8 @@ import {getRoll} from '../utils/dice';
 import {
   BrowserView,
   MobileView,
-  isMobile
+  isMobile,
+  isDesktop
 } from "react-device-detect";
 import { toast } from 'react-toastify';
 import DmCompany from '../components/DmCompany';
@@ -125,7 +126,7 @@ const Dm = (props) => {
                 >
                   {i18next.t('characters')}
                 </li>
-                { rollList.length > 0 && company.length > 0 && (
+                { rollList.length > 0 && company.length > 0 && isDesktop && (
                   <li
                     className={`tab ${view === 'stats' ? 'active' : ''}`}
                     onClick={() => {
@@ -165,7 +166,7 @@ const Dm = (props) => {
                     <AnnotationIcon className='iconTabMobile' />
                   </li>
                 )}
-                { rollList.length > 0 && company.length > 0 && (
+                { rollList.length > 0 && company.length > 0 && isDesktop && (
                   <li
                     className={`tab ${view === 'stats' ? 'active' : ''}`}
                     onClick={() => {

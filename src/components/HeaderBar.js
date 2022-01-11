@@ -8,7 +8,9 @@ import '../styles/headerbar.css';
 import {Link} from "react-router-dom";
 import i18next from 'i18next';
 import logo from '../assets/Images/logo150.png';
-
+import {
+  ChevronDownIcon
+} from '@heroicons/react/solid'
 const HeaderBar = (props) => {
   const db = firebase.firestore();
   const {user, updateUser} = useContext(UserContext)
@@ -23,7 +25,7 @@ const HeaderBar = (props) => {
         <div className='log'>
           <div className="dropdown">
             <button className={'dropbtn main'}>
-              {user.name}
+              {user.name} <ChevronDownIcon style={{height:15, marginLeft: 2}}/>
             </button>
             <div className="dropdown-content">
               <button
