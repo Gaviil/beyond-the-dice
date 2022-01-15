@@ -31,6 +31,8 @@ import logo from '../assets/Images/logo150.png';
 import alchemy from '../assets/alchemy.json';
 import {useHistory} from "react-router-dom";
 import cards from '../assets/cards.json';
+import Statistics from '../containers/Statistics';
+import {isDesktop} from "react-device-detect";
 
 init();
 const db = firebase.firestore();
@@ -185,6 +187,9 @@ const Characters = (props) => {
             <Route path={`${match.url}/dm`} exact={true}>
               <Dm/>
             </Route>
+            <Route path={`${match.url}/statistics`} exact={true}>
+              <Statistics/>
+            </Route>
             <Route path={`${match.url}/:characterIdUrl`}>
               <Character character={character}/>
             </Route>
@@ -232,17 +237,16 @@ const Characters = (props) => {
                           </span>
                         </p>
                       )}
+                      {isDesktop && (
+                        <Link
+                          className='linkMain'
+                          to={`${match.url}/statistics`}
+                        >
+                          {i18next.t('stats.title')}
+                        </Link>
+                      )}
                     </div>
                   </div>
-                  {/* {user.uid === campaign.idUserDm && (
-                    <CampaignSettings
-                      campaign={campaign}
-                      update={(campagneUpdated) => {
-                        updateCampaign(campagneUpdated);
-                        updateCampaignFirestore(campagneUpdated);
-                      }}
-                    />
-                  )} */}
                   <h3>{i18next.t('my characters')}</h3>
                   <ul className='list'>
                     {user.uid === campaign.idUserDm && (

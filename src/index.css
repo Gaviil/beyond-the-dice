@@ -127,6 +127,10 @@ input[type=submit].black, button.black {
   color :#1b1d29;
   text-decoration: none;
 }
+.linkMain {
+  color :#ffad23;
+  /* text-decoration: none; */
+}
 .link:hover {
   color :#1b1d29;
   /* text-decoration: underline; */

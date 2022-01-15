@@ -1,5 +1,11 @@
-import React, {useState} from 'react';
-// import i18next from 'i18next';
+import React, {useState, useContext, useEffect} from 'react';
+import firebase from "firebase/app";
+import "firebase/analytics";
+import "firebase/auth";
+import "firebase/firestore";
+import "firebase/database";
+import 'firebase/analytics';
+import {init} from '../utils/initFirebase';
 import {
   getSessionPlayed,
   getMedium,
@@ -9,7 +15,7 @@ import {
   getPercentOfSucAndFailByCharacters
 } from '../utils/statsGeneration';
 import "../styles/statistics.css";
-
+import CampaignContext from '../context/CampaignContext';
 import {
   AreaChart,
   XAxis,
@@ -21,47 +27,100 @@ import {
   Cell,
   BarChart,
   Bar,
+  Legend,
 } from 'recharts';
 import i18next from 'i18next';
 
+init();
+const db = firebase.firestore();
 
-const Statistics = (props) => {
-  const {rollList, company} = props;
+const Statistics = () => {
+  const {campaign, updateCampaign} = useContext(CampaignContext)
+  const [rollList, setRollList] = useState([]);
+  const [company, setCompany] = useState([]);
   const [filter, setFilter] = useState(null);
+
+  useEffect(() => {
+    if(campaign.uid){
+      getCharactersCompany(campaign);
+      const dbRefObject = firebase.database().ref().child(`${campaign.uid}`);
+      dbRefObject.on('value', snap => {
+        cleanDiceCreatedAt(Object.values(snap.val() || {}));
+      });
+    }
+  }, [campaign]);
+
+  const cleanDiceCreatedAt = (rollList) => {
+    let savedDateFix = '';
+    for(let i = 0; i < rollList.length; i+=1) {
+      if(!rollList[i].createdAt){
+        rollList[i].createdAt = savedDateFix;
+      }
+      savedDateFix = rollList[i].createdAt;
+    }
+    setRollList(rollList);
+  }
+
+  const getCharactersCompany = async (currentCampaign) => {
+    try {
+      const listCharactersGroup = [];
+      await db.collection('characters').where('idCampaign', '==', currentCampaign.uid).where('active', '==', true).where('idUser', '!=', currentCampaign.idUserDm).get()
+        .then(querySnapshot => {
+          querySnapshot.forEach(doc => {
+            listCharactersGroup.push(doc.data())
+          });
+          setCompany(listCharactersGroup);
+        })
+        .catch(err => {
+          console.log('err',err)
+        })
+    } catch (error) {
+      console.log('error',error);
+    }
+  }
 
   const cleanRollList = rollList.filter(roll => roll.diceType !== "Magic");
   return (
     <div className='containerStats' id="containerStats">
-      <div className='navFilterStats'>
-        <ul>
-          <li className={`${!filter ? 'active' : ''}`} onClick={() => {
-              setFilter(null);
-            }}>
-            {i18next.t('stats.campaign')}
-          </li>
-          {getSessionPlayed(cleanRollList).reverse().map((session, i) => (
-            <li key={i} className={`${session.date === filter ? 'active' : ''}`} onClick={() => {
-              setFilter(session.date);
-            }}>
-              {session.date}
+      {rollList.length > 0 && (
+        <>
+        <div className='navFilterStats'>
+          <ul>
+            <li className={`${!filter ? 'active' : ''}`} onClick={() => {
+                setFilter(null);
+              }}>
+              {i18next.t('stats.campaign')}
             </li>
-          ))}
-        </ul>
-      </div>
-      <div className='statsCampaign'>
-        {!filter && (
-          <StatsGlobal
-            company={company}
-            rollList={cleanRollList}
-          />
-        )}
-        {filter && (
-          <StatsByDate
-            company={company}
-            rollList={cleanRollList.filter(roll => roll.createdAt === filter)}
-          />
-        )}
-      </div>
+            {getSessionPlayed(cleanRollList).reverse().map((session, i) => (
+              <li key={i} className={`${session.date === filter ? 'active' : ''}`} onClick={() => {
+                setFilter(session.date);
+              }}>
+                {session.date}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className='statsCampaign'>
+          {!filter && (
+            <StatsGlobal
+              company={company}
+              rollList={cleanRollList}
+            />
+          )}
+          {filter && (
+            <StatsByDate
+              company={company}
+              rollList={cleanRollList.filter(roll => roll.createdAt === filter)}
+            />
+          )}
+        </div>
+        </>
+      )}
+      {rollList.length === 0 && (
+        <div className='noRollContainer'>
+          <span>{i18next.t('stats.noDice')}</span>
+        </div>
+      )}
     </div>
   );
   
@@ -116,6 +175,7 @@ const StatsGlobal = (props) => {
             <XAxis dataKey="name" />
             <YAxis />
             <Tooltip content={<CustomTooltipBar />} cursor={false}/>
+            <Legend content={<CustomLegend/>}/>
             <Bar dataKey="success" fill="#4059AD" />
             <Bar dataKey="successCrit" fill="#007991" />
             <Bar dataKey="fail" fill="#ffad23" />
@@ -228,7 +288,6 @@ const StatsByDate = (props) => {
   const COLORS = ['#ffad23', '#ffc96e', '#FF4242', '#007991', '#64c6d9' , '#4059AD', '#798cc9', '#00C49F' ];
   const rollbyCharacter = getRollByCharacterForGraph(rollList,company);
   const dataAllCharacterRoll = getPercentOfSucAndFailByCharacters(rollList, company)
-  console.log(dataAllCharacterRoll);
   return (
     <div className='statsPerDate'>
       <div className='shortChart'>
@@ -249,6 +308,7 @@ const StatsByDate = (props) => {
             <XAxis dataKey="name" />
             <YAxis />
             <Tooltip content={<CustomTooltipBar />} cursor={false}/>
+            <Legend content={<CustomLegend/>}/>
             <Bar dataKey="success" fill="#4059AD" />
             <Bar dataKey="successCrit" fill="#007991" />
             <Bar dataKey="fail" fill="#ffad23" />
@@ -332,5 +392,18 @@ function CustomTooltipPie ({ payload, label, active }) {
   return null;
 }
 
+const CustomLegend = (props) => {
+  const { payload } = props;
+  const colors = ['#4059AD', '#007991', '#ffad23', '#FF4242']
+  return (
+    <div className='legendCharts'>
+      {
+        payload.map((entry, index) => (
+          <span style={{color: colors[index]}} key={index}>{i18next.t(`stats.${entry.value}`)}</span>
+        ))
+      }
+    </div>
+  );
+}
 
 export default Statistics;

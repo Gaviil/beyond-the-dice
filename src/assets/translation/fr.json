@@ -169,7 +169,8 @@
     "average": "Moyenne",
     "median": "Médiane",
     "lowerDice": "Meilleur dé",
-    "hightestDice": "Pire dé"
+    "hightestDice": "Pire dé",
+    "noDice": "Aucun dé lancé pour le moment ..."
   },
   "alchemy": {
     "isAlchemiste": "Le personnage est un alchimiste",

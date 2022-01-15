@@ -23,7 +23,6 @@ import { toast } from 'react-toastify';
 import DmCompany from '../components/DmCompany';
 import {getLabelDice} from '../utils/dice'
 import {useHistory} from "react-router-dom";
-import Statistics from "../components/Statistics";
 import i18next from 'i18next';
 import CampaignSettings from '../components/CampaignSettings';
 import { UserIcon, ChartPieIcon, CogIcon, AnnotationIcon } from '@heroicons/react/outline';
@@ -126,7 +125,7 @@ const Dm = (props) => {
                 >
                   {i18next.t('characters')}
                 </li>
-                { rollList.length > 0 && company.length > 0 && isDesktop && (
+                {/* { rollList.length > 0 && company.length > 0 && isDesktop && (
                   <li
                     className={`tab ${view === 'stats' ? 'active' : ''}`}
                     onClick={() => {
@@ -135,7 +134,7 @@ const Dm = (props) => {
                   >
                     {i18next.t('stats.title')}
                   </li>
-                )}
+                )} */}
                 <li
                   className={`tab ${view === 'settings' ? 'active' : ''}`}
                   onClick={() => {
@@ -166,16 +165,6 @@ const Dm = (props) => {
                     <AnnotationIcon className='iconTabMobile' />
                   </li>
                 )}
-                { rollList.length > 0 && company.length > 0 && isDesktop && (
-                  <li
-                    className={`tab ${view === 'stats' ? 'active' : ''}`}
-                    onClick={() => {
-                      setView('stats');
-                    }}  
-                  >
-                    <ChartPieIcon className='iconTabMobile' />
-                  </li>
-                )}
                 <li
                   className={`tab ${view === 'settings' ? 'active' : ''}`}
                   onClick={() => {
@@ -192,12 +181,6 @@ const Dm = (props) => {
                   reloadCompany={() => {
                     getCharactersCompany(campaign)
                   }}
-                  company={company}
-                />
-              )}
-              {rollList.length > 0 && view === 'stats' && (
-                <Statistics
-                  rollList={rollList}
                   company={company}
                 />
               )}

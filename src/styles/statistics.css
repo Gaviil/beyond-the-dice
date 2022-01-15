@@ -11,7 +11,7 @@
   margin-block-start: 0em;
   margin-block-end: 0em;
   cursor: pointer;
-  margin-top: 0.5rem;
+  /* margin-top: 0.5rem; */
 }
 .navFilterStats ul li {
   cursor: pointer;
@@ -19,8 +19,8 @@
   background-color: #1b1d29;
 }
 .navFilterStats ul li:first-child {
-  border-top-left-radius: 0.5rem;
-  border-top-right-radius: 0.5rem;
+  /* border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem; */
 }
 .navFilterStats ul li:last-child {
   border-bottom-left-radius: 0.5rem;
@@ -169,8 +169,30 @@
   border: 1px solid rgb(204, 204, 204);
   padding: 0.25rem 0.5rem;
 }
-
+.legendCharts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+.legendCharts span{
+  padding: 0 1rem;
+}
+.noRollContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 2rem;
+}
+.noRollContainer span {
+  color: #8c8d95;
+}
 @media (min-width: 1500px) {
+  .containerStats {
+    width: 80%;
+    margin: auto;
+  }
   .globalStats {
     flex-direction: row;
   }
