@@ -158,9 +158,10 @@ input[type=checkbox] {
 .switch label {
   cursor: pointer;
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   flex-wrap: nowrap;
   justify-content: space-between;
+  width: max-content;
 }
 .settingsCampaign .switch label {
   width: fit-content;
