@@ -27,7 +27,7 @@
   color: #fff
 }
 
-[data-theme='dark'] .dropdown button, [data-theme='dark'] button {
+[data-theme='dark'] .dropdown button, [data-theme='dark'] button:not(.empty) {
   background-color: var(--second-dark);
 }
 [data-theme='dark'] .switch label .lever {
