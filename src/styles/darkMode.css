@@ -1,7 +1,8 @@
 :root {
   --main-dark: #191919;
   --second-dark: #2a2a2a;
-  --grey-text-color: #c4c4c4
+  --grey-text-color: #c4c4c4;
+  --main-yellow: #ffad23;
 }
 
 [data-theme='dark'] {
@@ -13,8 +14,11 @@
 [data-theme='dark'] .link {
   color: #cccccc
 }
-[data-theme='dark'] h3,[data-theme='dark'] h2 , [data-theme='dark'] span, [data-theme='dark'] label, [data-theme='dark'] p {
+[data-theme='dark'] h6,[data-theme='dark'] h5,[data-theme='dark'] h4,[data-theme='dark'] h3,[data-theme='dark'] h2,[data-theme='dark'] h1, [data-theme='dark'] span, [data-theme='dark'] label, [data-theme='dark'] p,[data-theme='dark'] pre{
   color: var(--grey-text-color)
+}
+[data-theme='dark'] a{
+  color: var(--main-yellow)
 }
 [data-theme='dark'] .campaignInformation div p span:first-child {
   color: #939393
@@ -23,7 +27,7 @@
   color: #fff
 }
 
-[data-theme='dark'] .dropdown button {
+[data-theme='dark'] .dropdown button, [data-theme='dark'] button {
   background-color: var(--second-dark);
 }
 [data-theme='dark'] .switch label .lever {
@@ -69,7 +73,7 @@
 [data-theme='dark'] .containerCharacterView .active:after {
   box-shadow: -5px -5px 0 var(--second-dark);
 }
-[data-theme='dark'] .skillsDetail ul li span {
+[data-theme='dark'] .skillsDetail ul li span, [data-theme='dark'] ul li, [data-theme='dark'] ol li {
   color: var(--grey-text-color);
 }
 [data-theme='dark'] .skillsDetail ul li {
@@ -190,4 +194,23 @@
 }
 [data-theme='dark'] .mobileTabsContainer .tab.active {
   background-color: #007991;
+}
+[data-theme='dark'] .updatesContainer pre{
+  margin-top: 0;
+  color: var(--grey-text-color);
+  background-color: var(--second-dark);
+  border-color: var(--second-dark);
+}
+[data-theme='dark'] .updatesContainer .headUpdate{
+  background-color: var(--second-dark);
+}
+[data-theme='dark'] .updateDetailContainer blockquote {
+    border-left: 5px solid var(--second-dark);
+}
+[data-theme='dark'] .updateDetailContainer code {
+  background-color: var(--second-dark);
+}
+[data-theme='dark'] .updatesContainer .blockLinkUpdate{
+  box-shadow: 0 1px 3px rgb(255 255 255 / 12%), 0 1px 2px rgb(114 114 114 / 24%);
+  background-color: var(--second-dark);
 }

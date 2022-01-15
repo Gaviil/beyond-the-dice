@@ -12,6 +12,7 @@ import "firebase/auth";
 import "firebase/firestore";
 import i18next from 'i18next';
 import Campaigns from './containers/Campaigns';
+import Updates from './containers/Updates';
 import HeaderBar from './components/HeaderBar';
 import Login from './containers/Login';
 import enTranslation from './assets/translation/en.json';
@@ -116,6 +117,9 @@ const App = () => {
                 {user && user.uid && (
                   <Campaigns />
                 )}
+              </Route>
+              <Route path="/update">
+                <Updates />
               </Route>
               <Route exact path="/">
                 <Redirect to="/campaigns" />
