@@ -4,6 +4,10 @@
   "private": true,
   "dependencies": {
     "@babel/core": "^7.13.16",
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-brands-svg-icons": "^5.15.4",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.16",
     "@heroicons/react": "^1.0.1",
     "@react-firebase/auth": "^0.2.10",
     "@testing-library/jest-dom": "^5.11.4",
@@ -16,6 +20,7 @@
     "react-device-detect": "^1.17.0",
     "react-dom": "^17.0.1",
     "react-js-loader": "^0.1.0",
+    "react-markdown": "^7.1.2",
     "react-modal": "^3.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",

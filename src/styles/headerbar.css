@@ -56,6 +56,7 @@ header {
   padding: 1rem;
   font-size: 1em;
   border: none;
+  border-left: 1px solid #3a3e53;
 }
 
 .dropdown {
@@ -90,6 +91,23 @@ header {
 .dropdown:hover .dropdown-content {
   display: block;
   right: 0;
+}
+.header button.main {
+  background-color: none;
+  color: #fff
+}
+
+.header .headLink {
+  height: 100%;
+  width: 48px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header .headLink .iconH {
+  height: 25px;
+  color: #fff;
 }
 
 /* .dropdown:hover .dropbtn {background-color: #3e8e41;} */
