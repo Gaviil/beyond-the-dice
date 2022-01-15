@@ -17,7 +17,6 @@ import {
   BrowserView,
   MobileView,
   isMobile,
-  isDesktop
 } from "react-device-detect";
 import { toast } from 'react-toastify';
 import DmCompany from '../components/DmCompany';
@@ -25,7 +24,7 @@ import {getLabelDice} from '../utils/dice'
 import {useHistory} from "react-router-dom";
 import i18next from 'i18next';
 import CampaignSettings from '../components/CampaignSettings';
-import { UserIcon, ChartPieIcon, CogIcon, AnnotationIcon } from '@heroicons/react/outline';
+import { UserIcon, CogIcon, AnnotationIcon } from '@heroicons/react/outline';
 
 init();
 const db = firebase.firestore();

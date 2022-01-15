@@ -20,7 +20,6 @@ const UpdateDetails = (props) => {
   let match = useRouteMatch();
   useEffect(() => {
     firebase.storage().ref("updates").child(`${match.params.updateIdUrl}.md`).getDownloadURL().then(url => {
-      console.log(url)
       var xhr = new XMLHttpRequest();
       xhr.responseType = 'text'; 
       xhr.onload = function(event) {
@@ -32,9 +31,8 @@ const UpdateDetails = (props) => {
     })
     .catch(err => {
       toast.error('error file', {});  
-        // process exceptions
     })
-  }, []);
+  });
 
 
   return (

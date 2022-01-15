@@ -7,10 +7,7 @@ import UserContext from "../context/UserContext";
 import '../styles/headerbar.css';
 import i18next from 'i18next';
 import logo from '../assets/Images/logo150.png';
-import {
-  Link,
-  useRouteMatch
-} from "react-router-dom";
+import {Link} from "react-router-dom";
 import { ChevronDownIcon } from '@heroicons/react/solid'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPencilRuler, faSun, faMoon } from '@fortawesome/free-solid-svg-icons'

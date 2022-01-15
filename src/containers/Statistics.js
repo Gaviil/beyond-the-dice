@@ -35,7 +35,7 @@ init();
 const db = firebase.firestore();
 
 const Statistics = () => {
-  const {campaign, updateCampaign} = useContext(CampaignContext)
+  const {campaign} = useContext(CampaignContext)
   const [rollList, setRollList] = useState([]);
   const [company, setCompany] = useState([]);
   const [filter, setFilter] = useState(null);
@@ -138,12 +138,13 @@ const StatsGlobal = (props) => {
   ];
   const COLORS = ['#007991', '#ffad23' ];
   const dataAllCharacterRoll = getPercentOfSucAndFailByCharacters(rollList, company);
+  const sessionPlayed = getSessionPlayed(rollList);
   return (
     <div className='globalStats'>
       <div className='columnChart longChart'>
         <div className={'blockStat'}>
           <h3>{i18next.t('stats.graph1')}</h3>
-          <AreaChart width={1000} height={250} data={getSessionPlayed(rollList)}
+          <AreaChart width={1000} height={250} data={sessionPlayed}
             margin={{ top: 10, right: 50, left: 0, bottom: 0 }}>
             <defs>
               <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
@@ -187,7 +188,7 @@ const StatsGlobal = (props) => {
         <div className='blockStat fix'>
           <h3>{i18next.t('stats.graph3')}</h3>
           <div>
-            <span>7</span>
+            <span>{sessionPlayed.length}</span>
           </div>
         </div>
         <div className='blockStat'>

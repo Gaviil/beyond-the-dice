@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {
   Switch,
   Route,
-  Link,
   useRouteMatch
 } from "react-router-dom";
 import firebase from "firebase/app";
@@ -14,7 +13,7 @@ import 'firebase/analytics';
 import {init} from '../utils/initFirebase'
 import '../styles/updates.css'
 import UpdateDetails from '../components/UpdateDetails';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import {useHistory} from "react-router-dom";
 
 init();
