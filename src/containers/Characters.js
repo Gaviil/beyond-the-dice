@@ -68,34 +68,6 @@ const Characters = (props) => {
 
 
   const getCharactersVisibleForUser = async (currentCampaign) => {
-    // const savedCaractersList = getValueOnLocalStorage('characters');
-    // if(!savedCaractersList || savedCaractersList.length === 0 || campaignIdUrl !== currentCampaign.uid || (savedCaractersList.length > 0 && savedCaractersList[0].idCampaign !== campaignIdUrl)) {
-    //   try {
-    //     const listCharacters = [];
-    //     const listCharactersGroup = [];
-    //     await db.collection('characters').where('idCampaign', '==', campaignIdUsed).get()
-    //       .then(querySnapshot => {
-    //         querySnapshot.forEach(doc => {
-    //           if(doc.data().idUser === user.uid || currentCampaign.idUserDm === user.uid) {
-    //             listCharacters.push(doc.data())
-    //           }
-    //           if(doc.data().idUser !== currentCampaign.idUserDm) {
-    //             listCharactersGroup.push(doc.data())
-    //           }
-    //         });
-    //         setCharacters(listCharacters);
-    //         setValueOnLocalStorage('characters',listCharacters);
-    //         setValueOnLocalStorage('company',listCharactersGroup);
-    //       })
-    //       .catch(err => {
-    //         console.log(err.messsage)
-    //       })
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // } else {
-    //   setCharacters(savedCaractersList);
-    // }
     try {
       const listCharacters = [];
       const listCharactersGroup = [];
@@ -120,23 +92,6 @@ const Characters = (props) => {
   }
 
   const getCampaign = async () => {
-    // const savedCampaign = await getValueOnLocalStorage('currentCampaign');
-    // if(!savedCampaign || campaignIdUrl !== savedCampaign.uid) {
-    //   console.log('getCampaign');
-    //   await db.collection('campaigns').doc(campaignIdUsed).get()
-    //     .then(doc => {
-    //       updateCampaign(doc.data());
-    //       console.log(doc.data());
-    //       setValueOnLocalStorage('currentCampaign',{...doc.data()});
-    //       getCharactersVisibleForUser(doc.data());
-    //   })
-    //   .catch(err => {
-    //     console.log(err.messsage)
-    //   })
-    // } else {
-    //   updateCampaign({...savedCampaign});
-    //   getCharactersVisibleForUser({...savedCampaign});
-    // }
     await db.collection('campaigns').doc(campaignIdUsed).get()
     .then(doc => {
       updateCampaign(doc.data());
@@ -222,128 +177,116 @@ const Characters = (props) => {
     });
   }
 
-  // const updateCampaignFirestore = async (newCampaignData) => {
-  //   newCampaignData.lastUpdateAt = firebase.firestore.FieldValue.serverTimestamp();
-  //   await db.collection('campaigns').doc(newCampaignData.uid).set(newCampaignData).then(res => {
-  //     toast.success(i18next.t('update succed'), {});
-  //     firebase.analytics().logEvent('updateConfigCampaign', {
-  //       ...newCampaignData
-  //     });
-  //   }).catch(err => {
-  //     toast.error(err, {});
-  //   });
-  // }
-
-if(user && campaign) {
-  return (
-    <div className='containerCharacters'>
-      <CharacterContext.Provider value={contextValue}>
-        <Switch>
-          <Route path={`${match.url}/dm`} exact={true}>
-            <Dm/>
-          </Route>
-          <Route path={`${match.url}/:characterIdUrl`}>
-            <Character character={character}/>
-          </Route>
-          <Route path={match.path}>
-            <div className="compactPage">
-              <div className='listCharacters'>
-                <h3>{i18next.t('campaign information')}</h3>
-                <div className='campaignInformation'>
-                  <div>
-                    <p>
-                      <span>
-                        {`${i18next.t('name')} : `}
-                      </span>
-                      <span>
-                        {`${campaign.name}`}
-                      </span>
-                    </p>
-                    <p>
-                      <span>
-                        {`${i18next.t('invitation code')} : `}
-                      </span>
-                      <span>
-                        {`${campaign.invitationCode}`}
-                      </span>
-                    </p>
-                  </div>
-                  <div>
-                    {campaign.createdBy && (
+  if(user && campaign) {
+    return (
+      <div className='containerCharacters'>
+        <CharacterContext.Provider value={contextValue}>
+          <Switch>
+            <Route path={`${match.url}/dm`} exact={true}>
+              <Dm/>
+            </Route>
+            <Route path={`${match.url}/:characterIdUrl`}>
+              <Character character={character}/>
+            </Route>
+            <Route path={match.path}>
+              <div className="compactPage">
+                <div className='listCharacters'>
+                  <h3>{i18next.t('campaign information')}</h3>
+                  <div className='campaignInformation'>
+                    <div>
                       <p>
                         <span>
-                          {`${i18next.t('dm')} : `}
+                          {`${i18next.t('name')} : `}
                         </span>
                         <span>
-                          {`${campaign.createdBy}`}
+                          {`${campaign.name}`}
                         </span>
                       </p>
-                    )}
-                    {campaign.createdAt && (
                       <p>
                         <span>
-                          {`${i18next.t('created at')} : `}
+                          {`${i18next.t('invitation code')} : `}
                         </span>
                         <span>
-                          {`${new Date(campaign.createdAt.seconds*1000).toLocaleDateString() }`}
+                          {`${campaign.invitationCode}`}
                         </span>
                       </p>
-                    )}
+                    </div>
+                    <div>
+                      {campaign.createdBy && (
+                        <p>
+                          <span>
+                            {`${i18next.t('dm')} : `}
+                          </span>
+                          <span>
+                            {`${campaign.createdBy}`}
+                          </span>
+                        </p>
+                      )}
+                      {campaign.createdAt && (
+                        <p>
+                          <span>
+                            {`${i18next.t('created at')} : `}
+                          </span>
+                          <span>
+                            {`${new Date(campaign.createdAt.seconds*1000).toLocaleDateString() }`}
+                          </span>
+                        </p>
+                      )}
+                    </div>
                   </div>
+                  {/* {user.uid === campaign.idUserDm && (
+                    <CampaignSettings
+                      campaign={campaign}
+                      update={(campagneUpdated) => {
+                        updateCampaign(campagneUpdated);
+                        updateCampaignFirestore(campagneUpdated);
+                      }}
+                    />
+                  )} */}
+                  <h3>{i18next.t('my characters')}</h3>
+                  <ul className='list'>
+                    {user.uid === campaign.idUserDm && (
+                      <li>
+                        <Link
+                          className='link'
+                          to={`${match.url}/dm`}
+                          onClick={() => {
+                            setCharacter(null)
+                          }}
+                        >
+                          <Picture character={{picture: logo}}/>
+                          {i18next.t('dm')}
+                        </Link>
+                      </li>
+                    )}
+                    {characters.map((character, i) => (
+                      <li key={i}>
+                        <Link
+                          className='link'
+                          key={character.uid}
+                          onClick={() => {
+                            setCharacter(character)
+                          }}
+                          to={`${match.url}/${character.uid}`}
+                        >
+                          <Picture character={character}/>
+                          {character.name.substring(0, 13)}{character.name.length > 14 ? '...' : ''}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                {/* {user.uid === campaign.idUserDm && (
-                  <CampaignSettings
-                    campaign={campaign}
-                    update={(campagneUpdated) => {
-                      updateCampaign(campagneUpdated);
-                      updateCampaignFirestore(campagneUpdated);
-                    }}
-                  />
-                )} */}
-                <h3>{i18next.t('my characters')}</h3>
-                <ul className='list'>
-                  {user.uid === campaign.idUserDm && (
-                    <li>
-                      <Link
-                        className='link'
-                        to={`${match.url}/dm`}
-                        onClick={() => {
-                          setCharacter(null)
-                        }}
-                      >
-                        <Picture character={{picture: logo}}/>
-                        {i18next.t('dm')}
-                      </Link>
-                    </li>
-                  )}
-                  {characters.map((character, i) => (
-                    <li key={i}>
-                      <Link
-                        className='link'
-                        key={character.uid}
-                        onClick={() => {
-                          setCharacter(character)
-                        }}
-                        to={`${match.url}/${character.uid}`}
-                      >
-                        <Picture character={character}/>
-                        {character.name.substring(0, 13)}{character.name.length > 14 ? '...' : ''}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+                <NewCharacterForm
+                  className='newCharacterForm'
+                  createCharacter={(character) => {createCharacter(character)}}
+                />
               </div>
-              <NewCharacterForm
-                className='newCharacterForm'
-                createCharacter={(character) => {createCharacter(character)}}
-              />
-            </div>
-          </Route>
-        </Switch>
-      </CharacterContext.Provider>
-    </div>
-  );
-}
+            </Route>
+          </Switch>
+        </CharacterContext.Provider>
+      </div>
+    );
+  }
 }
 
 export default Characters
