@@ -163,7 +163,7 @@
     "graph2": "Pourcentage de réussite et d'échec par personnage (dés de statistique)",
     "graph3": "Nombre de session(s)",
     "graph4": "Ratio de jet critique",
-    "graph5": "Ratio réussite  / Echec",
+    "graph5": "Ratio réussite / Échec",
     "graph6": "Pourcentage de réussite et d'échec par personnage (dés de statistique)",
     "graph7": "Nombre de dés lancé par personnage",
     "average": "Moyenne",
@@ -212,5 +212,6 @@
     "cardsAvailable": "Carte(s) disponible(s)",
     "cardsUsed": "Carte(s) utilisée(s)",
     "magicSpell": "Carte de magie"
-  }
+  },
+  "seeMore": "Voir le détail ..."
 }

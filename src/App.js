@@ -118,7 +118,7 @@ const App = () => {
                   <Campaigns />
                 )}
               </Route>
-              <Route path="/update">
+              <Route path="/news">
                 <Updates />
               </Route>
               <Route exact path="/">

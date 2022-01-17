@@ -10,7 +10,7 @@ import logo from '../assets/Images/logo150.png';
 import {Link} from "react-router-dom";
 import { ChevronDownIcon } from '@heroicons/react/solid'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPencilRuler, faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
+import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
 import { faTwitter } from "@fortawesome/free-brands-svg-icons"
 
 const HeaderBar = (props) => {
@@ -28,9 +28,9 @@ const HeaderBar = (props) => {
         </div>
         <div className='log'>
           <Link
-            className='headLink'
-            to={`/update`}>
-            <FontAwesomeIcon icon={faPencilRuler} />
+            className='headLinkText'
+            to={`/news`}>
+            {i18next.t('news')}
           </Link>
           <button
             className='main'

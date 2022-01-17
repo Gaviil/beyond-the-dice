@@ -97,6 +97,15 @@ header {
   color: #fff
 }
 
+.header .headLinkText {
+  height: 100%;
+  color: #fff;
+  display: flex;
+  padding: 0 1rem;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
 .header .headLink {
   height: 100%;
   width: 48px;

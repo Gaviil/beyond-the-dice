@@ -19,7 +19,7 @@ const UpdateDetails = (props) => {
   const [content, setContent] = useState([]);
   let match = useRouteMatch();
   useEffect(() => {
-    firebase.storage().ref("updates").child(`${match.params.updateIdUrl}.md`).getDownloadURL().then(url => {
+    firebase.storage().ref("updates").child(`${match.params.newsUrl}.md`).getDownloadURL().then(url => {
       var xhr = new XMLHttpRequest();
       xhr.responseType = 'text'; 
       xhr.onload = function(event) {

@@ -15,6 +15,7 @@ import '../styles/updates.css'
 import UpdateDetails from '../components/UpdateDetails';
 import { ToastContainer } from 'react-toastify';
 import {useHistory} from "react-router-dom";
+import i18next from 'i18next';
 
 init();
 const db = firebase.firestore();
@@ -26,20 +27,6 @@ const Updates = (props) => {
 
   useEffect(() => {
     getUpdates();
-    // firebase.storage().ref("updates").child(`test.md`).getDownloadURL().then(url => {
-    //   console.log(url)
-    //   var xhr = new XMLHttpRequest();
-    //   xhr.responseType = 'text'; 
-    //   xhr.onload = function(event) {
-    //     var markdownData= xhr.response;      
-    //     setUpdate(markdownData);
-    //   };
-    //   xhr.open('GET', url);
-    //   xhr.send();
-    // })
-    // .catch(err => {
-    //     // process exceptions
-    // })
   }, []);
   
   const getUpdates = async () => {
@@ -48,26 +35,24 @@ const Updates = (props) => {
     .then(querySnapshot => {
       querySnapshot.forEach(doc => {
         listArticles.push(doc.data());
-        // Create a reference to the file we want to download
       });
     })
     .catch(err => {
       console.log(err)
     })
     setUpdates(listArticles);
-    console.log(listArticles)
   }
 
   return (
     <div className='updatesContainer'>
       <Switch>
-          <Route path={`${match.url}/:updateIdUrl`}>
+          <Route path={`${match.url}/:newsUrl`}>
             <UpdateDetails/>
           </Route>
           <Route path={match.path}>
             <div className='headUpdate'>
               <h1>
-                Notes de mise à jour
+                {i18next.t('news')}
               </h1>
             </div>
             <ul>
@@ -76,14 +61,14 @@ const Updates = (props) => {
                   key={i}
                   className='blockLinkUpdate'
                   onClick={() => {
-                    history.push(`${match.url}/${update.id}`);
+                    history.push(`${match.url}/${update.title.replace(' ', '-')}`);
                   }}
                 >
                   <h1 className='titleUpdate'>
                     {update.title}
                   </h1>
                   <span className='date'>{new Date(update.date.seconds * 1000).toLocaleDateString()}</span>
-                  <p>Voir le détail ...</p>
+                  <p>{i18next.t('seeMore')}</p>
                 </li>
               ))}
             </ul>
