@@ -27,11 +27,11 @@ const HeaderBar = (props) => {
           </Link>
         </div>
         <div className='log'>
-          {/* <Link
+          <Link
             className='headLinkText'
             to={`/news`}>
             {i18next.t('news')}
-          </Link> */}
+          </Link>
           <button
             className='main'
             onClick={async () => {
