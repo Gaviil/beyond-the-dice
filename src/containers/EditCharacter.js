@@ -213,17 +213,36 @@ const EditCharacter = (props) => {
               setDuplicateCharacter({...duplicateCharacter});
             }}
           />
-            <CheckboxSwitch
-              isChecked={duplicateCharacter.isMage}
-              label={`${duplicateCharacter.name} ${i18next.t('mage.isMageEdit')}`}
-              update={(val) => {
-                duplicateCharacter.isMage = val;
-                if(val === true && !duplicateCharacter.magicCards) {
-                  duplicateCharacter.magicCards = cards;
-                }
-                setDuplicateCharacter({...duplicateCharacter});
-              }}
-            />
+          <CheckboxSwitch
+            isChecked={duplicateCharacter.isMage}
+            label={`${duplicateCharacter.name} ${i18next.t('mage.isMageEdit')}`}
+            update={(val) => {
+              duplicateCharacter.isMage = val;
+              if(val === true && !duplicateCharacter.magicCards) {
+                duplicateCharacter.magicCards = cards;
+              }
+              setDuplicateCharacter({...duplicateCharacter});
+            }}
+          />
+          <CheckboxSwitch
+            isChecked={duplicateCharacter.isDeathMage}
+            label={`${duplicateCharacter.name} ${i18next.t('mage.isDeathMageEdit')}`}
+            update={(val) => {
+              duplicateCharacter.isDeathMage = val;
+              if(val === true && !duplicateCharacter.skills.filter(skill => skill.label === 'deathMagic').length) {
+                duplicateCharacter.skills.push({
+                  isCustom: false,
+                  label: "deathMagic",
+                  value: 0,
+                  isSpecial: true
+                });
+              }
+              if(val === false && duplicateCharacter.skills.filter(skill => skill.label === 'deathMagic').length === 1) {
+                duplicateCharacter.skills.splice(duplicateCharacter.skills.findIndex(skill => skill.label==="deathMagic"), 1);
+              }
+              setDuplicateCharacter({...duplicateCharacter});
+            }}
+          />
           <h3>{i18next.t('skill')} :</h3>
           <div className='containerEditSkill'>
             {

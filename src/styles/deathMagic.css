@@ -1,0 +1,48 @@
+.deathMagicContainer div:not(.blockSkill){
+  border-bottom: 1px solid #d6d6d6;
+}
+.deathMagicContainer h4{
+  text-decoration: underline;
+}
+.deathMagicContainer p{
+  text-align:justify;
+}
+
+
+.blockSkill h2 {
+  cursor: pointer;
+}
+.deathMagicContainer span{
+  max-width: 40px;
+  max-height: 20px;
+  overflow: hidden;
+  padding: 0.25rem 0.5rem;
+}
+.deathMagicContainer input[type='number'], .deathMagicContainer input[type='number']::-webkit-outer-spin-button,.deathMagicContainer input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  border: 0;
+  font-size: 1em;
+  background-color: transparent;
+  text-align: center;
+}
+.deathMagicContainer  input[type='number']{
+  /* width: 38px; */
+  /* font-size: medium; */
+  /* height: 1.5rem; */
+  padding: 0.25rem 0.5rem;
+  margin: 0 0.5rem;
+}
+.deathMagicContainer  input[type='number']:focus{
+  background-color: #eaeaea;
+}
+
+.blockSkill {
+  display: flex;
+  width: fit-content;
+  justify-content: flex-start;
+  align-items: baseline;
+}
+.blockSkill:hover input[type='number'] {
+  background-color:#eaeaea;
+}
