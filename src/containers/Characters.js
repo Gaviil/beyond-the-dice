@@ -34,6 +34,8 @@ import cards from '../assets/cards.json';
 import Statistics from '../containers/Statistics';
 import {isDesktop} from "react-device-detect";
 import Modal from 'react-modal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
 init();
 const db = firebase.firestore();
@@ -45,8 +47,8 @@ const customStyles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
-    maxHeight: '90%',
-    maxWidth: '50%',
+    maxHeight: isDesktop ?' 80%' : '80%',
+    maxWidth: isDesktop ?' 50%' : '100%',
     boxShadow: "0px 8px 16px 0px rgba(0,0,0,0.2)",
     borderRadius: '0.5rem'
   },
@@ -80,11 +82,6 @@ const Characters = (props) => {
 
   function openModal() {
     setIsOpen(true);
-  }
-
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    // subtitle.style.color = '#f00';
   }
 
   function closeModal() {
@@ -322,22 +319,18 @@ const Characters = (props) => {
                 <div>
                   <Modal
                     isOpen={modalIsOpen}
-                    onAfterOpen={afterOpenModal}
                     onRequestClose={closeModal}
                     style={customStyles}
                     overlayClassName="Overlay"
                     contentLabel="Example Modal"
                   >
+                    <FontAwesomeIcon onClick={() => closeModal()} icon={faTimes} style={{position: 'absolute', right: 20, top: 20}}/>
                     <NewCharacterForm
                       className='newCharacterForm'
                       createCharacter={(character) => {createCharacter(character)}}
                     />
                   </Modal>
                 </div>
-                {/* <NewCharacterForm
-                  className='newCharacterForm'
-                  createCharacter={(character) => {createCharacter(character)}}
-                /> */}
               </div>
             </Route>
           </Switch>
