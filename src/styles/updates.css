@@ -71,6 +71,9 @@
   color: #ffad23;
   text-decoration: none;
 }
+.updateDetailContainer p{
+  text-align: justify;
+}
 .updateDetailContainer img{
   max-width: 100%;
 }

@@ -274,7 +274,7 @@ const Character = (props) => {
     });
     updateFirestoreCharacter(character);
   }
-
+  console.log(character.skills);
   if(character) {
     return (
       <Switch>

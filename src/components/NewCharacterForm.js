@@ -147,7 +147,7 @@ const NewCharacterForm = (props) => {
           />
           <CheckboxSwitch
             isChecked={isDeathMage}
-            label='isDeathMage'
+            label={i18next.t('deathMagic.isDeathMage')}
             update={(val) => {
               setIsDeathMage(val);
             }}

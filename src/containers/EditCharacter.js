@@ -226,7 +226,7 @@ const EditCharacter = (props) => {
           />
           <CheckboxSwitch
             isChecked={duplicateCharacter.isDeathMage}
-            label={`${duplicateCharacter.name} ${i18next.t('mage.isDeathMageEdit')}`}
+            label={`${duplicateCharacter.name} ${i18next.t('deathMagic.isDeathMageEdit')}`}
             update={(val) => {
               duplicateCharacter.isDeathMage = val;
               if(val === true && !duplicateCharacter.skills.filter(skill => skill.label === 'deathMagic').length) {

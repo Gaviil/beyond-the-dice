@@ -217,7 +217,8 @@
   "seeMore": "Voir le détail ...",
   "deathMagic": {
     "title": "Magie de la mort",
-    "isDeathMageEdit": " est un mage de la mort",
+    "isDeathMageEdit": " utilise la magie de la mort",
+    "isDeathMage": "Le personnage utilise la magie de la mort",
     "spellName1": "Blesser une personne",
     "spellDesc1": "Le magicien désigne une personne qu’il peut voir. Cette dernière est aussitôt assaillie par les mânes du fleuve des morts et perd 1d4+1 points de vie. Si ce sort est lancé de nuit ou à proximité d’un champ de bataille, la victime perd 1d6+2 points de vie. Il est impossible de tuer une personne avec ce sort",
     "spellName2": "Convoquer et parler avec un mort",
