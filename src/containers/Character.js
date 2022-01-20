@@ -257,7 +257,7 @@ const Character = (props) => {
       updateFirestoreCharacter(updatedCharacter);
     }
   }
-
+  console.log(match);
   if(character) {
     return (
       <Switch>

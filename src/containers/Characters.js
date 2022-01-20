@@ -33,10 +33,24 @@ import {useHistory} from "react-router-dom";
 import cards from '../assets/cards.json';
 import Statistics from '../containers/Statistics';
 import {isDesktop} from "react-device-detect";
+import Modal from 'react-modal';
 
 init();
 const db = firebase.firestore();
-
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    maxHeight: '90%',
+    maxWidth: '50%',
+    boxShadow: "0px 8px 16px 0px rgba(0,0,0,0.2)",
+    borderRadius: '0.5rem'
+  },
+}
 const Characters = (props) => {
   let match = useRouteMatch();
   const history = useHistory();
@@ -60,6 +74,21 @@ const Characters = (props) => {
   const contextValue = {
     character,
     updateCharacter: setCharacter
+  }
+  let subtitle;
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    // subtitle.style.color = '#f00';
+  }
+
+  function closeModal() {
+    setIsOpen(false);
   }
 
   useEffect( () => {
@@ -278,12 +307,37 @@ const Characters = (props) => {
                         </Link>
                       </li>
                     ))}
+                    <li>
+                      <a
+                        className={"link click"}
+                        onClick={() => {
+                          openModal()
+                        }}
+                      >
+                        <Picture character={{picture: null, framePicture: 'https://firebasestorage.googleapis.com/v0/b/beyondthedice-cfc1b.appspot.com/o/frame%2Fadd.png?alt=media&token=ea758059-0440-4d3a-9993-c24c0572a24f'}}/>
+                      </a>
+                    </li>
                   </ul>
                 </div>
-                <NewCharacterForm
+                <div>
+                  <Modal
+                    isOpen={modalIsOpen}
+                    onAfterOpen={afterOpenModal}
+                    onRequestClose={closeModal}
+                    style={customStyles}
+                    overlayClassName="Overlay"
+                    contentLabel="Example Modal"
+                  >
+                    <NewCharacterForm
+                      className='newCharacterForm'
+                      createCharacter={(character) => {createCharacter(character)}}
+                    />
+                  </Modal>
+                </div>
+                {/* <NewCharacterForm
                   className='newCharacterForm'
                   createCharacter={(character) => {createCharacter(character)}}
-                />
+                /> */}
               </div>
             </Route>
           </Switch>

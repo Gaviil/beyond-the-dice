@@ -56,7 +56,7 @@ const NewCharacterForm = (props) => {
   const creationCharacterIsEnable = (additionalSkillPoint === 0 || generationCharacterClassic) && name.length > 0 && characComplete;
   return (
     <div>
-      <h3>{i18next.t('new character')}</h3>
+      <h2>{i18next.t('new character')}</h2>
       <form
         className='formNewCharacter'
         onSubmit={(e) => {
@@ -73,7 +73,7 @@ const NewCharacterForm = (props) => {
             }
             if(valid) {
               createCharacter({
-                name,
+                name: name.trim(),
                 hp: dataCharacter.characteristics.find((chara) => ( chara.label === 'endurance')).value <= 14 ? dataCharacter.characteristics.find((chara) => ( chara.label === 'endurance')).value : 14,
                 description,
                 alive: true,
@@ -274,15 +274,15 @@ const NewCharacterForm = (props) => {
             </div>
           </div>
         )}
-        <div className='createCharacterButton'>
-          <div>
-              <input 
-                className={!creationCharacterIsEnable ? 'disabled' : ''}
-                type="submit"
-                value={i18next.t('create')}
-              />
-            </div>
-        </div>
+        {characComplete && name !== '' && (
+          <div className='createCharacterButton'>
+            <input 
+              className={!creationCharacterIsEnable ? 'disabled' : ''}
+              type="submit"
+              value={i18next.t('create')}
+            />
+          </div>
+        )}
       </form>
     </div>
   );
