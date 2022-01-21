@@ -213,5 +213,10 @@
     "cardsUsed": "Carte(s) utilisée(s)",
     "magicSpell": "Carte de magie"
   },
-  "seeMore": "Voir le détail ..."
+  "seeMore": "Voir le détail ...",
+  "currency": {
+    "gold": "Or",
+    "silver": "Argent",
+    "bronze": "Bronze"
+  }
 }

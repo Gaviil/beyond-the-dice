@@ -7,6 +7,8 @@ import i18next from 'i18next';
 import { EyeOffIcon } from '@heroicons/react/outline'
 import {isDesktop, isMobile} from "react-device-detect";
 import {getLabelDice} from '../utils/dice';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHandPointRight } from '@fortawesome/free-solid-svg-icons'
 
 const cleanDuplicate = (arrayRoll, userUid, campaignUserUidDm, diceLoaded = 10) => {
 
@@ -52,6 +54,7 @@ const DiceHistorical = (props) => {
   const {campaign} = useContext(CampaignContext);
   const [limitHisto, setLimitHisto] = useState(15);
   const [diceHistorical, setDiceHistorical] = useState([]);
+  const [view,setView] = useState('dice');
   const histoView = useRef(null)
 
   useEffect(() => {
@@ -63,21 +66,36 @@ const DiceHistorical = (props) => {
   });
 
   useEffect(() => {
-    const rolls = cleanDuplicate(list, user.uid, campaign.idUserDm, limitHisto);
+    console.log(user)
+    const rolls = cleanDuplicate(list.filter(roll => view === 'dice' ? roll.diceType !== 'update' : (roll.diceType === 'update' && (roll.userUid === user.uid || campaign.idUserDm === user.uid))), user.uid, campaign.idUserDm, limitHisto);
+    console.log(rolls)
     setDiceHistorical(rolls.reverse());
-  }, [list, limitHisto]);
-
-  const isMyRoll = (roll) => {
-    if(user.uid === roll.userUid) {
-      return true;
-    } else if (campaign.idUserDm === user.uid && roll.isDmRoll) {
-      return true;
-    }
-    return false;
-  }
+  }, [list, limitHisto, view]);
 
   return (
     <div ref={histoView} className='histoView' style={{maxHeight: isDesktop ? `${window.innerHeight - 90}px` : 'none'}}>
+      <div className='headerHisto'>
+        <div className='tabsDetails'>
+          <ul className='tabsContainer'>
+            <li
+              className={`tab ${view === 'dice' ? 'active' : ''}`}
+              onClick={() => {
+                setView('dice');
+              }}  
+            >
+              {i18next.t('dice')}
+            </li>
+            <li
+              className={`tab ${view === 'update' ? 'active' : ''}`}
+              onClick={() => {
+                setView('update');
+              }}  
+            >
+              {i18next.t('update')}
+            </li>
+          </ul>
+        </div>
+      </div>
       <div className='headerHisto'>
         <div>
           {limitHisto <= diceHistorical.length && (
@@ -108,43 +126,28 @@ const DiceHistorical = (props) => {
       <ul className="listHisto">
         {diceHistorical.length > 0 && (
           diceHistorical.map((histo, i) => {
-            return (
-              <div key={i}>
-                {histo.showDate && (
-                  <span className='date'>
-                    {histo.createdAt}
-                  </span>
-                )}
-                <div className={`${isMyRoll(histo) ? "containerRowReverse" : "containerRow"}`}>
-                  {histo.displayPicture && !isMyRoll(histo) && (
-                    <div
-                      className={'userPictureRoll'}
-                      style={{backgroundImage: `url(${histo.pictureUserSendRoll})`}}  
-                    />
-                  )}
-                  <li
-                    id={i === 0 ? 'last' : null}
-                    className={`${isMyRoll(histo) ? "myhistoRow" : "histoRow"} bubbleHisto`}
-                    style={!isMyRoll(histo) ? {margin: '0.5rem 2.25rem'} : null}
-                  >
-                    <div className='histoLeftSide'>
-                      <span>
-                        {histo.userName}
-                      </span>
-                      <span>
-                        {getLabelDice(histo,campaign, user)}
-                      </span>
-                      {histo.isHided && (
-                        <EyeOffIcon className="iconHide"/>
-                      )}
-                    </div>
-                    <span className='histoRightSide'>
-                      {histo.value}
-                    </span>
-                  </li>
-                </div>
-              </div>
-            )
+            if(view === 'dice' && user && campaign) {
+              return (
+                <ChatBubbleDice
+                  histo={histo}
+                  user={user}
+                  key={i}
+                  i={i}
+                  campaign={campaign}
+                />
+              )
+            }
+            if(view === 'update' && user && campaign) {
+              return (
+                <ChatBubbleUpdate
+                  histo={histo}
+                  user={user}
+                  key={i}
+                  i={i}
+                  campaign={campaign}
+                />
+              )
+            }
           })
         )}
         {diceHistorical.length === 0 && (
@@ -156,4 +159,110 @@ const DiceHistorical = (props) => {
     </div>
   );
 }
+
+const ChatBubbleDice = (props) => {
+  const {user, histo, i, campaign} = props;
+
+  const isMyRoll = (roll) => {
+    if(user.uid === roll.userUid) {
+      return true;
+    } else if (campaign.idUserDm === user.uid && roll.isDmRoll) {
+      return true;
+    }
+    return false;
+  }
+
+  return (
+    <div>
+      {histo.showDate && (
+        <span className='date'>
+          {histo.createdAt}
+        </span>
+      )}
+      <div className={`${isMyRoll(histo) ? "containerRowReverse" : "containerRow"}`}>
+        {histo.displayPicture && !isMyRoll(histo) && (
+          <div
+            className={'userPictureRoll'}
+            style={{backgroundImage: `url(${histo.pictureUserSendRoll})`}}  
+          />
+        )}
+        <li
+          id={i === 0 ? 'last' : null}
+          className={`${isMyRoll(histo) ? "myhistoRow" : "histoRow"} bubbleHisto`}
+          style={!isMyRoll(histo) ? {margin: '0.5rem 2.25rem'} : null}
+        >
+          <div className='histoLeftSide'>
+            <span>
+              {histo.userName}
+            </span>
+            <span>
+              {getLabelDice(histo,campaign, user)}
+            </span>
+            {histo.isHided && (
+              <EyeOffIcon className="iconHide"/>
+            )}
+          </div>
+          <span className='histoRightSide'>
+            {histo.value}
+          </span>
+        </li>
+      </div>
+    </div>
+  );
+}
+
+const ChatBubbleUpdate = (props) => {
+  const {user, histo, i, campaign} = props;
+  const isMyRoll = (roll) => {
+    if(user.uid === roll.userUid) {
+      return true;
+    } else if (campaign.idUserDm === user.uid && roll.isDmRoll) {
+      return true;
+    }
+    return false;
+  }
+
+  return (
+    <div>
+      {histo.showDate && (
+        <span className='date'>
+          {histo.createdAt}
+        </span>
+      )}
+      <div className={`${isMyRoll(histo) ? "containerRowReverse" : "containerRow"}`}>
+        {histo.displayPicture && !isMyRoll(histo) && (
+          <div
+            className={'userPictureRoll'}
+            style={{backgroundImage: `url(${histo.pictureUserSendRoll})`}}  
+          />
+        )}
+        <li
+          id={i === 0 ? 'last' : null}
+          className={`${isMyRoll(histo) ? "myhistoRow" : "histoRow"} bubbleHistoUpdate`}
+          style={!isMyRoll(histo) ? {margin: '0.5rem 2.25rem'} : null}
+        >
+          <div className='histoLeftSide'>
+            {histo.stat && (
+              <div className='updateBlock'>
+                <span>
+                  {`${i18next.t(histo.stat.label)} ${histo.stat.value}`}
+                </span>
+                  <FontAwesomeIcon className='iconUpdate' icon={faHandPointRight}/>
+                <span>
+                  {histo.value}
+                </span>
+              </div>
+            )}
+            {campaign.idUserDm === user.uid && (
+              <span>
+                {histo.userName}
+              </span>
+            )}
+          </div>
+        </li>
+      </div>
+    </div>
+  );
+}
+
 export default DiceHistorical

@@ -38,7 +38,7 @@ import {
   SparklesIcon
 } from '@heroicons/react/outline'
 import {dynamicSortWithTraduction} from '../utils/sort';
-import {getRoll, getMagicCard} from '../utils/dice';
+import {getRoll, getMagicCard, getUpdateJson} from '../utils/dice';
 import {
   BrowserView,
   MobileView,
@@ -110,10 +110,19 @@ const Character = (props) => {
   }
 
   const sendNewRoll = async (newRoll) => {
-    const newList = [
+    let newList = [
       ...rollList
     ];
-    newList.push(newRoll);
+    console.log(Array.isArray(newRoll));
+    if(Array.isArray(newRoll)) {
+      newList = [
+        ...newList,
+        ...newRoll
+      ]
+    } else if(newRoll) {
+      newList.push(newRoll);
+    }
+    
     firebase.database().ref().child(`${character.idCampaign}`).set(newList);
     if(isMobile) {
       toast.success(`${getLabelDice(newRoll, campaign, user)} : ${newRoll.value}`, {});
@@ -239,6 +248,11 @@ const Character = (props) => {
   }
 
   const updateCurency = (type, value) => {
+    const statUpdate = {
+      label: `currency.${type}`,
+      value: JSON.parse(character.currency[type])
+    };
+    const newRoll = getUpdateJson(JSON.parse(value),campaign.idUserDm, character, user, statUpdate);
     const updatedCharacter = {...character}
     if(updatedCharacter.currency) {
       if(updatedCharacter.currency[type] !== value) {
@@ -256,6 +270,7 @@ const Character = (props) => {
       updateCharacter(updatedCharacter);
       updateFirestoreCharacter(updatedCharacter);
     }
+    sendNewRoll(newRoll)
   }
 
   if(character) {
@@ -275,11 +290,13 @@ const Character = (props) => {
         </Route>
         <Route path={`${match.url}/edit`}>
           <EditCharacter
-            updateDataCharacter={(characterUpdated) => {
+            updateDataCharacter={(characterUpdated, newRollForUpdate) => {
               updateCharacter({
                 ...characterUpdated,
               });
               updateFirestoreCharacter(characterUpdated);
+              console.log(newRollForUpdate);
+              sendNewRoll(newRollForUpdate);
             }}
           />
         </Route>

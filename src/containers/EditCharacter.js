@@ -18,23 +18,24 @@ import FrameSelector from '../components/FrameSelector';
 import CheckboxSwitch from '../components/CheckboxSwitch';
 import alchemy from '../assets/alchemy.json'; 
 import cards from '../assets/cards.json';
+import {getUpdateJson} from '../utils/dice';
 
 // init();
-// const db = firebase.firestore();
+const db = firebase.firestore();
 
 const EditCharacter = (props) => {
-  const db = firebase.firestore();
+  const {user} = useContext(UserContext);
   const {character} = useContext(CharacterContext);
   const {campaign} = useContext(CampaignContext);
-  const {user} = useContext(UserContext);
   const [duplicateCharacter, setDuplicateCharacter] = useState({...character});
   const [image, setImage] = useState(null);
   const [url, setUrl] = useState("");
   const [frame, setFrame] = useState(null);
+  const [rollList, setRollList] = useState([]);
   const [newUserEmail, setNewUserEmail] = useState(null);
-  
+
   useEffect( () => {
-    setDuplicateCharacter({...character})
+    setDuplicateCharacter(JSON.parse(JSON.stringify({...character})))
   }, [character]);
 
   useEffect( () => {
@@ -45,6 +46,15 @@ const EditCharacter = (props) => {
       toast.success(i18next.t('update succed'), {});
     }
   }, [url]);
+
+  useEffect(() => {
+    if(campaign.uid) {
+      const dbRefObject = firebase.database().ref().child(`${campaign.uid}`);
+      dbRefObject.on('value', snap => {
+        setRollList(Object.values(snap.val() || {}));
+      });
+    }
+  }, [campaign]);
 
   const handleChange = e => {
     if (e.target.files[0]) {
@@ -95,9 +105,24 @@ const EditCharacter = (props) => {
             type: "alchemy"}
           )
       }
-      props.updateDataCharacter(duplicateCharacter);
+      props.updateDataCharacter(duplicateCharacter,generateUpdateHisto());
       toast.success(i18next.t('update succed'), {});              
     }
+  }
+  
+  const generateUpdateHisto = () => {
+    const newUpdateHisto = [];
+    const statUpdate = {};
+    let skill = {};
+    for (let i = 0; i < duplicateCharacter.skills.length; i+=1) {
+      if(duplicateCharacter.skills[i].value !== character.skills[i].value) {
+        skill = duplicateCharacter.skills[i];
+        statUpdate.label = skill.isCustom ? skill.label : `skills.${skill.label}`
+        statUpdate.value = character.skills[i].value
+        newUpdateHisto.push(getUpdateJson(duplicateCharacter.skills[i].value,campaign.idUserDm, character, user, statUpdate));
+      }
+    }
+    return newUpdateHisto;
   }
 
   const setNewUser = async () => {
@@ -122,7 +147,8 @@ const EditCharacter = (props) => {
     })
   }
   
-  return (
+ if(duplicateCharacter) {
+    return (
     <div className='editContainer'>
       <Breadcrumb sentence={character.name}/>
       <h2>{`${i18next.t('update')} ${i18next.t('of')} ${character.name}`}</h2>
@@ -252,6 +278,7 @@ const EditCharacter = (props) => {
                     value={skill.value}
                     onChange={(e) => {
                       duplicateCharacter.skills[i].value = parseInt(e.target.value);
+                      console.log(character.skills[i])
                       setDuplicateCharacter({...duplicateCharacter});
                     }}
                   />
@@ -321,6 +348,9 @@ const EditCharacter = (props) => {
       </div>
     </div>
   );
+ } else {
+   return null;
+ }
   
 }
 

@@ -489,7 +489,7 @@ input[type='number'].updateHp {
     display: flex;
     flex-direction: row;
   }
-  .containerCharacterView .tab {
+  .containerCharacterView .tab, .containerHisto .tab {
     /* width: 43%; */
     display: block;
     position: relative;
@@ -499,14 +499,16 @@ input[type='number'].updateHp {
     border-radius: 0 0 0.25rem 0.25rem;
     color:#1b1d29;
   }
-  .containerCharacterView .tab.active {
+  .containerCharacterView .tab.active, .containerHisto .tab.active {
     background-color: #1b1d29;
     /* box-shadow:inset 0px -10em 0px 0px #1b1d29; */
     position:relative;
     color:#fff;
   }
   .containerCharacterView .active:after,
-  .containerCharacterView .active:before{
+  .containerCharacterView .active:before,
+  .containerHisto .active:active,
+  .containerHisto .active:before{
     content:'';
     position:absolute;
     top: 0;
@@ -515,11 +517,11 @@ input[type='number'].updateHp {
     background-color: #fff;
     border-radius: 50%;
   }
-  .containerCharacterView .active:after{
+  .containerCharacterView .active:after, .containerHisto .active:after{
     right: -10px;
     box-shadow: -5px -5px 0 #1b1d29;
   }
-  .containerCharacterView .active:before{
+  .containerCharacterView .active:before, .containerHisto .active:before{
     left: -10px;
     box-shadow: 5px -5px 0 #1b1d29;
   }

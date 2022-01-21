@@ -6,6 +6,8 @@ import i18next from 'i18next';
  * @param  {{}} character Json of the current Character
  * @param  {{}} user Json of the user account
  * @param  {{}} stat Json of the current stat rolled
+ * @param  {Boolean} hideRollSwitch Boolean to hide the dice result
+ * @param  {String} prefixTradStat prefix for translation
  * @returns {{}} Json with all data to send at Firestore
  */
 export const getRoll = (max, uidUserDmCampaign, character, user ,stat, hideRollSwitch = false, prefixTradStat) => {
@@ -38,8 +40,42 @@ export const getRoll = (max, uidUserDmCampaign, character, user ,stat, hideRollS
     // props.setNewDice(dataRoll);
   }
 
+/**
+ * @param  {String} uidUserDmCampaign Uid of the DM for the current campaign
+ * @param  {{}} character Json of the current Character
+ * @param  {{}} user Json of the user account
+ * @param  {{}} stat Json of the current stat rolled
+ * @returns {{}} Json with all data to send at Firestore
+ */
+export const getUpdateJson = (newValue, uidUserDmCampaign, character, user ,stat) => {
+
+    const isDm = uidUserDmCampaign === user.uid;
+    const statRoll = { ...stat };
+    if(!character) {
+      character = {
+        uid:'DMMODE',
+        picture: 'https://firebasestorage.googleapis.com/v0/b/beyondthedice-cfc1b.appspot.com/o/charactersPictures%2Fnopicture.png?alt=media&token=4a376f9c-0235-4b6c-889b-f1ffd6d12a48'
+      }
+    }
+    const dataRoll = {
+      createdAt: new Date(Date.now()).toLocaleDateString("fr-FR"),
+      userName: !isDm ? character.name : i18next.t('dm'),
+      userUid: user.uid,
+      characterId: character ? character.uid : 'DM',
+      value: newValue,
+      diceType: 'update',
+      pictureUserSendRoll: character.picture || user.photoURL,
+      stat: statRoll,
+    }
+    return dataRoll
+    // props.setNewDice(dataRoll);
+  }
+
 export const getLabelDice = (dice, campaign, user) => {
-  const {stat, prefixTradStat, } = dice;
+  const {stat, prefixTradStat } = dice;
+  if(stat && dice.diceType === 'update') {
+    return dice.stat.label
+  }
   if(stat && stat.label === 'magicSpell') {
     return i18next.t('mage.magicSpell');
   }

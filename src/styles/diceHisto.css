@@ -14,7 +14,7 @@
 .diceChatContainer::-webkit-scrollbar {
   display: none;
 }
-.bubbleHisto{
+.bubbleHisto, .bubbleHistoUpdate{
   display: flex;
   align-items: center;
   border-radius: 0.75rem 0.75rem 0.75rem 0;
@@ -29,6 +29,13 @@
   -moz-transition: all 0.5s ease-in-out;
   -o-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out; */
+}
+.bubbleHistoUpdate{
+  /* width: 300px; */
+  width: fit-content;
+  min-width: 200px;
+  padding: 0, 0.25rem;
+  word-wrap: break-word;
 }
 .histoRow {
   background-color: #eaeaea;
@@ -72,6 +79,16 @@
   color:#a5a2a2
 }
 .myhistoRow .histoLeftSide span:first-child {
+  color: #eaeaea;
+}
+.histoRow .histoLeftSide .updateBlock span ,.myhistoRow .histoLeftSide .updateBlock span {
+  color: #eaeaea;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1em;
+}
+.histoRow .histoLeftSide .updateBlock .iconUpdate, .myhistoRow .histoLeftSide .updateBlock .iconUpdate {
+  margin: 0 0.5rem;
   color: #eaeaea;
 }
 .histoLeftSide span:first-child {
@@ -160,10 +177,14 @@
 }
 
 .headerHisto {
-  margin-top: 0.5rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-top: 0.5rem;
+}
+.headerHisto:first-child {
+  align-self: flex-end;
+  margin-top: 0;
 }
 .containerRow {
   display: flex;
