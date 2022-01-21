@@ -66,9 +66,7 @@ const DiceHistorical = (props) => {
   });
 
   useEffect(() => {
-    console.log(user)
     const rolls = cleanDuplicate(list.filter(roll => view === 'dice' ? roll.diceType !== 'update' : (roll.diceType === 'update' && (roll.userUid === user.uid || campaign.idUserDm === user.uid))), user.uid, campaign.idUserDm, limitHisto);
-    console.log(rolls)
     setDiceHistorical(rolls.reverse());
   }, [list, limitHisto, view]);
 

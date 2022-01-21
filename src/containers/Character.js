@@ -38,7 +38,7 @@ import {
   SparklesIcon
 } from '@heroicons/react/outline'
 import {dynamicSortWithTraduction} from '../utils/sort';
-import {getRoll, getMagicCard, getUpdateJson} from '../utils/dice';
+import {getRoll, getMagicCard, generateUpdateHisto} from '../utils/dice';
 import {
   BrowserView,
   MobileView,
@@ -65,6 +65,7 @@ const Character = (props) => {
   const {campaign} = useContext(CampaignContext);
   const {character, updateCharacter} = useContext(CharacterContext);
   let { characterIdUrl } = useParams();
+  const [defaultDataCharacter, setDefaultDataCharacter] = useState({});
   const [descriptionIsDisplay, setDescriptionIsDisplay] = useState(false)
   const [rollList, setRollList] = useState([]);
   const [characteristics,setCharacteristics] = useState([]);
@@ -92,6 +93,7 @@ const Character = (props) => {
   useEffect(() => {
     if(character && character.uid) {
       setSkills(character.skills);
+      setDefaultDataCharacter(JSON.parse(JSON.stringify(character)));
     }
   },[character])
 
@@ -101,8 +103,10 @@ const Character = (props) => {
         updateCharacter({
           ...doc.data(),
         });
+        setDefaultDataCharacter(doc.data());
         setCharacteristics(doc.data().characteristics.sort(dynamicSortWithTraduction("label", 'characteristics')));
         setSkills(doc.data().skills.sort(dynamicSortWithTraduction("label", 'skills')));
+
     })
     .catch(err => {
       console.log(err)
@@ -110,10 +114,10 @@ const Character = (props) => {
   }
 
   const sendNewRoll = async (newRoll) => {
+    console.log(newRoll)
     let newList = [
       ...rollList
     ];
-    console.log(Array.isArray(newRoll));
     if(Array.isArray(newRoll)) {
       newList = [
         ...newList,
@@ -207,6 +211,7 @@ const Character = (props) => {
         await unlockFrame('deathGod');
       }
       updatedCharacter.currentHp = newValHp;
+      sendNewRoll(generateUpdateHisto(updatedCharacter, defaultDataCharacter,campaign,user))
       updateCharacter(updatedCharacter);
       updateFirestoreCharacter(updatedCharacter);
     }
@@ -248,15 +253,11 @@ const Character = (props) => {
   }
 
   const updateCurency = (type, value) => {
-    const statUpdate = {
-      label: `currency.${type}`,
-      value: JSON.parse(character.currency[type])
-    };
-    const newRoll = getUpdateJson(JSON.parse(value),campaign.idUserDm, character, user, statUpdate);
     const updatedCharacter = {...character}
     if(updatedCharacter.currency) {
       if(updatedCharacter.currency[type] !== value) {
         updatedCharacter.currency[type] = value;
+        sendNewRoll(generateUpdateHisto(character, defaultDataCharacter,campaign,user))
         updateCharacter(updatedCharacter);
         updateFirestoreCharacter(updatedCharacter);
       }
@@ -266,11 +267,11 @@ const Character = (props) => {
         silver: 0,
         bronze: 0,
       }
+      sendNewRoll(generateUpdateHisto(character, defaultDataCharacter,campaign,user))
       updatedCharacter.currency[type] = value;
       updateCharacter(updatedCharacter);
       updateFirestoreCharacter(updatedCharacter);
     }
-    sendNewRoll(newRoll)
   }
 
   if(character) {

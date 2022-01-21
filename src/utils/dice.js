@@ -1,3 +1,4 @@
+/* eslint-disable no-loop-func */
 import i18next from 'i18next';
 
 /**
@@ -127,3 +128,45 @@ export const getMagicCard = (character, user) => {
       return null;
     }
   } 
+
+/**
+ * @param  {JSON} newCharacterData Character updated with new data
+ * @param  {JSON} character default value
+ * @param  {JSON} campaign campaign data
+ * @param  {JSON} user user currently connected
+ */
+export const generateUpdateHisto = (newCharacterData, character, campaign, user) => {
+  console.log(newCharacterData, character)
+  const newUpdateHisto = [];
+  const statUpdate = {};
+  let skillLoop = {};
+  let skillWithCurrentValue = null;
+  for (let i = 0; i < newCharacterData.skills.length; i+=1) {
+    skillLoop = newCharacterData.skills[i];
+    skillWithCurrentValue = character.skills.find(skill => skill.label === skillLoop.label);
+    if(skillWithCurrentValue) {
+      console.log(skillLoop.value !== skillWithCurrentValue.value);
+      if(skillLoop.value !== skillWithCurrentValue.value) {
+        statUpdate.label = skillLoop.isCustom ? skillLoop.label : `skills.${skillLoop.label}`
+        statUpdate.value = skillWithCurrentValue.value
+        newUpdateHisto.push(getUpdateJson(skillLoop.value,campaign.idUserDm, character, user, statUpdate));
+      }
+    }
+  }
+  if(newCharacterData.currentHp !== character.currentHp) {
+    newUpdateHisto.push(getUpdateJson(newCharacterData.currentHp,campaign.idUserDm, character, user, {label: 'hp', value: character.currentHp}));
+  }
+  if(newCharacterData.maxHp !== character.maxHp) {
+    newUpdateHisto.push(getUpdateJson(newCharacterData.maxHp,campaign.idUserDm, character, user, {label: 'hp max', value: character.maxHp}));
+  }
+  if(newCharacterData.currency && newCharacterData.currency.bronze !== character.currency.bronze) {
+    newUpdateHisto.push(getUpdateJson(newCharacterData.currency.bronze,campaign.idUserDm, character, user, {label: 'currency.bronze', value: character.currency.bronze}));
+  }
+  if(newCharacterData.currency && newCharacterData.currency.silver !== character.currency.silver) {
+    newUpdateHisto.push(getUpdateJson(newCharacterData.currency.silver,campaign.idUserDm, character, user, {label: 'currency.silver', value: character.currency.silver}));
+  }
+  if(newCharacterData.currency && newCharacterData.currency.gold !== character.currency.gold) {
+    newUpdateHisto.push(getUpdateJson(newCharacterData.currency.gold,campaign.idUserDm, character, user, {label: 'currency.gold', value: character.currency.gold}));
+  }
+  return newUpdateHisto;
+}
