@@ -106,6 +106,15 @@ header {
   align-items: center;
   text-decoration: none;
 }
+.header .headLinkText:hover, .header .headLink:hover,.header button:hover {
+  background-color: rgba(0,0,0,0.2);
+}
+.header button.empty{
+  color: #fff;
+}
+.header .headLinkText span {
+  display: none;
+}
 .header .headLink {
   height: 100%;
   width: 48px;
@@ -123,6 +132,14 @@ header {
 @media (min-width: 800px) {
   .header {
     width: 85%;
+  }
+}
+@media (min-width: 1000px) {
+  .header .headLinkText .icon {
+    display: none;
+  }
+  .header .headLinkText span {
+    display: block;
   }
 }
 /* @media (min-width: 1900px) {

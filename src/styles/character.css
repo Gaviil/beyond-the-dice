@@ -434,6 +434,9 @@ input[type='number'].updateHp {
 .containerCharacterView .tab {
   display: none;
 }
+.containerHisto .tab.tabText {
+  display: none;
+}
 @media (min-width: 800px) {
   .inventory {
     display: block;
@@ -547,6 +550,12 @@ input[type='number'].updateHp {
   .line.multiLine {
     display: flex;
     flex-direction: row;
+  }
+  .containerHisto .tab.tabText {
+    display: inline-block;
+  }
+  .containerHisto .tab.tabIcon {
+    display: none;
   }
 }
 @media (min-width: 2000px) {

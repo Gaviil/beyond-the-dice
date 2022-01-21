@@ -26,7 +26,7 @@
 [data-theme='dark'] .tutoCreation span, [data-theme='dark'] .tutoCreation p {
   color: #fff
 }
-[data-theme='dark'] .dropdown button, [data-theme='dark'] button:not(.empty) {
+[data-theme='dark'] .dropdown button {
   background-color: var(--second-dark);
 }
 [data-theme='dark'] .switch label .lever {

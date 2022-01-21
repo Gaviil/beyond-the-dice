@@ -10,7 +10,7 @@ import logo from '../assets/Images/logo150.png';
 import {Link} from "react-router-dom";
 import { ChevronDownIcon } from '@heroicons/react/solid'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
+import { faSun, faMoon, faNewspaper } from '@fortawesome/free-solid-svg-icons'
 import { faTwitter } from "@fortawesome/free-brands-svg-icons"
 
 const HeaderBar = (props) => {
@@ -30,10 +30,13 @@ const HeaderBar = (props) => {
           <Link
             className='headLinkText'
             to={`/news`}>
-            {i18next.t('news')}
+            <span>
+              {i18next.t('news')}
+            </span>
+            <FontAwesomeIcon className='icon' icon={faNewspaper}/>  
           </Link>
           <button
-            className='main'
+            className='empty'
             onClick={async () => {
               user.theme = user.theme === 'dark' ? 'light' : 'dark';
               setTheme(user.theme);

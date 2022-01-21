@@ -8,7 +8,7 @@ import { EyeOffIcon } from '@heroicons/react/outline'
 import {isDesktop, isMobile} from "react-device-detect";
 import {getLabelDice} from '../utils/dice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHandPointRight } from '@fortawesome/free-solid-svg-icons'
+import { faDiceD20, faSyncAlt, faHandPointRight } from '@fortawesome/free-solid-svg-icons'
 
 const cleanDuplicate = (arrayRoll, userUid, campaignUserUidDm, diceLoaded = 10) => {
 
@@ -76,7 +76,7 @@ const DiceHistorical = (props) => {
         <div className='tabsDetails'>
           <ul className='tabsContainer'>
             <li
-              className={`tab ${view === 'dice' ? 'active' : ''}`}
+              className={`tab tabText ${view === 'dice' ? 'active' : ''}`}
               onClick={() => {
                 setView('dice');
               }}  
@@ -84,28 +84,42 @@ const DiceHistorical = (props) => {
               {i18next.t('dice')}
             </li>
             <li
-              className={`tab ${view === 'update' ? 'active' : ''}`}
+              className={`tab tabText ${view === 'update' ? 'active' : ''}`}
               onClick={() => {
                 setView('update');
               }}  
             >
               {i18next.t('update')}
             </li>
+            <li
+              className={`tab tabIcon ${view === 'dice' ? 'active' : ''}`}
+              onClick={() => {
+                setView('dice');
+              }}  
+            >
+              <FontAwesomeIcon icon={faDiceD20}/>
+            </li>
+            <li
+              className={`tab tabIcon ${view === 'update' ? 'active' : ''}`}
+              onClick={() => {
+                setView('update');
+              }}  
+            >
+              <FontAwesomeIcon icon={faSyncAlt}/>
+            </li>
           </ul>
         </div>
       </div>
       <div className='headerHisto'>
         <div>
-          {limitHisto <= diceHistorical.length && (
-            <button
-              className="empty"
-              onClick={() => {
-                setLimitHisto(limitHisto + 10);
-              }}
-            >
-              {i18next.t('load more')}
-            </button>
-          )}
+          <button
+            className="empty"
+            onClick={() => {
+              setLimitHisto(limitHisto + 10);
+            }}
+          >
+            {i18next.t('load more')}
+          </button>
         </div>
         <div className="switch">
           <label>
