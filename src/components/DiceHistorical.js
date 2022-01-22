@@ -160,6 +160,7 @@ const DiceHistorical = (props) => {
                 />
               )
             }
+            return null;
           })
         )}
         {diceHistorical.length === 0 && (
