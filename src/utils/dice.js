@@ -48,7 +48,7 @@ export const getRoll = (max, uidUserDmCampaign, character, user ,stat, hideRollS
  * @param  {{}} stat Json of the current stat rolled
  * @returns {{}} Json with all data to send at Firestore
  */
-export const getUpdateJson = (newValue, uidUserDmCampaign, character, user ,stat) => {
+const getUpdateJson = (newValue, uidUserDmCampaign, character, user ,stat) => {
 
     const isDm = uidUserDmCampaign === user.uid;
     const statRoll = { ...stat };
@@ -141,6 +141,7 @@ export const generateUpdateHisto = (newCharacterData, character, campaign, user)
   const statUpdate = {};
   let skillLoop = {};
   let skillWithCurrentValue = null;
+  let itemWithCurrentValue = null;
   for (let i = 0; i < newCharacterData.skills.length; i+=1) {
     skillLoop = newCharacterData.skills[i];
     skillWithCurrentValue = character.skills.find(skill => skill.label === skillLoop.label);
@@ -167,6 +168,19 @@ export const generateUpdateHisto = (newCharacterData, character, campaign, user)
   }
   if(newCharacterData.currency && newCharacterData.currency.gold !== character.currency.gold) {
     newUpdateHisto.push(getUpdateJson(newCharacterData.currency.gold,campaign.idUserDm, character, user, {label: 'currency.gold', value: character.currency.gold}));
+  }
+  for (let i = 0; i < newCharacterData.inventory.length; i+=1) {
+    // skillLoop = newCharacterData.skills[i];
+    itemWithCurrentValue = character.inventory.find(item => item.name === newCharacterData.inventory[i].name);
+    if(itemWithCurrentValue) {
+      console.log(newCharacterData.inventory[i].number !== itemWithCurrentValue.number);
+      if(newCharacterData.inventory[i].number !== itemWithCurrentValue.number) {
+        
+        statUpdate.label = `${newCharacterData.inventory[i].type === 'alchemy' && newCharacterData.inventory[i].default ? i18next.t(`inventoryItem.${newCharacterData.inventory[i].name}`) : newCharacterData.inventory[i].name}`
+        statUpdate.value = itemWithCurrentValue.number
+        newUpdateHisto.push(getUpdateJson(newCharacterData.inventory[i].number,campaign.idUserDm, character, user, statUpdate));
+      }
+    }
   }
   return newUpdateHisto;
 }

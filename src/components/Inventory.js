@@ -1,21 +1,29 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import "firebase/analytics";
 import "firebase/auth";
 import "firebase/firestore";
 import CharacterContext from '../context/CharacterContext';
+import UserContext from '../context/UserContext';
+import CampaignContext from '../context/CampaignContext';
 import '../styles/inventory.css'
 import { PencilIcon, TrashIcon, CheckIcon } from '@heroicons/react/solid'
 import i18next from 'i18next';
 import {dynamicSortInventory} from '../utils/sort';
+import {generateUpdateHisto} from '../utils/dice';
 
 const Inventory = (props) => {
+  const {user} = useContext(UserContext);
   const {character} = useContext(CharacterContext);
-  const [itemName, setItemName] = useState("")
+  const {campaign} = useContext(CampaignContext);  const [itemName, setItemName] = useState("")
   const [numberOfnewItem, setNumberOfnewItem] = useState()
   const [lineToUpdateInv, setLineToUpdateInv] = useState(null)
   const [updateItem, setUpdateItem] = useState(null)
+  const [defaultDataCharacter, setDefaultDataCharacter] = useState({});
 
-
+  useEffect( () => {
+    setDefaultDataCharacter(JSON.parse(JSON.stringify({...character})))
+  }, [character]); 
+  
   const createItem = () => {
     const newItem = {
       name: itemName,
@@ -32,7 +40,7 @@ const Inventory = (props) => {
     }
     setLineToUpdateInv(null)
     character.inventory[index] = updatedItem;
-    props.updateInventory(character);
+    props.updateInventory(character, generateUpdateHisto(character,defaultDataCharacter,campaign,user));
   } 
 
   const removeItem = (itemIndex) => {

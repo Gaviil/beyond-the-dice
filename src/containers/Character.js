@@ -296,7 +296,6 @@ const Character = (props) => {
                 ...characterUpdated,
               });
               updateFirestoreCharacter(characterUpdated);
-              console.log(newRollForUpdate);
               sendNewRoll(newRollForUpdate);
             }}
           />
@@ -583,7 +582,10 @@ const Character = (props) => {
                 {view === 'inventory' && (
                   <div className='containerInfo'>
                     <Inventory
-                      updateInventory={(characterWithNewInventory) => {
+                      updateInventory={(characterWithNewInventory, newRollForUpdate) => {
+                        if(newRollForUpdate) {
+                          sendNewRoll(newRollForUpdate);
+                        }
                         updateCharacter({
                           ...characterWithNewInventory,
                         });
