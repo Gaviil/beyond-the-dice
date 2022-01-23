@@ -4,10 +4,11 @@ import {dynamicSortWithTraduction} from '../utils/sort';
 import {getRoll} from '../utils/dice';
 
 const Skills = (props) => {
+  const skillList = props.skills.filter(skill => !skill.isSpecial);
   return (
     <ul>
         {
-        props.skills.sort(dynamicSortWithTraduction("label", 'skills')).map((skill,i) => (
+        skillList.sort(dynamicSortWithTraduction("label", 'skills')).map((skill,i) => (
           <li
             style={{cursor: props.campaign.clickStat ? 'pointer' : 'default'}}
             key={i}

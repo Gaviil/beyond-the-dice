@@ -120,10 +120,19 @@ const Characters = (props) => {
       characteristics: [...characterData.characteristics],
       isAlchemist: characterData.isAlchemist,
       isMage: characterData.isMage,
+      isDeathMage: characterData.isDeathMage,
       inventory: [],
       picture: null,
       active: true
     };
+    if(characterData.isDeathMage) {
+      data.skills.push({
+        isCustom: false,
+        label: "deathMagic",
+        value: 0,
+        isSpecial: true
+      });
+    }
     if(characterData.isAlchemist) {
       data.alchemy = alchemy;
       data.inventory.push({

@@ -19,6 +19,7 @@ const NewCharacterForm = (props) => {
   const [description, setDescription] = useState('');
   const [isAlchemist, setIsAlchemist] = useState(false);
   const [isMage, setIsMage] = useState(false);
+  const [isDeathMage, setIsDeathMage] = useState(false);
   const {createCharacter} = props;
   const skillsRef = useRef(null);
   const [generationCharacterClassic, setGenerationCharacterClassic] = useState(true)
@@ -81,8 +82,8 @@ const NewCharacterForm = (props) => {
                 skills: skillsCalculated,
                 inventory: [],
                 isAlchemist: isAlchemist,
-                isMage: isMage
-
+                isMage: isMage,
+                isDeathMage: isDeathMage
               });
               setName('');
               setDescription('');
@@ -142,6 +143,13 @@ const NewCharacterForm = (props) => {
             label={i18next.t('mage.isMage')}
             update={(val) => {
               setIsMage(val);
+            }}
+          />
+          <CheckboxSwitch
+            isChecked={isDeathMage}
+            label={i18next.t('deathMagic.isDeathMage')}
+            update={(val) => {
+              setIsDeathMage(val);
             }}
           />
         </div>

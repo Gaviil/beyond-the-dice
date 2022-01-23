@@ -76,7 +76,8 @@
     "lock": "Serrures et pièges",
     "heal": "Soigner",
     "survive": "Survie",
-    "steal": "Voler"
+    "steal": "Voler",
+    "deathMagic": "Magie de la mort"
   },
   "skillsHelp": {
     "craft": "Permet de fabriquer des objets manuellement, pour peu que l’on dispose du matériel et des outils nécessaires.",
@@ -218,5 +219,24 @@
     "gold": "Or",
     "silver": "Argent",
     "bronze": "Bronze"
+  },
+  "deathMagic": {
+    "title": "Magie de la mort",
+    "isDeathMageEdit": " utilise la magie de la mort",
+    "isDeathMage": "Le personnage utilise la magie de la mort",
+    "spellName1": "Blesser une personne",
+    "spellDesc1": "Le magicien désigne une personne qu’il peut voir. Cette dernière est aussitôt assaillie par les mânes du fleuve des morts et perd 1d4+1 points de vie. Si ce sort est lancé de nuit ou à proximité d’un champ de bataille, la victime perd 1d6+2 points de vie. Il est impossible de tuer une personne avec ce sort",
+    "spellName2": "Convoquer et parler avec un mort",
+    "spellDesc2": "Ce sort ne fonctionne que sur le lieu de décès du défunt. Pendant une heure, le personnage peut s’entretenir avec un mort précis, qui revient sous la forme de fantôme. Les autres personnes voient le fantôme mais ne l’entendent pas. Seul le magicien est en mesure de communiquer avec le défunt.",
+    "spellName3": "Demander un conseil aux esprits",
+    "spellDesc3": "Ce sort est plus global que Convoquer et parler avec un mort. Il fait appel à la communauté des âmes défuntes, qui répondent collectivement au magicien. Seul ce dernier est en mesure de voir les esprits qui l 'entourent, les autres personnes ne ressentant qu’une aura oppressante. Les esprits ne soufflent jamais une solution directement mais orientent correctement les options du lanceur de sort.",
+    "spellName4": "Envoyer des cauchemars",
+    "spellDesc4": "Le magicien choisit jusqu’à cinq personnes qu’il connaît, même légèrement. Pendant un mois, ces dernières sont hantées chaque nuit par des mauvais rêves en rapport avec leurs actions passées inavouables. Trop fatiguées, elles perdent en réactivité et en intelligence. Tous leurs jets se font à -20 %.",
+    "spellName5": "Maudire une personne",
+    "spellDesc5": "Le magicien choisit une personne dont il connaît le nom. Pendant les cinq prochains jours, cette dernière échoue à tout jet de compétence dont le résultat est pair.",
+    "spellName6": "Réveiller les esprits",
+    "spellDesc6": "Ce sort est une variante plus puissante de «Demander un conseil aux esprits». Les âmes mortes se matérialisent tout autour du personnage et figent d’effroi toutes les personnes qui ne sont pas magiciennes de la mort. Un jet sous Intelligence x 3 est nécessaire pour surmonter sa peur.",
+    "spellName7": "Réveiller un cadavre",
+    "spellDesc7": "Le magicien réveille un cadavre pendant une nuit complète. Jusqu’au lever du jour, le mort sera en pleine possession de ses moyens et de son intelligence il a également conscience de son statut de mort revenu temporairement parmi les vivants. Il pourra répondre au personnage et même accomplir les missions qui lui sont confiées mais peut tout à fait négocier ce service. À l’aube, le mort s’écroule où il se trouve pour reprendre le sommeil qu’il croyait éternel. Ce sort ne fonctionne que sur le lieu de décès du défunt.Pendant une heure, le personnage peut s’ entretenir avec un mort précis, qui revient sous la forme de fantôme.Les autres personnes voient le fantôme mais ne l’ entendent pas.Seul le magicien est en mesure de communiquer avec le défunt."
   }
 }

@@ -36,7 +36,9 @@ import {
   UsersIcon,
   BeakerIcon,
   SparklesIcon
-} from '@heroicons/react/outline'
+} from '@heroicons/react/outline';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSkull } from '@fortawesome/free-solid-svg-icons'
 import {dynamicSortWithTraduction} from '../utils/sort';
 import {getRoll, getMagicCard, generateUpdateHisto} from '../utils/dice';
 import {
@@ -55,6 +57,7 @@ import Curency from '../components/Curency';
 import Hp from '../components/Hp';
 import MagicCard from '../components/MagicCard';
 import MagicCardResume from '../components/MagicCardResume';
+import DeathMagic from '../components/DeathMagic';
 
 init();
 const db = firebase.firestore();
@@ -274,6 +277,20 @@ const Character = (props) => {
     }
   }
 
+  const rollDiceDeathMagic = (skill) => {
+    const newRoll = getRoll(100,campaign.idUserDm, character, user, skill, hideRollSwitch, 'skills');
+    if(newRoll.value <= skill.value || skill.value <= 10) {
+      character.skills.find(skill => skill.label === 'deathMagic' && skill.isCustom === false).value = 0;
+    } else {
+      character.skills.find(skill => skill.label === 'deathMagic' && skill.isCustom === false).value -= 10;
+    }
+    sendNewRoll(newRoll);
+    updateCharacter({
+      ...character,
+    });
+    updateFirestoreCharacter(character);
+  }
+  console.log(character.skills);
   if(character) {
     return (
       <Switch>
@@ -350,6 +367,16 @@ const Character = (props) => {
                         }}  
                       >
                         {i18next.t('mage.title')}
+                      </li>
+                    )}
+                    {character.isDeathMage && (
+                      <li
+                        className={`tab ${view === 'deathMagic' ? 'active' : ''}`}
+                        onClick={() => {
+                          setView('deathMagic');
+                        }}  
+                      >
+                        {i18next.t('deathMagic.title')}
                       </li>
                     )}
                     <li
@@ -571,6 +598,7 @@ const Character = (props) => {
                             user={user}
                             hideRollSwitch={hideRollSwitch}
                             sendNewRoll={(roll) => {
+                              console.log(roll);
                               sendNewRoll(roll)
                             }}
                           />
@@ -627,6 +655,23 @@ const Character = (props) => {
                           ...character,
                         });
                         updateFirestoreCharacter(character);
+                      }}
+                    />
+                  </div>
+                )}
+                {view === 'deathMagic' && (
+                  <div className='containerInfo'>
+                    <DeathMagic 
+                      skill={character.skills.filter(skill => !skill.isCustom && skill.label === 'deathMagic')[0]}
+                      updateValue={(val) => {
+                        character.skills.find(skill => !skill.isCustom && skill.label === 'deathMagic').value = val;
+                        updateCharacter({
+                          ...character,
+                        });
+                        updateFirestoreCharacter(character);
+                      }}
+                      rollDice={(skill) => {
+                        rollDiceDeathMagic(skill);
                       }}
                     />
                   </div>
