@@ -37,8 +37,8 @@ import {
   BeakerIcon,
   SparklesIcon
 } from '@heroicons/react/outline';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSkull } from '@fortawesome/free-solid-svg-icons'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faSkull } from '@fortawesome/free-solid-svg-icons'
 import {dynamicSortWithTraduction} from '../utils/sort';
 import {getRoll, getMagicCard, generateUpdateHisto} from '../utils/dice';
 import {
