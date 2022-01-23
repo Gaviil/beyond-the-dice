@@ -81,15 +81,25 @@
 .myhistoRow .histoLeftSide span:first-child {
   color: #eaeaea;
 }
-.histoRow .histoLeftSide .updateBlock span ,.myhistoRow .histoLeftSide .updateBlock span {
+.myhistoRow .histoLeftSide .updateBlock span {
   color: #eaeaea;
   font-style: normal;
   font-weight: bold;
   font-size: 1em;
 }
-.histoRow .histoLeftSide .updateBlock .iconUpdate, .myhistoRow .histoLeftSide .updateBlock .iconUpdate {
+.histoRow .histoLeftSide .updateBlock span {
+  color: #1b1d29;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1em;
+}
+.myhistoRow .histoLeftSide .updateBlock .iconUpdate {
   margin: 0 0.5rem;
   color: #eaeaea;
+}
+.histoRow .histoLeftSide .updateBlock .iconUpdate {
+  margin: 0 0.5rem;
+  color: #1b1d29;
 }
 .histoLeftSide span:first-child {
   font-size: 1em;
@@ -180,11 +190,14 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   margin-top: 0.5rem;
 }
 .headerHisto:first-child {
-  align-self: flex-end;
   margin-top: 0;
+}
+.headerHisto:nth-child(2) {
+  justify-content: flex-end;
 }
 .containerRow {
   display: flex;
@@ -218,10 +231,6 @@
   padding: 0;
 }
 @media (min-width: 1000px) {
-  .histoView {
-    /* max-height: 800px; */
-    /* background-color: #f3f3f3; */
-  }
   .listHisto {
     margin-bottom: 0px;
   }
