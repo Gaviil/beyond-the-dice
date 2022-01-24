@@ -315,10 +315,9 @@ table tr td {
 .containerCharacterView .tabsContainer {
   display: flex;
   flex-direction: row;
-  /* overflow: hidden; */
   border: none;
   position: relative;
-  margin: 0 3rem;
+  /* margin: 0 3rem; */
 }
 .memberCompany {
   display: flex;
@@ -528,6 +527,12 @@ input[type='number'].updateHp {
     left: -10px;
     box-shadow: 5px -5px 0 #1b1d29;
   }
+  .containerHisto .tab.tabText {
+    display: inline-block;
+  }
+  .containerHisto .tab.tabIcon {
+    display: none;
+  }
 }
 @media (min-width: 1500px) {
   /* .characterContainer {
@@ -550,12 +555,6 @@ input[type='number'].updateHp {
   .line.multiLine {
     display: flex;
     flex-direction: row;
-  }
-  .containerHisto .tab.tabText {
-    display: inline-block;
-  }
-  .containerHisto .tab.tabIcon {
-    display: none;
   }
 }
 @media (min-width: 2000px) {

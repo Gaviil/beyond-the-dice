@@ -159,6 +159,9 @@ ul {
 input[type=checkbox] {
   display: none;
 }
+.switch {
+  height: fit-content;
+}
 .switch label {
   cursor: pointer;
   display: flex;

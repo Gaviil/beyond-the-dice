@@ -109,18 +109,6 @@ const DiceHistorical = (props) => {
             </li>
           </ul>
         </div>
-      </div>
-      <div className='headerHisto'>
-        <div>
-          <button
-            className="empty"
-            onClick={() => {
-              setLimitHisto(limitHisto + 10);
-            }}
-          >
-            {i18next.t('load more')}
-          </button>
-        </div>
         <div className="switch">
           <label>
             <input
@@ -133,6 +121,18 @@ const DiceHistorical = (props) => {
             <span className="lever"></span>
             {i18next.t('hide roll')}
           </label>
+        </div>
+      </div>
+      <div className='headerHisto'>
+        <div>
+          <button
+            className="empty"
+            onClick={() => {
+              setLimitHisto(limitHisto + 10);
+            }}
+          >
+            {i18next.t('load more')}
+          </button>
         </div>
       </div>
       <ul className="listHisto">
