@@ -70,7 +70,6 @@ const DmCompany = (props) => {
               key={i}
               member={compagnyMember}
               select={(select) => {
-                console.log('setmember', select)
                 setMemberSelected(select)
               }}
             />

@@ -2,7 +2,7 @@ import i18next from 'i18next';
 import characterGenerationData from '../assets/dataCharacter.json';
 
 export const getNumberOfDiceRoll = (rolls) => {
-  return rolls.filter(roll => roll.diceType !== 'Magic').length;
+  return rolls.filter(roll => roll.diceType !== 'Magic' && roll.diceType !== 'update').length;
 }
 
 export const getPercentOfCriticalSuccess = (rolls) => {
@@ -127,7 +127,7 @@ export const getSessionPlayed = (rolls) => {
   for (let i = 0; i < rolls.length; i += 1) {
     if(dateSaved !== rolls[i].createdAt){
       dateSaved = rolls[i].createdAt;
-      rollThisSession = rolls.filter(roll => roll.createdAt === rolls[i].createdAt);
+      rollThisSession = rolls.filter(roll => roll.createdAt === rolls[i].createdAt && rolls[i].diceType !== 'update');
       if(rollThisSession.length > 3) {
         sessions.push({
           date: dateSaved,
@@ -162,21 +162,24 @@ export const sortRoll = (rollList) => {
 }
 
 export const getMedium = (rollList) => {
-  if(!rollList.length) {
+  const rollListClean = rollList.filter(roll => roll.diceType !== 'Magic' && roll.diceType !== 'update')
+  if(!rollListClean.length) {
     return 0;
   }
   let valueMedium = 0;
-  for (let i = 0; i < rollList.length; i+= 1) {
-    valueMedium += rollList[i].value;
+  for (let i = 0; i < rollListClean.length; i+= 1) {
+    valueMedium += rollListClean[i].value;
   }
-  return (valueMedium / rollList.length).toFixed(2) 
+  return (valueMedium / rollListClean.length).toFixed(2) 
 }
 
 export const getMedian = (rollList) => {
-  if(!rollList.length) {
+  const rollListClean = rollList.filter(roll => roll.diceType !== 'Magic' && roll.diceType !== 'update')
+
+  if(!rollListClean.length) {
     return 0;
   }
-  var m = sortRoll(rollList);
+  var m = sortRoll(rollListClean);
 
   var middle = Math.floor((m.length - 1) / 2);
   if (m.length % 2) {

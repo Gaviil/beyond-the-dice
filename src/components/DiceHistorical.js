@@ -266,11 +266,9 @@ const ChatBubbleUpdate = (props) => {
                 </span>
               </div>
             )}
-            {campaign.idUserDm === user.uid && (
-              <span>
-                {histo.userName}
-              </span>
-            )}
+            <span>
+              {histo.userName}
+            </span>
           </div>
         </li>
       </div>

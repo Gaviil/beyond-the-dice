@@ -48,7 +48,8 @@
 }
 
 [data-theme='dark'] .skillsContainer .active:after,[data-theme='dark'] .skillsContainer .active:before {
-  background-color: var(--main-dark);
+  /* background-color: var(--main-dark); */
+  background-color: var(--second-dark);
 }
 
 [data-theme='dark'] input[type=submit].disabled,[data-theme='dark'] button.disabled {
@@ -88,14 +89,14 @@
 [data-theme='dark'] .hpCharacter input[type='number']:focus {
   background-color: var(--second-dark);
 }
-[data-theme='dark'] .blockCoin input[type='number'] {
+[data-theme='dark'] .blockCoin input[type='number'], [data-theme='dark'] .blockSkill input[type='number'] {
   background-color: var(--main-dark);
   border-color: var(--main-dark);
 }
-[data-theme='dark'] .blockCoin:hover input[type='number'] {
+[data-theme='dark'] .blockCoin:hover input[type='number'], [data-theme='dark'] .blockSkill:hover input[type='number'] {
   background-color: var(--second-dark);
 }
-[data-theme='dark'] .blockCoin input[type='number']:focus {
+[data-theme='dark'] .blockCoin input[type='number']:focus, [data-theme='dark'] .blockSkill input[type='number']:focus {
   background-color: var(--second-dark);
 }
 [data-theme='dark'] .hpCharacter .hpBarEmpty {
@@ -245,4 +246,13 @@
 }
 [data-theme='dark'] .myhistoRow .histoLeftSide .updateBlock .iconUpdate,[data-theme='dark'] .histoRow .histoLeftSide .updateBlock .iconUpdate {
   color: var(--grey-text-color);
+}
+[data-theme='dark'] .ReactModal__Content {
+  background-color: var(--second-dark) !important;
+}
+[data-theme='dark'] .ReactModal__Content svg{
+  color: var(--grey-text-color);
+}
+[data-theme='dark'] .Overlay {
+  background-color: rgba(138, 138, 138, 0.5);
 }

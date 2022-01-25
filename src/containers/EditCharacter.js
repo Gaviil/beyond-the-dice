@@ -274,7 +274,6 @@ const EditCharacter = (props) => {
                     value={skill.value}
                     onChange={(e) => {
                       duplicateCharacter.skills[i].value = parseInt(e.target.value);
-                      console.log(character.skills[i])
                       setDuplicateCharacter({...duplicateCharacter});
                     }}
                   />

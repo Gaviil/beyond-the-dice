@@ -35,7 +35,7 @@ const ReceiptView = (props) => {
       <h3>{i18next.t('alchemy.receiptTitle')}</h3>
       <div>
         {props.receipt.map((rec, i) => (
-          <div className='containerReceipt'>
+          <div key={i} className='containerReceipt'>
             <div
               className={`lineReceiptAlchemy ${i%2 ? 'alt' : ''} click
               `}
@@ -138,6 +138,7 @@ const Potion = (props) => {
       <div>
         {props.potion.map((pot, i) => (
           <div
+            key={i}
             className={`linePotionAlchemy ${i%2 ? 'alt' : ''} ${pot.number > 0 ? 'click': ''}`}
             onClick={() => {
               if(pot.number > 0 && (pot.name !== 'bottle')) {

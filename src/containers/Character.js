@@ -115,7 +115,6 @@ const Character = (props) => {
   }
 
   const sendNewRoll = async (newRoll) => {
-    console.log(newRoll)
     let newList = [
       ...rollList
     ];
@@ -232,7 +231,8 @@ const Character = (props) => {
         label: 'createPotion',
         value: parseInt(receipt.difficulty, 10)
       }
-      const newRoll = getRoll(100,campaign.idUserDm, character, user, statLaunch, hideRollSwitch, "alchemy");
+      let updates = [];
+      let newRoll = getRoll(100,campaign.idUserDm, character, user, statLaunch, hideRollSwitch, "alchemy");
       if(newRoll.value <= receipt.difficulty) {
         const updatedCharacter = {...character};
         const findPotion = updatedCharacter.inventory.find(potion => potion.name === receipt.name && potion.type === 'alchemy')
@@ -247,10 +247,11 @@ const Character = (props) => {
           })
         }
         updatedCharacter.inventory.find((item) => item.name === 'bottle' && item.default).number -= 1;
+        updates = generateUpdateHisto(updatedCharacter, defaultDataCharacter,campaign,user);
         updateCharacter({...updatedCharacter})
         updateFirestoreCharacter(updatedCharacter);
       }
-      sendNewRoll(newRoll);
+      sendNewRoll([newRoll, ...updates]);
   }
 
   const updateCurency = (type, value) => {
@@ -283,6 +284,7 @@ const Character = (props) => {
       character.skills.find(skill => skill.label === 'deathMagic' && skill.isCustom === false).value -= 10;
     }
     sendNewRoll(newRoll);
+    sendNewRoll(generateUpdateHisto(character, defaultDataCharacter,campaign,user));
     updateCharacter({
       ...character,
     });
@@ -596,7 +598,6 @@ const Character = (props) => {
                             user={user}
                             hideRollSwitch={hideRollSwitch}
                             sendNewRoll={(roll) => {
-                              console.log(roll);
                               sendNewRoll(roll)
                             }}
                           />
@@ -663,6 +664,7 @@ const Character = (props) => {
                       skill={character.skills.filter(skill => !skill.isCustom && skill.label === 'deathMagic')[0]}
                       updateValue={(val) => {
                         character.skills.find(skill => !skill.isCustom && skill.label === 'deathMagic').value = val;
+                        sendNewRoll(generateUpdateHisto(character, defaultDataCharacter,campaign,user))
                         updateCharacter({
                           ...character,
                         });

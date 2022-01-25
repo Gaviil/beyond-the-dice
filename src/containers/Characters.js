@@ -72,14 +72,9 @@ const Characters = (props) => {
   const {user} = useContext(UserContext)
   const {campaign, updateCampaign} = useContext(CampaignContext)
   const campaignIdUsed = campaign.uid || campaignIdUrl;
-  
-  const contextValue = {
-    character,
-    updateCharacter: setCharacter
-  }
-  let subtitle;
+  const contextValue = { character, updateCharacter: setCharacter}
   const [modalIsOpen, setIsOpen] = React.useState(false);
-
+  
   function openModal() {
     setIsOpen(true);
   }
@@ -314,14 +309,14 @@ const Characters = (props) => {
                       </li>
                     ))}
                     <li>
-                      <a
+                      <div
                         className={"link click"}
                         onClick={() => {
                           openModal()
                         }}
                       >
-                        <Picture character={{picture: null, framePicture: 'https://firebasestorage.googleapis.com/v0/b/beyondthedice-cfc1b.appspot.com/o/frame%2Fadd.png?alt=media&token=ea758059-0440-4d3a-9993-c24c0572a24f'}}/>
-                      </a>
+                        <Picture character={{picture: null, framePicture: 'https://firebasestorage.googleapis.com/v0/b/beyondthedice-cfc1b.appspot.com/o/frame%2Fadd.png?alt=media&token=c6f8f6ee-ec14-4671-9208-ec3f8fd09f25'}}/>
+                      </div>
                     </li>
                   </ul>
                 </div>
@@ -333,7 +328,7 @@ const Characters = (props) => {
                     overlayClassName="Overlay"
                     contentLabel="Example Modal"
                   >
-                    <FontAwesomeIcon onClick={() => closeModal()} icon={faTimes} style={{position: 'absolute', right: 20, top: 20}}/>
+                    <FontAwesomeIcon onClick={() => closeModal()} className='click' icon={faTimes} style={{position: 'absolute', right: 20, top: 20}}/>
                     <NewCharacterForm
                       className='newCharacterForm'
                       createCharacter={(character) => {createCharacter(character)}}

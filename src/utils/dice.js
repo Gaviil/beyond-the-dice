@@ -12,7 +12,6 @@ import i18next from 'i18next';
  * @returns {{}} Json with all data to send at Firestore
  */
 export const getRoll = (max, uidUserDmCampaign, character, user ,stat, hideRollSwitch = false, prefixTradStat) => {
-  console.log(stat);
     const randomValue = Math.floor(Math.random() * max) + 1;
     const isDm = uidUserDmCampaign === user.uid;
     const statRoll = { ...stat };
@@ -136,22 +135,35 @@ export const getMagicCard = (character, user) => {
  * @param  {JSON} user user currently connected
  */
 export const generateUpdateHisto = (newCharacterData, character, campaign, user) => {
-  console.log(newCharacterData, character)
   const newUpdateHisto = [];
   const statUpdate = {};
   let skillLoop = {};
   let skillWithCurrentValue = null;
   let itemWithCurrentValue = null;
+  let skillRemove = null;
+  let itemRemove = null;
+  // new and update
   for (let i = 0; i < newCharacterData.skills.length; i+=1) {
     skillLoop = newCharacterData.skills[i];
     skillWithCurrentValue = character.skills.find(skill => skill.label === skillLoop.label);
     if(skillWithCurrentValue) {
-      console.log(skillLoop.value !== skillWithCurrentValue.value);
       if(skillLoop.value !== skillWithCurrentValue.value) {
         statUpdate.label = skillLoop.isCustom ? skillLoop.label : `skills.${skillLoop.label}`
         statUpdate.value = skillWithCurrentValue.value
         newUpdateHisto.push(getUpdateJson(skillLoop.value,campaign.idUserDm, character, user, statUpdate));
       }
+    } else {
+      newUpdateHisto.push(getUpdateJson(skillLoop.value,campaign.idUserDm, character, user, {label: skillLoop.label, value: 0}));  
+    }
+  }
+  // remove
+  for (let i = 0; i < character.skills.length; i+=1) {
+    skillLoop = character.skills[i];
+    skillRemove = newCharacterData.skills.find(skill => skill.label === skillLoop.label);
+    if(!skillRemove) {
+      statUpdate.label = skillLoop.isCustom ? skillLoop.label : `skills.${skillLoop.label}`
+      statUpdate.value = skillLoop.value
+      newUpdateHisto.push(getUpdateJson(0,campaign.idUserDm, character, user, statUpdate));
     }
   }
   if(newCharacterData.currentHp !== character.currentHp) {
@@ -169,17 +181,27 @@ export const generateUpdateHisto = (newCharacterData, character, campaign, user)
   if(newCharacterData.currency && newCharacterData.currency.gold !== character.currency.gold) {
     newUpdateHisto.push(getUpdateJson(newCharacterData.currency.gold,campaign.idUserDm, character, user, {label: 'currency.gold', value: character.currency.gold}));
   }
+  // new and update
   for (let i = 0; i < newCharacterData.inventory.length; i+=1) {
-    // skillLoop = newCharacterData.skills[i];
     itemWithCurrentValue = character.inventory.find(item => item.name === newCharacterData.inventory[i].name);
     if(itemWithCurrentValue) {
-      console.log(newCharacterData.inventory[i].number !== itemWithCurrentValue.number);
       if(newCharacterData.inventory[i].number !== itemWithCurrentValue.number) {
-        
         statUpdate.label = `${newCharacterData.inventory[i].type === 'alchemy' && newCharacterData.inventory[i].default ? i18next.t(`inventoryItem.${newCharacterData.inventory[i].name}`) : newCharacterData.inventory[i].name}`
         statUpdate.value = itemWithCurrentValue.number
         newUpdateHisto.push(getUpdateJson(newCharacterData.inventory[i].number,campaign.idUserDm, character, user, statUpdate));
       }
+    } else {
+      newUpdateHisto.push(getUpdateJson(newCharacterData.inventory[i].number,campaign.idUserDm, character, user, {label: newCharacterData.inventory[i].name, value: 0}));  
+    }
+  }
+  // remove
+  for (let i = 0; i < character.inventory.length; i+=1) {
+    itemRemove = newCharacterData.inventory.find(item => item.name === character.inventory[i].name);
+    // remove Alchemy, need to fix
+    if(!itemRemove) {
+      statUpdate.label = `${character.inventory[i].type === 'alchemy' && character.inventory[i].default ? i18next.t(`inventoryItem.${character.inventory[i].name}`) : character.inventory[i].name}`
+      statUpdate.value = character.inventory[i].number
+      newUpdateHisto.push(getUpdateJson(0,campaign.idUserDm, character, user, statUpdate));
     }
   }
   return newUpdateHisto;

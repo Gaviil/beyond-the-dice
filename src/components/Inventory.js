@@ -30,7 +30,7 @@ const Inventory = (props) => {
       number: numberOfnewItem || 1,
     };
     character.inventory.push(newItem);
-    props.updateInventory(character);
+    props.updateInventory(character, generateUpdateHisto(character,defaultDataCharacter,campaign,user));
   }
   
   const updateItemNumber = async (item, index) => {
@@ -45,7 +45,7 @@ const Inventory = (props) => {
 
   const removeItem = (itemIndex) => {
     character.inventory.splice(itemIndex, 1);
-    props.updateInventory(character);
+    props.updateInventory(character, generateUpdateHisto(character,defaultDataCharacter,campaign,user));
   }
 
   if(character.uid) {

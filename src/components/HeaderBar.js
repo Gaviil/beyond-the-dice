@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useContext, useState} from 'react';
 import firebase from "firebase/app";
 import "firebase/analytics";
 import "firebase/auth";
@@ -50,14 +50,14 @@ const HeaderBar = (props) => {
           >
             <FontAwesomeIcon icon={theme === 'dark' ? faSun : faMoon}/>
           </button>
-          <a
-            className={"headLink empty"}
+          <div
+            className={"headLink empty click"}
             onClick={() => {
               window.open('https://twitter.com/praythedice', '_blank');
             }}
           >
             <FontAwesomeIcon icon={faTwitter} />
-          </a>
+          </div>
           <div className="dropdown">
             <button className={'dropbtn main'}>
               {user.name} <ChevronDownIcon style={{height:15, marginLeft: 2}}/>

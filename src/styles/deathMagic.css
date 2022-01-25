@@ -1,3 +1,6 @@
+.deathMagicContainer {
+  padding-bottom: 1rem;
+}
 .deathMagicContainer div:not(.blockSkill){
   border-bottom: 1px solid #d6d6d6;
 }
