@@ -216,9 +216,9 @@
   },
   "seeMore": "Voir le détail ...",
   "currency": {
-    "gold": "Or",
-    "silver": "Argent",
-    "bronze": "Bronze"
+    "gold": "Pièce d'or",
+    "silver": "Pièce d'Argent",
+    "bronze": "Pièce de bronze"
   },
   "deathMagic": {
     "title": "Magie de la mort",
