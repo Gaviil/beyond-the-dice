@@ -79,7 +79,7 @@ const Statistics = () => {
     }
   }
 
-  const cleanRollList = rollList.filter(roll => roll.diceType !== "Magic");
+  const cleanRollList = rollList.filter(roll => roll.diceType !== "Magic" && roll.diceType !== 'update');
   return (
     <div className='containerStats' id="containerStats">
       {rollList.length > 0 && (
@@ -243,6 +243,7 @@ const StatsGlobal = (props) => {
 const ColumnStatCharacter = (props) => {
   const {member,characterRoll, color} = props;
   if(member && characterRoll) {
+    console.log(characterRoll, getMedium(characterRoll))
     return (
       <div className='tableRow'>
         <div className='blockInfo'>
@@ -344,7 +345,7 @@ const StatsByDate = (props) => {
         {company.map((member, i) => (
           <ColumnStatCharacter
             member={member}
-            characterRoll={rollList.filter(roll => roll.characterId === member.uid)}
+            characterRoll={rollList.filter(roll => roll.diceType === 100 && roll.characterId === member.uid)}
             color={COLORS[i % COLORS.length]}
           />
         ))}

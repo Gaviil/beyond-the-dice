@@ -38,7 +38,7 @@ const Inventory = (props) => {
       ...item,
       number: updateItem !== null || updateItem !== undefined ? updateItem : item.number
     }
-    setLineToUpdateInv(null)
+    setLineToUpdateInv('')
     character.inventory[index] = updatedItem;
     props.updateInventory(character, generateUpdateHisto(character,defaultDataCharacter,campaign,user));
   } 
@@ -103,6 +103,7 @@ const Inventory = (props) => {
                     <button
                       className='optionBtnInv'
                       onClick={() => {
+                        setUpdateItem(item.number)
                         setLineToUpdateInv(i);
                       }}
                     >

@@ -1,3 +1,5 @@
+import i18next from "i18next";
+
 export const sortRoll = (rollList) => {
   return rollList.map(function(v) {
     return v.value;
@@ -42,7 +44,8 @@ export const getSessionPlayed = (rolls) => {
   for (let i = 0; i < rolls.length; i += 1) {
     if(dateSaved !== rolls[i].createdAt){
       dateSaved = rolls[i].createdAt;
-      rollThisSession = rolls.filter(roll => roll.createdAt === rolls[i].createdAt);
+      rollThisSession = rolls.filter(roll => roll.createdAt === rolls[i].createdAt && rolls.diceType !== 'update' && roll.userName !== i18next.t('dm'));
+      console.log(rollThisSession);
       if(rollThisSession.length > 3) {
         sessions.push({
           date: dateSaved,
