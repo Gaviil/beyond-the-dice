@@ -30,7 +30,7 @@
   text-align: center;
 }
 .deathMagicContainer  input[type='number']{
-  /* width: 38px; */
+  width: 38px;
   /* font-size: medium; */
   /* height: 1.5rem; */
   padding: 0.25rem 0.5rem;
