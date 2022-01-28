@@ -61,7 +61,7 @@ const Updates = (props) => {
                   key={i}
                   className='blockLinkUpdate'
                   onClick={() => {
-                    const url = update.title.toLowerCase();
+                    const url = update.url.toLowerCase();
                     history.push(`${match.url}/${url.replaceAll(' ', '-').replaceAll('-:-', '-')}`);
                   }}
                 >

@@ -10,14 +10,16 @@ import "firebase/database";
 import 'firebase/analytics';
 import {init} from '../utils/initFirebase'
 import '../styles/updates.css';
-import { toast } from 'react-toastify';
 import ReactMarkdown from 'react-markdown'
+import {useHistory} from "react-router-dom";
 
 init();
 
 const UpdateDetails = (props) => {
   const [content, setContent] = useState([]);
   let match = useRouteMatch();
+  const history = useHistory();
+
   useEffect(() => {
     firebase.storage().ref("updates").child(`${match.params.newsUrl}.md`).getDownloadURL().then(url => {
       var xhr = new XMLHttpRequest();
@@ -30,7 +32,8 @@ const UpdateDetails = (props) => {
       xhr.send();
     })
     .catch(err => {
-      toast.error('error file', {});  
+      console.log(match);
+      history.push(match.url.replace(match.params.newsUrl, ''));
     })
   });
 
