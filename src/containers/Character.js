@@ -283,8 +283,7 @@ const Character = (props) => {
     } else {
       character.skills.find(skill => skill.label === 'deathMagic' && skill.isCustom === false).value -= 10;
     }
-    sendNewRoll(newRoll);
-    sendNewRoll(generateUpdateHisto(character, defaultDataCharacter,campaign,user));
+    sendNewRoll([newRoll, ...generateUpdateHisto(character, defaultDataCharacter,campaign,user)]);
     updateCharacter({
       ...character,
     });

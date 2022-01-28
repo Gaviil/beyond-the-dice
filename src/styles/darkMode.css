@@ -249,6 +249,7 @@
 }
 [data-theme='dark'] .ReactModal__Content {
   background-color: var(--second-dark) !important;
+  border: 1px solid var(--main-dark) !important;
 }
 [data-theme='dark'] .ReactModal__Content svg{
   color: var(--grey-text-color);

@@ -24,18 +24,14 @@ import '../styles/characters.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import i18next from 'i18next';
-// import {setValueOnLocalStorage, getValueOnLocalStorage} from "../utils/localStorage";
 import Picture from '../components/Picture';
 import logo from '../assets/Images/logo150.png';
-// import CampaignSettings from '../components/CampaignSettings';
 import alchemy from '../assets/alchemy.json';
 import {useHistory} from "react-router-dom";
 import cards from '../assets/cards.json';
 import Statistics from '../containers/Statistics';
 import {isDesktop} from "react-device-detect";
 import Modal from 'react-modal';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
 init();
 const db = firebase.firestore();
@@ -328,7 +324,6 @@ const Characters = (props) => {
                     overlayClassName="Overlay"
                     contentLabel="Example Modal"
                   >
-                    <FontAwesomeIcon onClick={() => closeModal()} className='click' icon={faTimes} style={{position: 'absolute', right: 20, top: 20}}/>
                     <NewCharacterForm
                       className='newCharacterForm'
                       createCharacter={(character) => {createCharacter(character)}}

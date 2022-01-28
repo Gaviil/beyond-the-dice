@@ -6,6 +6,9 @@
   bottom: 0;
   background-color: rgba(27, 29, 41, 0.4);
 }
+.ReactModal__Content::-webkit-scrollbar {
+  display: none;
+}
 .containerCharacters {
   display: grid;
   grid-gap: 20px;
