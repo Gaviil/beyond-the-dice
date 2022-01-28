@@ -71,6 +71,9 @@
   color: #007991;
   text-decoration: none;
 }
+.updateDetailContainer h2, .updateDetailContainer h3 {
+  text-decoration: underline;
+}
 .updateDetailContainer p{
   text-align: justify;
 }
