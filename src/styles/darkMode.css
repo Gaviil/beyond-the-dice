@@ -3,6 +3,7 @@
   --second-dark: #2a2a2a;
   --grey-text-color: #c4c4c4;
   --main-yellow: #ffad23;
+  --main-blue: #007991;
 }
 
 [data-theme='dark'] {
@@ -256,4 +257,7 @@
 }
 [data-theme='dark'] .Overlay {
   background-color: rgba(138, 138, 138, 0.5);
+}
+[data-theme='dark'] .updateDetailContainer a{
+  color: var(--main-blue);
 }
