@@ -4,6 +4,7 @@
   --grey-text-color: #c4c4c4;
   --main-yellow: #ffad23;
   --main-blue: #007991;
+  --light-red: rgba(213, 41, 64, 0.3);
 }
 
 [data-theme='dark'] {
@@ -260,4 +261,23 @@
 }
 [data-theme='dark'] .updateDetailContainer a{
   color: var(--main-blue);
+}
+[data-theme='dark'] .contextMenuWindow{
+  background-color: var(--second-dark);
+  box-shadow: 0 3px 6px rgba(100,100,100,0.1), 0 3px 6px rgba(100,100,100,0.2);
+}
+[data-theme='dark'] .divider{
+  border-color: var(--main-dark);
+}
+[data-theme='dark'] .contextMenuWindow button.empty {
+  color: #007991;
+}
+[data-theme='dark'] .contextMenuWindow .modifier:hover input[type='number'],
+[data-theme='dark'] .contextMenuWindow .modifier input[type='number']:focus{
+  background-color: var(--main-dark);
+}
+[data-theme='dark'] .contextMenuWindow .modifier input[type='number'].error,
+[data-theme='dark'] .contextMenuWindow .modifier:hover input[type='number'].error,
+[data-theme='dark'] .contextMenuWindow .modifier input[type='number'].error:focus {
+  background-color: var(--light-red);
 }

@@ -1,0 +1,74 @@
+#blockMenu {
+  position: absolute;
+  background-color: transparent;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999999;
+}
+.contextMenuWindow {
+  height: fit-content;
+  width: fit-content;
+  min-width: 250px;
+  min-height: 115px;
+  border-radius: 0.5rem;
+  color: #42414c;
+  background-color: #f6f6f9;
+  flex-direction: column;
+  position: absolute;
+  font-size: 0.8rem;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.contextMenuWindow div:not(.divider):not(.footer) {
+  padding: 0.5rem;
+}
+.contextMenuWindow .footer {
+  flex: 1;
+  display: flex;
+}
+.contextMenuWindow .headerContext {
+  display: flex;
+  justify-content:space-between;
+  align-items: baseline;
+  cursor:default;
+}
+.contextMenuWindow .headerContext span{
+  font-size: 0.9rem;
+  font-weight: normal;
+}
+.contextMenuWindow .modifier{
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  cursor: pointer;
+}
+.contextMenuWindow .modifier input[type='number'].error, .contextMenuWindow .modifier:hover input[type='number'].error, .contextMenuWindow .modifier input[type='number'].error:focus{
+  background-color: rgba(213, 41, 64, 0.3);
+}
+.contextMenuWindow .modifier:hover input[type='number'], .contextMenuWindow .modifier input[type='number']:focus{
+  background-color: #eaeaea;
+}
+.contextMenuWindow .modifier span{
+  flex: 1;
+}
+.contextMenuWindow .modifier input[type='number']{
+  font-size: 0.8rem;
+  padding: 0.25rem 0.5rem;
+  background-color: transparent;
+  display: flex;
+  border: none;
+  text-align: end;
+  /* color: #8c8b96; */
+}
+.contextMenuWindow .divider {
+  border-top: 1px solid #e9e9ec;
+}
+.contextMenuWindow button.empty {
+  flex: 1;
+  justify-content: center;
+  color: #007991;
+}
+.contextMenuWindow input[type='number'], .contextMenuWindow input[type='number']::-webkit-outer-spin-button,.contextMenuWindow input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
