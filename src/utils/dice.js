@@ -15,9 +15,6 @@ export const getRoll = (max, uidUserDmCampaign, character, user ,stat, hideRollS
     const randomValue = Math.floor(Math.random() * max) + 1;
     const isDm = uidUserDmCampaign === user.uid;
     const statRoll = { ...stat };
-    if(prefixTradStat === 'characteristics') {
-      statRoll.value = statRoll.value * 5;
-    }
     if(!character) {
       character = {
         uid:'DMMODE',
@@ -153,7 +150,7 @@ export const generateUpdateHisto = (newCharacterData, character, campaign, user)
         newUpdateHisto.push(getUpdateJson(skillLoop.value,campaign.idUserDm, character, user, statUpdate));
       }
     } else {
-      newUpdateHisto.push(getUpdateJson(skillLoop.value,campaign.idUserDm, character, user, {label: skillLoop.label, value: 0}));  
+      newUpdateHisto.push(getUpdateJson(skillLoop.value,campaign.idUserDm, character, user, {label: skillLoop.isCustom ? skillLoop.label : `skills.${skillLoop.label}`, value: 0}));  
     }
   }
   // remove

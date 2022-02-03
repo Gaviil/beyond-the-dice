@@ -113,31 +113,46 @@
   flex-direction: column;
   overscroll-behavior: contain;
 }
-#dice2 {
-  /* -webkit-transition: all 0.25s ease-in-out;
-  -moz-transition: all 0.25s ease-in-out;
-  -o-transition: all 0.25s ease-in-out;
-  transition: all 0.25s ease-in-out; */
-  /* animation: color 2s ease-in-out 0s 1 normal forwards; */
-}
+
 #last {
   width: 250px;
   height: 120px;
-  /* background-color: #ffad23; */
-    /* -webkit-transition: all 0.25s ease-in-out;
-  -moz-transition: all 0.25s ease-in-out;
-  -o-transition: all 0.25s ease-in-out;
-  transition: all 0.25s ease-in-out; */
 }
 #last .histoRightSide {
   font-size: 1.7em;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+  /* min-width: 100px; */
+  position: relative;
+}
+#last .histoRightSide span{
+  margin-left: 0.5rem;
 }
 .histoRightSide {
   font-size: 1em;
-  /* -webkit-transition: all 0.25s ease-in-out;
-  -moz-transition: all 0.25s ease-in-out;
-  -o-transition: all 0.25s ease-in-out;
-  transition: all 0.25s ease-in-out; */
+}
+.histoRightSide #animationHisto {
+  font-size: 1.2em;
+  position: absolute;
+  right: 55px;
+}
+.histoRightSide .critAnim.histoSuccesCritIcon {
+  color: #3bc14a;
+  /* opacity: 0;
+  top: 20px; */
+  animation-duration: 1.2s;
+  animation-name: newSuccessCrit;
+  /* animation-fill-mode: forwards; */
+  animation-timing-function: linear;
+}
+.histoRightSide .critAnim.histoFailCritIcon {
+  color: #D52941;
+  animation-duration: 0.5s;
+  animation-name: newFailCrit;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
 }
 .userPictureRoll {
   height: 30px;
@@ -183,6 +198,60 @@
   to {
     width: 210px;
     height: 70px;
+  }
+}
+
+@keyframes newSuccessCrit {
+  0% {
+    transform: translate(0, 0%) scale(1, 1);
+    top: 0px;
+  }
+  10% {
+    transform: translate(0, 0%) scale(1, 0.75);
+    top: 2px;
+  }
+  30% {
+    transform: translate(0, 0%) scale(1, 1);
+    top: 0px;
+  }
+  50% {
+    transform: translate(0, -120%) scale(1, 1);
+  }
+  55% {
+    transform: translate(0, -120%) rotate(15deg);
+  }
+  60% {
+    transform: translate(0, -100%) rotate(-15deg);
+  }
+  65% {
+    transform: translate(0, -100%) rotate(15deg);
+  }
+  70% {
+    transform: translate(0, -100%) rotate(-15deg);
+  }
+  80% {
+    transform: translate(0, -100%) rotate(0deg);
+  }
+  100% {
+    transform: translate(0, 0%) scale(1, 1);
+  }
+}
+
+@keyframes newFailCrit {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
   }
 }
 

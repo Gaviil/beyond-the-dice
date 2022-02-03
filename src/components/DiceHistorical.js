@@ -8,7 +8,7 @@ import { EyeOffIcon } from '@heroicons/react/outline'
 import {isDesktop, isMobile} from "react-device-detect";
 import {getLabelDice} from '../utils/dice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faDiceD20, faSyncAlt, faHandPointRight } from '@fortawesome/free-solid-svg-icons'
+import { faDiceD20, faSyncAlt, faHandPointRight, faSkull, faChild} from '@fortawesome/free-solid-svg-icons'
 
 const cleanDuplicate = (arrayRoll, userUid, campaignUserUidDm, diceLoaded = 10) => {
 
@@ -69,6 +69,15 @@ const DiceHistorical = (props) => {
     const rolls = cleanDuplicate(list.filter(roll => view === 'dice' ? roll.diceType !== 'update' : (roll.diceType === 'update' && (roll.userUid === user.uid || campaign.idUserDm === user.uid))), user.uid, campaign.idUserDm, limitHisto);
     setDiceHistorical(rolls.reverse());
   }, [list, limitHisto, view]);
+
+  useEffect(() => {
+    if(document.getElementById('animationHisto')) {
+      document.getElementById('animationHisto').classList.remove('critAnim');
+      setTimeout(function a (b){
+        document.getElementById('animationHisto').classList.add('critAnim');
+      },100);
+    }
+  }, [list]);
 
   return (
     <div ref={histoView} className='histoView' style={{maxHeight: isDesktop ? `${window.innerHeight - 90}px` : 'none'}}>
@@ -215,9 +224,17 @@ const ChatBubbleDice = (props) => {
               <EyeOffIcon className="iconHide"/>
             )}
           </div>
-          <span className='histoRightSide'>
-            {histo.value}
-          </span>
+          <div className='histoRightSide'>
+            {i === 0 && histo.diceType === 100 && histo.value > histo.stat.value && histo.value >= 90 && (
+              <FontAwesomeIcon id='animationHisto' className={'histoFailCritIcon critAnim'} icon={faSkull}/>
+            )}
+            {i === 0 && histo.diceType === 100 && histo.value <= histo.stat.value && histo.value <= 10 && (
+              <FontAwesomeIcon id='animationHisto' className={'histoSuccesCritIcon critAnim'} icon={faChild}/>
+            )}
+            <span>
+              {histo.value}
+            </span>
+          </div>
         </li>
       </div>
     </div>

@@ -18,10 +18,8 @@ const Skills = (props) => {
     } else {
       setSkillWithModifier(JSON.parse(e.target.parentElement.getAttribute('data-skill')));
     }
-    // e.pageX + 250 > window.innerWidth ? setX(`${window.innerWidth - 280}px`) : setX(e.pageX);
-    // e.pageY + 115 > window.innerHeight ? setY(`${window.innerHeight - 185}px`) : setY(e.pageY);
-    setX(e.pageX);
-    setY(e.pageY);
+    e.pageX + 250 > window.innerWidth ? setX(`${window.innerWidth - 270}px`) : setX(e.pageX);
+    e.pageY + 115 > window.innerHeight ? setY(`${window.innerHeight - 135}px`) : setY(e.pageY);
     setShowMenu(true);
   }
 
@@ -33,10 +31,10 @@ const Skills = (props) => {
   }
 
   useEffect(() => {
-    document.getElementById('blockMenu').addEventListener('click',handleClick)
+    document.addEventListener('click',handleClick)
     document.getElementById('skillsBox').addEventListener('contextmenu',handleContextMenu)
     return () => {
-      document.getElementById('blockMenu').removeEventListener('click', handleClick);
+      document.removeEventListener('click', handleClick);
       document.getElementById('skillsBox').removeEventListener('contextmenu', handleContextMenu);
     }
   })
@@ -47,7 +45,8 @@ const Skills = (props) => {
         x={x}
         y={y}
         showMenu={showMenu}
-        skill={skillWithModifier}
+        stat={skillWithModifier}
+        prefix='skills'
         rollDice={(skillModifier) => {
           setShowMenu(false);
           props.sendNewRoll(getRoll(100,props.campaign.idUserDm, props.character, props.user, skillModifier, props.hideRollSwitch, 'skills'))
@@ -57,7 +56,7 @@ const Skills = (props) => {
           {
           skillList.sort(dynamicSortWithTraduction("label", 'skills')).map((skill,i) => (
             <li
-              style={{cursor: props.campaign.clickStat ? 'pointer' : 'default'}}
+              style={{cursor: props.campaign.clickStat ? 'context-menu' : 'default'}}
               key={i}
               data-skill={JSON.stringify(skill)}
               onClick={() => {
