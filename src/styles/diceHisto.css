@@ -139,7 +139,8 @@
   right: 55px;
 }
 .histoRightSide .critAnim.histoSuccesCritIcon {
-  color: #3bc14a;
+  color: #ffad23;
+  /* color: #3bc14a; */
   /* opacity: 0;
   top: 20px; */
   animation-duration: 1.2s;
