@@ -56,6 +56,7 @@ import Hp from '../components/Hp';
 import MagicCard from '../components/MagicCard';
 import MagicCardResume from '../components/MagicCardResume';
 import DeathMagic from '../components/DeathMagic';
+import {SerridStone} from '../components/Serrid';
 
 init();
 const db = firebase.firestore();
@@ -519,19 +520,22 @@ const Character = (props) => {
                             }}
                           />
                         </div>
-                        {character.isMage && (
-                          <MagicCard
-                            magicCards={character.magicCards}
-                            drawCard={() => {
-                              const data = getMagicCard(character, user);
-                              if(data !== null ){
-                                updateCharacter(data.character);
-                                updateFirestoreCharacter(data.character);
-                                sendNewRoll(data.roll);
-                              }
-                            }}
-                          />
-                        )}
+                        <div className='altOptionTrigger'>
+                          {character.isMage && (
+                            <MagicCard
+                              magicCards={character.magicCards}
+                              drawCard={() => {
+                                const data = getMagicCard(character, user);
+                                if(data !== null ){
+                                  updateCharacter(data.character);
+                                  updateFirestoreCharacter(data.character);
+                                  sendNewRoll(data.roll);
+                                }
+                              }}
+                            />
+                          )}
+                          <SerridStone />
+                        </div>
                       </div>
                       {/* <MobileView className='linkChatContainer'>
                         <Link

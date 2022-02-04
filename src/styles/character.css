@@ -361,6 +361,14 @@ input[type='number'].updateHp {
 .altOptionContainer div {
   display: flex;
 }
+.altOptionTrigger {
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+}
+.altOptionTrigger div{
+  margin: 0.15rem;
+}
 .altOptionContainer .blockCoin{
   margin-left: 0.5rem;
   margin-right: 0.5rem;
