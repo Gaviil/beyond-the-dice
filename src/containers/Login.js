@@ -40,7 +40,7 @@ export default function Login() {
         authProvider: provider,
         email: user.email || null,
         locale: data.additionalUserInfo.profile.locale || 'en',
-        frameUnlock:['beta']
+        frameUnlock:[],
       });
       firebase.analytics().setUserId(user.uid);
       firebase.analytics().setUserProperties({

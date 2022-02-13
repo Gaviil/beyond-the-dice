@@ -31,11 +31,13 @@ const Skills = (props) => {
   }
 
   useEffect(() => {
-    document.addEventListener('click',handleClick)
-    document.getElementById('skillsBox').addEventListener('contextmenu',handleContextMenu)
-    return () => {
-      document.removeEventListener('click', handleClick);
-      document.getElementById('skillsBox').removeEventListener('contextmenu', handleContextMenu);
+    if(props.campaign.clickStat) {
+      document.addEventListener('click',handleClick)
+      document.getElementById('skillsBox').addEventListener('contextmenu',handleContextMenu)
+      return () => {
+        document.removeEventListener('click', handleClick);
+        document.getElementById('skillsBox').removeEventListener('contextmenu', handleContextMenu);
+      }
     }
   })
 

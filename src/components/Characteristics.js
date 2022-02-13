@@ -34,11 +34,13 @@ const Skills = (props) => {
   }
 
   useEffect(() => {
-    document.addEventListener('click',handleClick)
-    document.getElementById('characsBox').addEventListener('contextmenu',handleContextMenu)
-    return () => {
-      document.removeEventListener('click', handleClick);
-      document.getElementById('characsBox').removeEventListener('contextmenu', handleContextMenu);
+    if(props.campaign.clickStat) {
+      document.addEventListener('click',handleClick)
+      document.getElementById('characsBox').addEventListener('contextmenu',handleContextMenu)
+      return () => {
+        document.removeEventListener('click', handleClick);
+        document.getElementById('characsBox').removeEventListener('contextmenu', handleContextMenu);
+      }
     }
   })
 
@@ -61,7 +63,7 @@ const Skills = (props) => {
             <li
               key={i}
               className='characBlock'
-              style={{cursor: props.campaign.clickStat ? 'context-menu' : 'default'}}
+              style={{cursor: props.campaign.clickStat ? '' : 'default'}}
               data-charac={JSON.stringify(charac)}
               onClick={() => {
               if(props.campaign.clickStat) {

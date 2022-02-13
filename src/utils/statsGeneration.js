@@ -63,7 +63,7 @@ export const getRollByCharacterForGraph = (rollList, company) => {
   for(let i=0; i<company.length; i+=1) {
     data.push({
       name: company[i].name,
-      value: rollList.filter(roll => roll.characterId === company[i].uid).length
+      value: rollList.filter(roll => roll.diceType === 100 && roll.characterId === company[i].uid).length
     })
   }
   return data
