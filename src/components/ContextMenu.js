@@ -37,7 +37,7 @@ const ContextMenu = ({x,y,showMenu, stat, prefix, rollDice}) => {
         <div className='modifier' onClick={() => {inputRef.current.focus();}}>
           <span>{i18next.t('modifierDiceTitle')}</span>
           <input
-            className={parseInt(stat.value, 10) + parseInt(modifier || 0, 10) > 99 || parseInt(stat.value, 10) + parseInt(modifier || 0, 10) < 1 ? 'error' : ''}
+            className={parseInt(prefix === 'characteristics' ? stat.value * 5 : stat.value, 10) + parseInt(modifier || 0, 10) > 99 || parseInt(prefix === 'characteristics' ? stat.value * 5 : stat.value, 10) + parseInt(modifier || 0, 10) < 1 ? 'error' : ''}
             ref={inputRef}
             type="number"
             min={parseInt(`-${prefix === 'characteristics' ? stat.value * 5 : stat.value || 99}`,10) + 1}
@@ -54,7 +54,7 @@ const ContextMenu = ({x,y,showMenu, stat, prefix, rollDice}) => {
           <button
             className={'empty click'}
             onClick={(e) => {
-              if(parseInt(stat.value, 10) + parseInt(modifier || 0, 10) <= 99 && parseInt(stat.value, 10) + parseInt(modifier || 0, 10) >= 1) {
+              if(parseInt(prefix === 'characteristics' ? stat.value * 5 : stat.value, 10) + parseInt(modifier || 0, 10) <= 99 && parseInt(prefix === 'characteristics' ? stat.value * 5 : stat.value, 10) + parseInt(modifier || 0, 10) >= 1) {
                 const skillWithModifier = {
                   ...stat,
                   value: parseInt(prefix === 'characteristics' ? stat.value * 5 : stat.value, 10) + parseInt(modifier || 0, 10)

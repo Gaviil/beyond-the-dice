@@ -1,6 +1,6 @@
 # Update : Les modificateurs de jets et fin de la Bêta
 ___
-##### Publié le 
+##### Publié le 13 février 2022
 ###### Version : 1.0
 
 Bienvenue aventurier(e), cette mise à jour continue d'améliorer vos sessions lors de vos grandes épopées. Pour cela, nous avons ajoutés les modificateurs de jets de dés, un affichage sur les dés critiques ainsi que des correctifs de bug. Ces sujets sont détaillés ci-dessous.

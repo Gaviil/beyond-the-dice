@@ -225,10 +225,10 @@ const ChatBubbleDice = (props) => {
             )}
           </div>
           <div className='histoRightSide'>
-            {i === 0 && histo.diceType === 100 && histo.value > histo.stat.value && histo.value >= 90 && (
+            {i === 0 && histo.diceType === 100 && histo.stat && histo.value > histo.stat.value && histo.value >= 90 && (
               <FontAwesomeIcon id='animationHisto' className={'histoFailCritIcon critAnim'} icon={faSkull}/>
             )}
-            {i === 0 && histo.diceType === 100 && histo.value <= histo.stat.value && histo.value <= 10 && (
+            {i === 0 && histo.diceType === 100 && histo.stat && histo.value <= histo.stat.value && histo.value <= 10 && (
               <FontAwesomeIcon id='animationHisto' className={'histoSuccesCritIcon critAnim'} icon={faChild}/>
             )}
             <span>
