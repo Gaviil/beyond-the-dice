@@ -240,5 +240,6 @@
     "spellDesc7": "Le magicien réveille un cadavre pendant une nuit complète. Jusqu’au lever du jour, le mort sera en pleine possession de ses moyens et de son intelligence il a également conscience de son statut de mort revenu temporairement parmi les vivants. Il pourra répondre au personnage et même accomplir les missions qui lui sont confiées mais peut tout à fait négocier ce service. À l’aube, le mort s’écroule où il se trouve pour reprendre le sommeil qu’il croyait éternel. Ce sort ne fonctionne que sur le lieu de décès du défunt.Pendant une heure, le personnage peut s’ entretenir avec un mort précis, qui revient sous la forme de fantôme.Les autres personnes voient le fantôme mais ne l’ entendent pas.Seul le magicien est en mesure de communiquer avec le défunt."
   },
   "rollDice": "Lancer les dés",
-  "modifierDiceTitle": "Bonus / Malus :"
+  "modifierDiceTitle": "Bonus / Malus :",
+  "imageToBig": "L'image est trop volumineuse, 800Ko max"
 }

@@ -54,7 +54,7 @@ const EditCharacter = (props) => {
   };
 
   const handleUpload = async () => {
-    if(image.size < 1048576){
+    if(image.size < 800000){
       const uploadTask = firebase.storage().ref(`charactersPictures/${character.uid}.png`).put(image);
       uploadTask.on(
         "state_changed",
@@ -81,6 +81,7 @@ const EditCharacter = (props) => {
     } else {
       console.log('to big picture');
       //error message to big
+      toast.error(i18next.t('imageToBig'), {});
     }
   };
 
