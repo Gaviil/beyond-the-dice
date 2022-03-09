@@ -1,6 +1,7 @@
 :root {
   --main-dark: #191919;
   --second-dark: #2a2a2a;
+  --light-dark: #363738;
   --grey-text-color: #c4c4c4;
   --main-yellow: #ffad23;
   --main-blue: #007991;
@@ -86,35 +87,38 @@
   border-color: var(--main-dark);
 }
 [data-theme='dark'] .hpCharacter:hover input[type='number'] {
-  background-color: var(--second-dark);
+  background-color: var(--light-dark);
 }
 [data-theme='dark'] .hpCharacter input[type='number']:focus {
-  background-color: var(--second-dark);
+  background-color: var(--light-dark);
 }
 [data-theme='dark'] .blockCoin input[type='number'], [data-theme='dark'] .blockSkill input[type='number'] {
   background-color: var(--main-dark);
   border-color: var(--main-dark);
 }
 [data-theme='dark'] .blockCoin:hover input[type='number'], [data-theme='dark'] .blockSkill:hover input[type='number'] {
-  background-color: var(--second-dark);
+  background-color: var(--light-dark);
 }
 [data-theme='dark'] .blockCoin input[type='number']:focus, [data-theme='dark'] .blockSkill input[type='number']:focus {
-  background-color: var(--second-dark);
+  background-color: var(--light-dark);
 }
 [data-theme='dark'] .hpCharacter .hpBarEmpty {
-    background-color: var(--second-dark);
+    background-color: var(--light-dark);
 }
 [data-theme='dark'] .characteristicsDetail ul li {
-  background-color: var(--second-dark);
+  background-color: var(--light-dark);
 }
 [data-theme='dark'] .myhistoRow {
-  background-color: var(--second-dark);
+  background-color: var(--light-dark);
 }
 [data-theme='dark'] .histoRow {
-  background-color: #525252;
+  background-color: #817f7e;
 }
-[data-theme='dark'] .histoRow .histoLeftSide span:first-child {
-  color: var(--grey-text-color);
+[data-theme='dark'] .myhistoRow .histoLeftSide span:first-child, [data-theme='dark'] .myhistoRow .histoRightSide span {
+  color: #fff;
+}
+[data-theme='dark'] .histoRow .histoLeftSide span:first-child, [data-theme='dark'] .histoRow .histoRightSide span {
+  color: #fff;
 }
 [data-theme='dark'] .tooltip .tooltiptext {
   background-color: #5a5a5a;

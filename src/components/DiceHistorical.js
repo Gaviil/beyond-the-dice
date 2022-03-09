@@ -147,6 +147,7 @@ const DiceHistorical = (props) => {
       <ul className="listHisto">
         {diceHistorical.length > 0 && (
           diceHistorical.map((histo, i) => {
+            console.log(histo, diceHistorical[i-1])
             if(view === 'dice' && user && campaign) {
               return (
                 <ChatBubbleDice
@@ -155,6 +156,8 @@ const DiceHistorical = (props) => {
                   key={i}
                   i={i}
                   campaign={campaign}
+                  firstOfGroup={!diceHistorical[i+1] || histo.userUid !== diceHistorical[i+1].userUid}
+                  lastOfGroup={!diceHistorical[i-1] || histo.userUid !== diceHistorical[i-1].userUid}
                 />
               )
             }
@@ -183,7 +186,7 @@ const DiceHistorical = (props) => {
 }
 
 const ChatBubbleDice = (props) => {
-  const {user, histo, i, campaign} = props;
+  const {user, histo, i, campaign, firstOfGroup, lastOfGroup} = props;
 
   const isMyRoll = (roll) => {
     if(user.uid === roll.userUid) {
@@ -210,8 +213,7 @@ const ChatBubbleDice = (props) => {
         )}
         <li
           id={i === 0 ? 'last' : null}
-          className={`${isMyRoll(histo) ? "myhistoRow" : "histoRow"} bubbleHisto`}
-          style={!isMyRoll(histo) ? {margin: '0.5rem 2.25rem'} : null}
+          className={`${isMyRoll(histo) ? "myhistoRow" : "histoRow"} bubbleHisto ${lastOfGroup ? 'lastOfGroup' : ''} ${firstOfGroup ? 'firstOfGroup' : ''}`}
         >
           <div className='histoLeftSide'>
             <span>
