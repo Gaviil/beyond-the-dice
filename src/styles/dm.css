@@ -209,7 +209,89 @@
 .containerDMView {
   padding-bottom: 0px;
 }
-
+.imagePanelAdminContainer {
+  display: flex;
+}
+.addImagePanel {
+  flex: 1;
+}
+.panelContent {
+  flex: 5;
+  border-radius: 0.75rem;
+  background-color: #fff;
+  border: 0.25rem solid #eaeaea;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.25rem;
+  position: relative;
+}
+.panelContent img {
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+}
+.infoUserDisplay {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+.infoUserDisplay span {
+  font-size: 0.7rem;
+  border-radius: 0.5rem;
+  background-color: #1b1d29;
+  color: #fff;
+  padding: 0.25rem;
+  margin: 0.25rem;
+  opacity: 0.5;
+  cursor: default;
+}
+.infoUserDisplay span:hover {
+  opacity: 1;
+}
+.containerImagePanel {
+  flex: 1;
+}
+.selectedUser {
+  background-color: #007991;
+  color: #fff;
+  border-radius: 0.25rem;
+}
+.configPanel {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0 1rem 0;
+}
+.configPanel span{
+  padding: 0.5rem;
+  cursor: pointer;
+  margin: 0.1rem;
+}
+.configPanel span:first-child, .configPanel span:nth-child(2) {
+  font-size: 0.8rem;
+}
+.configPanel span:nth-child(2) {
+  border-bottom: 0.15rem solid #eaeaea;
+}
+.addImagePanel form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0.5rem 0 0;
+}
+.addImagePanel form .guide{
+  color:#6c757d;
+  font-size: 0.7em;
+  text-align: justify;
+  margin-bottom: 0.5rem;
+}
+.addImagePanel form .inputfile + label{
+  width: 100%;
+  text-align: center;
+}
+.addImagePanel form input[type='submit'] {
+  align-self: flex-end;
+  margin: 0 0.5rem 0 0;
+}
 @media (min-width: 1000px) {
   .DMContainer {
     grid-template-columns: 3fr 2fr;

@@ -26,6 +26,9 @@
 .containerInv {
   grid-area: containerInv;
 }
+.containerImagePanel {
+  grid-area: containerImagePanel;
+}
 .alchemyContainer {
   /* grid-area: containerAlchemy; */
   /* display: flex;
@@ -460,7 +463,10 @@ input[type='number'].updateHp {
       "nameCharacteristics skillsDetail"
       "containerInv containerInv"
       "containerAlchemy containerAlchemy"
+      "containerImagePanel containerImagePanel"
       "containerCompany containerCompany";
+    width: 100%;
+    height: fit-content;
   }
   .containerInventory {
     height: 50px;
@@ -550,7 +556,10 @@ input[type='number'].updateHp {
       "nameCharacteristics skillsDetail"
       "containerInv containerInv"
       "containerAlchemy containerAlchemy"
+      "containerImagePanel containerImagePanel"
       "containerCompany containerCompany";
+    width: 100%;
+    height: fit-content;
   }
   .line.multiLine {
     display: flex;
