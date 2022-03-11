@@ -42,7 +42,9 @@ import {getRoll, getMagicCard, generateUpdateHisto} from '../utils/dice';
 import {
   BrowserView,
   MobileView,
-  isMobile
+  isMobile,
+  isTablet,
+  isDesktop
 } from "react-device-detect";
 import { toast } from 'react-toastify';
 import Picture from '../components/Picture';
@@ -327,7 +329,7 @@ const Character = (props) => {
           />
         </Route>
         <Route path={match.path}>
-          <div className='containerCharacterView'>
+          <div className={isDesktop ? 'containerCharacterView' : 'containerCharacterViewMobile'}>
             {(character.idUser === user.uid || campaign.idUserDm === user.uid) && (
               <div className='characterContainer'>
                 <BrowserView className='tabsDetails'>

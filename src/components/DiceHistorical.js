@@ -9,7 +9,6 @@ import {isDesktop, isMobile} from "react-device-detect";
 import {getLabelDice} from '../utils/dice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDiceD20, faSyncAlt, faHandPointRight, faSkull, faChild} from '@fortawesome/free-solid-svg-icons'
-
 const cleanDuplicate = (arrayRoll, userUid, campaignUserUidDm, diceLoaded = 10) => {
 
   let savedDate = null;
@@ -84,38 +83,46 @@ const DiceHistorical = (props) => {
       <div className='headerHisto'>
         <div className='tabsDetails'>
           <ul className='tabsContainer'>
-            <li
-              className={`tab tabText ${view === 'dice' ? 'active' : ''}`}
-              onClick={() => {
-                setView('dice');
-              }}  
-            >
-              {i18next.t('dice')}
-            </li>
-            <li
-              className={`tab tabText ${view === 'update' ? 'active' : ''}`}
-              onClick={() => {
-                setView('update');
-              }}  
-            >
-              {i18next.t('update')}
-            </li>
-            <li
-              className={`tab tabIcon ${view === 'dice' ? 'active' : ''}`}
-              onClick={() => {
-                setView('dice');
-              }}  
-            >
-              <FontAwesomeIcon icon={faDiceD20}/>
-            </li>
-            <li
-              className={`tab tabIcon ${view === 'update' ? 'active' : ''}`}
-              onClick={() => {
-                setView('update');
-              }}  
-            >
-              <FontAwesomeIcon icon={faSyncAlt}/>
-            </li>
+            {isDesktop && (
+              <>
+                <li
+                  className={`tab tabText ${view === 'dice' ? 'active' : ''}`}
+                  onClick={() => {
+                    setView('dice');
+                  }}  
+                >
+                  {i18next.t('dice')}
+                </li>
+                <li
+                  className={`tab tabText ${view === 'update' ? 'active' : ''}`}
+                  onClick={() => {
+                    setView('update');
+                  }}  
+                >
+                  {i18next.t('update')}
+                </li>
+              </>
+            )}
+            {!isDesktop && (
+              <>
+                <li
+                  className={`tab tabText ${view === 'dice' ? 'active' : ''}`}
+                  onClick={() => {
+                    setView('dice');
+                  }}  
+                >
+                  <FontAwesomeIcon icon={faDiceD20}/>
+                </li>
+                <li
+                  className={`tab tabText ${view === 'update' ? 'active' : ''}`}
+                  onClick={() => {
+                    setView('update');
+                  }}  
+                >
+                  <FontAwesomeIcon icon={faSyncAlt}/>
+                </li>
+              </>
+            )}
           </ul>
         </div>
         <div className="switch">

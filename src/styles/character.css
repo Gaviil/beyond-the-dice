@@ -2,8 +2,12 @@
   height: 100%;
   display: flex;
   justify-content: center;
-  padding-bottom: 40px;
   padding-bottom: 0px;
+}
+.containerCharacterViewMobile {
+  height: 100%;
+  justify-content: center;
+  padding-bottom: 40px;
 }
 .nameCharacteristics {
   grid-area: nameCharacteristics;
@@ -312,7 +316,8 @@ table tr td {
   margin: 1rem;
   margin-left: 0;
 }
-.containerCharacterView .tabsContainer {
+.containerCharacterView .tabsContainer,
+.containerCharacterViewMobile .tabsContainer {
   display: flex;
   flex-direction: row;
   border: none;
@@ -434,8 +439,54 @@ input[type='number'].updateHp {
   display: none;
 }
 .containerHisto .tab.tabText {
-  display: none;
+  /* display: none; */
+  display: inline-block;
 }
+
+.containerCharacterView .tab, .containerHisto .tab, 
+  .containerCharacterViewMobile .tab {
+    /* width: 43%; */
+    display: block;
+    position: relative;
+    text-align: center;
+    padding:0.5rem 1rem;
+    cursor:pointer;
+    border-radius: 0 0 0.25rem 0.25rem;
+    color:#1b1d29;
+  }
+  .containerCharacterView .tab.active, .containerHisto .tab.active,
+  .containerCharacterViewMobile .tab.active {
+    background-color: #1b1d29;
+    /* box-shadow:inset 0px -10em 0px 0px #1b1d29; */
+    position:relative;
+    color:#fff;
+  }
+  .containerCharacterView .active:after,
+  .containerCharacterViewMobile .active:after,
+  .containerCharacterView .active:before,
+  .containerCharacterViewMobile .active:before,
+  .containerHisto .active:active,
+  .containerHisto .active:before{
+    content:'';
+    position:absolute;
+    top: 0;
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+  }
+  .containerCharacterView .active:after, .containerHisto .active:after,
+  .containerCharacterViewMobile .active:after {
+    right: -10px;
+    box-shadow: -5px -5px 0 #1b1d29;
+  }
+  .containerCharacterView .active:before, .containerHisto .active:before, .containerCharacterViewMobile .active:before{
+    left: -10px;
+    box-shadow: 5px -5px 0 #1b1d29;
+  }
+
+
+
 @media (min-width: 800px) {
   .inventory {
     display: block;
@@ -452,6 +503,17 @@ input[type='number'].updateHp {
       "tabsDetails containerHisto"
       "containerInfo containerHisto"
   }
+  .containerCharacterViewMobile .characterContainer {
+    width: 100%;
+    justify-content:flex-start;
+    align-content:flex-start;
+    /* grid-template-areas:
+      "tabsDetails containerHisto"
+      "containerInfo containerHisto"; */
+    grid-template-areas: none;
+    grid-template-columns:none;
+    display: inline;
+  }
   .containerInfo {
     display: grid;
     /* grid-template-rows:3rem 0rem 0rem;
@@ -462,6 +524,10 @@ input[type='number'].updateHp {
       "containerAlchemy containerAlchemy"
       "containerCompany containerCompany";
   }
+  /* .containerCharacterViewMobile .containerInfo {
+    grid-template-areas: none;
+    display: inline;
+  } */
   .containerInventory {
     height: 50px;
   }
@@ -491,7 +557,8 @@ input[type='number'].updateHp {
     display: flex;
     flex-direction: row;
   }
-  .containerCharacterView .tab, .containerHisto .tab {
+  .containerCharacterView .tab, .containerHisto .tab, 
+  .containerCharacterViewMobile .tab {
     /* width: 43%; */
     display: block;
     position: relative;
@@ -501,14 +568,17 @@ input[type='number'].updateHp {
     border-radius: 0 0 0.25rem 0.25rem;
     color:#1b1d29;
   }
-  .containerCharacterView .tab.active, .containerHisto .tab.active {
+  .containerCharacterView .tab.active, .containerHisto .tab.active,
+  .containerCharacterViewMobile .tab.active {
     background-color: #1b1d29;
     /* box-shadow:inset 0px -10em 0px 0px #1b1d29; */
     position:relative;
     color:#fff;
   }
   .containerCharacterView .active:after,
+  .containerCharacterViewMobile .active:after,
   .containerCharacterView .active:before,
+  .containerCharacterViewMobile .active:before,
   .containerHisto .active:active,
   .containerHisto .active:before{
     content:'';
@@ -519,11 +589,12 @@ input[type='number'].updateHp {
     background-color: #fff;
     border-radius: 50%;
   }
-  .containerCharacterView .active:after, .containerHisto .active:after{
+  .containerCharacterView .active:after, .containerHisto .active:after,
+  .containerCharacterViewMobile .active:after {
     right: -10px;
     box-shadow: -5px -5px 0 #1b1d29;
   }
-  .containerCharacterView .active:before, .containerHisto .active:before{
+  .containerCharacterView .active:before, .containerHisto .active:before, .containerCharacterViewMobile .active:before{
     left: -10px;
     box-shadow: 5px -5px 0 #1b1d29;
   }
@@ -531,7 +602,7 @@ input[type='number'].updateHp {
     display: inline-block;
   }
   .containerHisto .tab.tabIcon {
-    display: none;
+    /* display: none; */
   }
 }
 @media (min-width: 1500px) {

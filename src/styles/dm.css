@@ -244,9 +244,9 @@
     margin-top: 3rem;
     padding-bottom: 0px;
   }
-  .mobileTabsContainer {
+  /* .mobileTabsContainer {
     display: none;
-  }
+  } */
 }
 @media (min-width: 1400px) {
   .containerCompanyList .blockInfoDM .stats{
