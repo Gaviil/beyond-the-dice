@@ -5,6 +5,7 @@
   --main-yellow: #ffad23;
   --main-blue: #007991;
   --light-red: rgba(213, 41, 64, 0.3);
+  --white: #ffffff;
 }
 
 [data-theme='dark'] {
@@ -280,4 +281,17 @@
 [data-theme='dark'] .contextMenuWindow .modifier:hover input[type='number'].error,
 [data-theme='dark'] .contextMenuWindow .modifier input[type='number'].error:focus {
   background-color: var(--light-red);
+}
+[data-theme='dark'] .panelContent {
+  background-color: var(--main-dark);
+  border-color: var(--second-dark);
+}
+[data-theme='dark'] .configPanel span:nth-child(2){
+  border-bottom-color: var(--second-dark);
+}
+[data-theme='dark'] span.selectedUser {
+  color: var(--white);
+}
+[data-theme='dark'] form label label {
+  color: var(--main-yellow);
 }

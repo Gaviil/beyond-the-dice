@@ -216,7 +216,7 @@
   flex: 1;
 }
 .panelContent {
-  flex: 5;
+  flex: 3;
   border-radius: 0.75rem;
   background-color: #fff;
   border: 0.25rem solid #eaeaea;
@@ -255,7 +255,7 @@
 .selectedUser {
   background-color: #007991;
   color: #fff;
-  border-radius: 0.25rem;
+  /* border-radius: 0.25rem; */
 }
 .configPanel {
   display: flex;
@@ -265,7 +265,7 @@
 .configPanel span{
   padding: 0.5rem;
   cursor: pointer;
-  margin: 0.1rem;
+  /* margin: 0.1rem; */
 }
 .configPanel span:first-child, .configPanel span:nth-child(2) {
   font-size: 0.8rem;
@@ -293,6 +293,9 @@
   margin: 0 0.5rem 0 0;
 }
 @media (min-width: 1000px) {
+  .panelContent {
+    flex: 3;
+  }
   .DMContainer {
     grid-template-columns: 3fr 2fr;
     grid-template-rows:3rem 0 0;
@@ -333,5 +336,8 @@
 @media (min-width: 1400px) {
   .containerCompanyList .blockInfoDM .stats{
     flex-direction: row;
+  }
+  .panelContent {
+    flex: 4;
   }
 }

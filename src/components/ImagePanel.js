@@ -87,6 +87,7 @@ export const ImagePanelAdmin = ({campaignUid, company}) => {
       );
     } else {
       console.log('to big picture');
+      toast.error(i18next.t('illustration.sizeMax'), {});
     }
   };
 
@@ -114,6 +115,7 @@ export const ImagePanelAdmin = ({campaignUid, company}) => {
             e.preventDefault();
           }}
         >
+          <h2>{i18next.t('illustration.formTittle')}</h2>
           <span className='guide'>{i18next.t('illustration.guideDm')}</span>
           <label>
             <input type="file" name="file" id="file" className="inputfile" onChange={handleChange} />
