@@ -213,7 +213,7 @@ const ChatBubbleDice = (props) => {
         )}
         <li
           id={i === 0 ? 'last' : null}
-          className={`${isMyRoll(histo) ? "myhistoRow" : "histoRow"} bubbleHisto ${lastOfGroup ? 'lastOfGroup' : ''} ${firstOfGroup ? 'firstOfGroup' : ''}`}
+          className={`${isMyRoll(histo) ? "myhistoRow" : "histoRow"} bubbleHisto ${lastOfGroup && firstOfGroup ? 'aloneOnGroup' : ''} ${lastOfGroup ? 'lastOfGroup' : ''} ${firstOfGroup ? 'firstOfGroup' : ''}`}
         >
           <div className='histoLeftSide'>
             <span>

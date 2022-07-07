@@ -17,7 +17,7 @@
 .bubbleHisto, .bubbleHistoUpdate{
   display: flex;
   align-items: center;
-  /* border-radius: 0.75rem 0.75rem 0.75rem 0; */
+  border-radius: 0rem 0.75rem 0.75rem 0;
   min-height: 70px;
   width: 210px;
   margin: 0.25rem 1.5rem;
@@ -192,6 +192,13 @@
 }
 .histoRow.firstOfGroup {
   border-radius: 0.75rem 0.75rem 0.75rem 0;
+}
+
+.myhistoRow.aloneOnGroup {
+  border-radius: 0.75rem 0.75rem 0.75rem 0.75rem;
+}
+.histoRow.aloneOnGroup {
+  border-radius: 0.75rem 0.75rem 0.75rem 0.75rem;
 }
 
 
