@@ -241,5 +241,14 @@
   },
   "rollDice": "Lancer les dés",
   "modifierDiceTitle": "Bonus / Malus :",
-  "imageToBig": "L'image est trop volumineuse, 800Ko max"
+  "imageToBig": "L'image est trop volumineuse, 800Ko max",
+  "illustration": {
+    "title": "Illustration",
+    "guideDm": "Sélectionnez votre illustration et les personnages pouvant la visionner (PNG / JPG / GIF pour 800 ko maximum)",
+    "formTittle": "Configuration d'une illustration",
+    "sizeMax": "Le poids de l'image dépasse 800ko"
+  },
+  "selectAll": "Ajouter tous les personnages",
+  "removeAll": "Retirer tous les personnages",
+  "send": "Envoyer"
 }

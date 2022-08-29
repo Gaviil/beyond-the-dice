@@ -56,6 +56,7 @@ import Hp from '../components/Hp';
 import MagicCard from '../components/MagicCard';
 import MagicCardResume from '../components/MagicCardResume';
 import DeathMagic from '../components/DeathMagic';
+import ImagePanel from '../components/ImagePanel';
 
 init();
 const db = firebase.firestore();
@@ -347,6 +348,14 @@ const Character = (props) => {
                       }}  
                     >
                       {i18next.t('inventory')}
+                    </li>
+                    <li
+                      className={`tab ${view === 'imagePanel' ? 'active' : ''}`}
+                      onClick={() => {
+                        setView('imagePanel');
+                      }}  
+                    >
+                      {i18next.t('illustration.title')}
                     </li>
                     {character.isAlchemist && (
                       <li
@@ -672,6 +681,14 @@ const Character = (props) => {
                       rollDice={(skill) => {
                         rollDiceDeathMagic(skill);
                       }}
+                    />
+                  </div>
+                )}
+                {view === 'imagePanel' && (
+                  <div className='containerInfo'>
+                    <ImagePanel 
+                      campaignUid={campaign.uid}
+                      characterUid={character.uid}
                     />
                   </div>
                 )}

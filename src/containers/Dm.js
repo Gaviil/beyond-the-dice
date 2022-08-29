@@ -24,6 +24,7 @@ import {getLabelDice} from '../utils/dice'
 import {useHistory} from "react-router-dom";
 import i18next from 'i18next';
 import CampaignSettings from '../components/CampaignSettings';
+import {ImagePanelAdmin} from '../components/ImagePanel';
 import { UserIcon, CogIcon, AnnotationIcon } from '@heroicons/react/outline';
 
 init();
@@ -121,16 +122,14 @@ const Dm = (props) => {
                 >
                   {i18next.t('characters')}
                 </li>
-                {/* { rollList.length > 0 && company.length > 0 && isDesktop && (
-                  <li
-                    className={`tab ${view === 'stats' ? 'active' : ''}`}
-                    onClick={() => {
-                      setView('stats');
-                    }}  
-                  >
-                    {i18next.t('stats.title')}
-                  </li>
-                )} */}
+                <li
+                  className={`tab ${view === 'imagePanel' ? 'active' : ''}`}
+                  onClick={() => {
+                    setView('imagePanel');
+                  }}  
+                >
+                  {i18next.t('illustration.title')}
+                </li>
                 <li
                   className={`tab ${view === 'settings' ? 'active' : ''}`}
                   onClick={() => {
@@ -189,6 +188,12 @@ const Dm = (props) => {
                   }}
                 />
                 
+              )}
+              {view === 'imagePanel' && (
+                <ImagePanelAdmin 
+                  campaignUid={campaign.uid}
+                  company={company}
+                />
               )}
               {view === 'diceChat' && (
                 <DiceHistorical
